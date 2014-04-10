@@ -88,7 +88,7 @@ STATIC_URL = '/static/'
 # doorsale settings
 import doorsale.settings
 
-AUTH_USER_MODEL = 'doorsale.User'
+AUTH_USER_MODEL = 'common.User'
 
 # Including doorsale apps
 INSTALLED_APPS += doorsale.settings.APPS
