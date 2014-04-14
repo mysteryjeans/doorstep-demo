@@ -8,27 +8,44 @@ Demo site for Doorsale e-commerce solution built on Django. Doorsale is been act
 * Get latest Doorsale app source code
 
 ```
-git clone git@github.com:mysteryjeans/doorsale.git
+$ git clone git@github.com:mysteryjeans/doorsale.git
 ```
 
 * Get latest Doorsale Demo source code
 
 ```
-git clone git@github.com:mysteryjeans/doorsale-demo.git
+$ git clone git@github.com:mysteryjeans/doorsale-demo.git
 ```
 
-* Include cloned Doorsale app to PYTHONPATH or simply use .pth file
+* You need to include path of Doorsale app in python search paths for packages, so you need to include its path in PYTHONPATH variable or create a simple doorsale.pth file in python site-packages directory, which will contains an actuall path to your doorsale project, example...
 
-* Create database & user in PostgreSQL with the name of doorsale, password defined in settings.py is also "doorsale".
+```
+$ cat /Library/Python/2.7/site-packages/doorsale.pth 
+/Users/faraz/Workspace/doorsale
+```
 
-* Restore dump from db_dump folder on doorsale database
+* Create PostgreSQL user
+
+```sql
+create user doorsale with password 'doorsale';
+```
+
+* Create PostgreSQL database
+
+```sql
+create database doorsale with owner doorsale;
+```
+ 
+* Restore pg_dump.sql from db_dump folder in doorsale-demo project.
+
+```
+$ psql -U doorsale doorsale < pg_dump.sql
+```
 
 * Run Doorsale demo site
 
 ```
-python manage.py runserver
+$ python manage.py runserver
 ```
 
-* Go to http://localhost:8000/admin
-⋅⋅1. Admin User: mysteryjeans
-⋅⋅2. Admin Password: password
+* Go to http://localhost:8000/admin and login with user: "mysteryjeans" and password: "password".
