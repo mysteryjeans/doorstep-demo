@@ -184,7 +184,6 @@ CREATE TABLE catalog_manufacturer (
     name character varying(100) NOT NULL,
     slug character varying(100) NOT NULL,
     description text,
-    pic character varying(100),
     is_active boolean NOT NULL,
     updated_by character varying(100) NOT NULL,
     updated_on timestamp with time zone NOT NULL,
@@ -1280,17 +1279,17 @@ SELECT pg_catalog.setval('catalog_category_id_seq', 18, true);
 -- Data for Name: catalog_manufacturer; Type: TABLE DATA; Schema: public; Owner: doorsale
 --
 
-COPY catalog_manufacturer (id, name, slug, description, pic, is_active, updated_by, updated_on, created_on, created_by) FROM stdin;
-4	ASUS	asus	ASUS is a worldwide top-three consumer notebook vendor and maker of the world's best-selling, most award-winning, motherboards	images/catalog/manufacturers/Asus_logo.jpg	t	mysteryjeans	2014-04-13 05:12:34.763226+05	2014-04-13 05:12:34.763257+05	mysteryjeans
-5	Lenovo	lenovo	Lenovo Group Ltd. is a Chinese multinational technology company with headquarters in Beijing, China, and Morrisville, North Carolina, United States. It designs	images/catalog/manufacturers/lenovologo.jpg	t	mysteryjeans	2014-04-15 00:54:52.751148+05	2014-04-15 00:54:52.75118+05	mysteryjeans
-6	Toshiba	toshiba	Toshiba Corporation (株式会社東芝, Kabushiki-gaisha Tōshiba) is a Japanese multinational engineering and electronics conglomerate corporation	images/catalog/manufacturers/Toshiba.jpg	t	mysteryjeans	2014-04-15 01:05:22.244336+05	2014-04-15 01:05:22.244394+05	mysteryjeans
-2	Dell	dell	Official Dell site covering the personal computers and technology related products they manufacture, support and sell.	images/catalog/manufacturers/Dell_Logo.png	t	mysteryjeans	2014-04-15 02:07:20.251314+05	2014-04-13 05:07:02.00372+05	mysteryjeans
-1	Apple	apple	Apple designs and creates iPod and iTunes, Mac laptop and desktop computers, the OS X operating system, and the revolutionary iPhone and iPad.	images/catalog/manufacturers/apple-logo.gif	t	mysteryjeans	2014-04-15 02:08:25.592952+05	2014-04-13 05:06:10.461952+05	mysteryjeans
-3	HP	hp	Hewlett-Packard Company or HP is an American multinational information technology corporation headquartered in Palo Alto, California, United States.	images/catalog/manufacturers/hp.jpeg	t	mysteryjeans	2014-04-15 02:08:56.084945+05	2014-04-13 05:08:27.068082+05	mysteryjeans
-7	Acer	acer		images/catalog/manufacturers/acer.png	t	mysteryjeans	2014-04-18 02:42:25.004112+05	2014-04-18 02:42:25.00417+05	mysteryjeans
-8	Microsoft	microsoft		images/catalog/manufacturers/microsoft.jpg	t	mysteryjeans	2014-04-18 04:34:25.387466+05	2014-04-18 04:34:25.387537+05	mysteryjeans
-9	Logitech	logitech			t	mysteryjeans	2014-04-18 05:00:24.133596+05	2014-04-18 05:00:24.133632+05	mysteryjeans
-10	Miscellaneous	miscellaneous			t	mysteryjeans	2014-04-18 05:20:34.37619+05	2014-04-18 05:20:34.376247+05	mysteryjeans
+COPY catalog_manufacturer (id, name, slug, description, is_active, updated_by, updated_on, created_on, created_by) FROM stdin;
+4	ASUS	asus	ASUS is a worldwide top-three consumer notebook vendor and maker of the world's best-selling, most award-winning, motherboards	t	mysteryjeans	2014-04-13 05:12:34.763226+05	2014-04-13 05:12:34.763257+05	mysteryjeans
+5	Lenovo	lenovo	Lenovo Group Ltd. is a Chinese multinational technology company with headquarters in Beijing, China, and Morrisville, North Carolina, United States. It designs	t	mysteryjeans	2014-04-15 00:54:52.751148+05	2014-04-15 00:54:52.75118+05	mysteryjeans
+6	Toshiba	toshiba	Toshiba Corporation (株式会社東芝, Kabushiki-gaisha Tōshiba) is a Japanese multinational engineering and electronics conglomerate corporation	t	mysteryjeans	2014-04-15 01:05:22.244336+05	2014-04-15 01:05:22.244394+05	mysteryjeans
+2	Dell	dell	Official Dell site covering the personal computers and technology related products they manufacture, support and sell.	t	mysteryjeans	2014-04-15 02:07:20.251314+05	2014-04-13 05:07:02.00372+05	mysteryjeans
+1	Apple	apple	Apple designs and creates iPod and iTunes, Mac laptop and desktop computers, the OS X operating system, and the revolutionary iPhone and iPad.	t	mysteryjeans	2014-04-15 02:08:25.592952+05	2014-04-13 05:06:10.461952+05	mysteryjeans
+3	HP	hp	Hewlett-Packard Company or HP is an American multinational information technology corporation headquartered in Palo Alto, California, United States.	t	mysteryjeans	2014-04-15 02:08:56.084945+05	2014-04-13 05:08:27.068082+05	mysteryjeans
+7	Acer	acer		t	mysteryjeans	2014-04-18 02:42:25.004112+05	2014-04-18 02:42:25.00417+05	mysteryjeans
+8	Microsoft	microsoft		t	mysteryjeans	2014-04-18 04:34:25.387466+05	2014-04-18 04:34:25.387537+05	mysteryjeans
+9	Logitech	logitech		t	mysteryjeans	2014-04-18 05:00:24.133596+05	2014-04-18 05:00:24.133632+05	mysteryjeans
+10	Miscellaneous	miscellaneous		t	mysteryjeans	2014-04-18 05:20:34.37619+05	2014-04-18 05:20:34.376247+05	mysteryjeans
 \.
 
 
