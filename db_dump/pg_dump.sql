@@ -1290,6 +1290,8 @@ COPY catalog_manufacturer (id, name, slug, description, is_active, updated_by, u
 8	Microsoft	microsoft		t	mysteryjeans	2014-04-18 04:34:25.387466+05	2014-04-18 04:34:25.387537+05	mysteryjeans
 9	Logitech	logitech		t	mysteryjeans	2014-04-18 05:00:24.133596+05	2014-04-18 05:00:24.133632+05	mysteryjeans
 10	Miscellaneous	miscellaneous		t	mysteryjeans	2014-04-18 05:20:34.37619+05	2014-04-18 05:20:34.376247+05	mysteryjeans
+11	Mcafee	mcafee		t	mysteryjeans	2014-04-18 05:53:17.63721+05	2014-04-18 05:53:17.637253+05	mysteryjeans
+12	NOD32	nod32		t	mysteryjeans	2014-04-18 05:59:23.928312+05	2014-04-18 05:57:00.480537+05	mysteryjeans
 \.
 
 
@@ -1297,7 +1299,7 @@ COPY catalog_manufacturer (id, name, slug, description, is_active, updated_by, u
 -- Name: catalog_manufacturer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('catalog_manufacturer_id_seq', 10, true);
+SELECT pg_catalog.setval('catalog_manufacturer_id_seq', 12, true);
 
 
 --
@@ -1318,6 +1320,9 @@ COPY catalog_product (id, name, slug, brand_id, part_number, sku, gtin, gist, de
 11	Acer Iconia A1-810	acer-iconia-a1-810	7				MediaTek 1.2 Ghz Quad-Core Processor. 16GB Flash Memory. 1GB RAM. 7.9" XGA IPS multi-touch screen. Android 4.2 Jelly Bean. Dual Camera. Bluetooth. 	MediaTek 1.2 Ghz Quad-Core Processor.\r\n16GB Flash Memory. 1GB RAM.\r\n7.9" XGA IPS multi-touch screen.\r\nAndroid 4.2 Jelly Bean.\r\nDual Camera. Bluetooth.	175.00	0.00	0.00	10	t	f	f	t	1	Android	0	0	0	0	mysteryjeans	2014-04-18 05:09:25.452491+05	2014-04-18 05:09:25.45253+05	mysteryjeans	0.00
 12	Best Grilling Recipes	best-grilling-recipes	10				 More Than 100 Regional Favorites Tested and Perfected for the Outdoor Cook (Hardcover)	Take a winding cross-country trip and you'll discover barbecue shacks with offerings like tender-smoky Baltimore pit beef and saucy St. Louis pork steaks. To bring you the best of these hidden gems, along with all the classics, the editors of Cook's Country magazine scoured the country, then tested and perfected their favorites. HEre traditions large and small are brought into the backyard, from Hawaii's rotisserie favorite, the golden-hued Huli Huli Chicken, to fall-off-the-bone Chicago Barbecued Ribs. In Kansas City, they're all about the sauce, and for our saucy Kansas City Sticky Ribs, we found a surprise ingredient-root beer. We also tackle all the best sides.\r\n\r\nNot sure where or how to start? This cookbook kicks off with an easy-to-follow primer that will get newcomers all fired up. Whether you want to entertain a crowd or just want to learn to make perfect burgers, Best Grilling Recipes shows you the way.	27.00	0.00	0.00	20	t	f	f	f	2	Recipes	0	0	0	0	mysteryjeans	2014-04-18 05:22:29.069639+05	2014-04-18 05:22:29.069673+05	mysteryjeans	0.00
 13	Cooking for Two	cooking-two	10				 More Than 200 Foolproof Recipes for Weeknights and Special Occasions (Hardcover) 	Hardcover: 352 pages\r\nPublisher: America's Test Kitchen (May 2009)\r\nLanguage: English\r\nISBN-10: 1933615435\r\nISBN-13: 978-1933615431	19.00	0.00	0.00	10	t	f	f	t	2	Cooking, Recipies	0	0	0	0	mysteryjeans	2014-04-18 05:25:30.923959+05	2014-04-18 05:24:29.774523+05	mysteryjeans	0.00
+14	iPhone 5s	iphone-5s	1				Apple iPhone 5 32 GB	New design .\r\n\r\nWith 7.6 mm and 112 g3 the iPhone 5 has a remarkably thin and light design . It is made of anodized aluminum. The beveled edges have been precisely cut with a diamond.\r\n\r\nBrilliant 4 " Retina Display .\r\n\r\nNow you can see everything more vivid and detailed. And even though the display is bigger, it has the same width as the iPhone 4S and can be just as easily operated with one hand , therefore .\r\n\r\nPowerful A6 chip.\r\n\r\nCompared with the A5 chip , he has up to twice the CPU and graphics performance . And despite its speed , the iPhone 5 is an amazing battery life .\r\n\r\nUltra-fast mobile data .\r\n\r\nThe iPhone 5 supports the latest wireless technologies and can thus even more networks around the world verbinden.4Und also Wi -Fi is faster.\r\n\r\nScope of delivery\r\n\r\niPhone 5 with iOS 6 Apple EarPods with Remote and Mic Lightning to USB Cable USB Power Adapter (power supply)\r\n\r\nChoose the iPhone that suits you. 16 GB, 32 GB or 64 GB capacity ?\r\n\r\nThe iPhone is available in three capacities : 16, 32 and 64 GB. "GB" stands for gigabytes. The more gigabytes has your iPhone , the more space you have for content such as apps , games, photos , HD videos, music, movies and more. On a large music or photo library or if you load frequently HD movies, an iPhone with a larger storage is recommended . If your music or photo library is rather small and you rarely make films or buy an iPhone with a smaller amount of memory for you enough. With time comes Some of content together on your iPhone . Therefore, you should consider your growing storage needs with the iPhone purchase.\r\n\r\nThe unlocked iPhone\r\n\r\nThe unlocked iPhone is not bound to a cellular network , which means you can select your any supported GSM network worldwide . Buy an iPhone without a contract at the Apple Online Store , then look for a tariff for the iPhone, which only covers the SIM card. Or contact to your current provider if you want to keep your current tariff.\r\n\r\nPrePaid\r\n\r\nIf you do not want a contract , you can choose one of the " prepaid " Starter Packages of available network operators at the Apple Online Store. With " PrePaid " you get your iPhone ready for use with a compatible SIM card. A credit check is not required. You pay just online for what you consume , and you can change the network operator at any time. " PrePaid " is a good option if you would rather want to use a local provider when traveling abroad.	799.77	0.00	0.00	10	t	t	f	t	1	iPhone, SmartPhone	0	0	0	0	mysteryjeans	2014-04-18 05:51:40.318342+05	2014-04-18 05:47:39.106744+05	mysteryjeans	0.00
+15	McAfee AntiVirus Plus - 1 PC for 1 Year	mcafee-antivirus-plus-1-pc-1-year	11				 Confidently surf, shop, and socialize online as our essential antivirus, antimalware, and firewall protect your PC and data. 	\r\n\r\nOur powerful combination of performance, accuracy, and reinforcing protections keeps criminals away from your PC and data.\r\n\r\n    NEW Unobtrusive, High Speed Scanning Engine—From startup to on-access scans, get high performance to minimize scan times and extend battery life.\r\n\r\n    NEW Vulnerability Scanner—Find and seal up holes in Windows and your favorite browsers and applications.\r\n\r\n    Real-time Antimalware—Block threats like viruses, Trojans, and spyware in your files, email, and web downloads using instant risk assessments through the cloud.\r\n\r\n    Adaptive Two-Way Firewall—Let our advanced firewall with buffer overflow protection prevent software from exploiting your OS or stealing information, even in hotspots.\r\n\r\n    NEW Malicious Ad Protection—Block cybercrime networks and their malicious ads and hidden iFrame code from loading and infecting your PC.\r\n\r\n    ENHANCED Digital Data Shredder—Destroy sensitive data and erase cookies, memory, cache, browser history, and more.\r\n\r\n    IMPROVED Safe Socializing, Searching, and Shopping—Click with confidence because you know which sites are safe.\r\n\r\n    BETTER Anti-bot Protection—Block contact with criminals’ computers based on the very latest research and reputation.\r\n\r\n    NEW Home Screen—Navigate easily through common security tasks with a redesigned home screen that supports touch-friendly devices.\r\n\r\n    ENHANCED Reports—Quickly understand how your protections are securing your data and system.\r\n\r\n    PC Tune-up—Remove unused applications, cached browser files, and other junk to speed up your PC.\r\n\r\n	6.50	0.00	0.00	10	t	f	t	f	1	Antivirus	0	0	0	0	mysteryjeans	2014-04-18 05:55:24.879086+05	2014-04-18 05:55:24.879139+05	mysteryjeans	0.00
+16	ESET NOD32 Antivirus 5	eset-nod32-antivirus-5	12				Intercept and eliminate viruses, worms, trojans, spyware and other Internet threats with our award-winning heuristic technology. ESET NOD32® Antivirus 5 protects you from known and emerging threats when competing products can’t and keeps your system running fast. Get ESET NOD32 Antivirus 5 for advanced security. 	Intercept and eliminate viruses, worms, trojans, spyware and other Internet threats with our award-winning heuristic technology. ESET NOD32® Antivirus 5 protects you from known and emerging threats when competing products can’t and keeps your system running fast. Get ESET NOD32 Antivirus 5 for advanced security. 	13.50	0.00	0.00	10	t	f	f	t	1		0	0	0	0	mysteryjeans	2014-04-18 05:58:27.137736+05	2014-04-18 05:58:27.137776+05	mysteryjeans	0.00
 \.
 
 
@@ -1339,6 +1344,9 @@ COPY catalog_product_categories (id, product_id, category_id) FROM stdin;
 17	11	18
 18	12	1
 20	13	1
+23	14	10
+24	15	7
+25	16	7
 \.
 
 
@@ -1346,14 +1354,14 @@ COPY catalog_product_categories (id, product_id, category_id) FROM stdin;
 -- Name: catalog_product_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('catalog_product_categories_id_seq', 20, true);
+SELECT pg_catalog.setval('catalog_product_categories_id_seq', 25, true);
 
 
 --
 -- Name: catalog_product_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('catalog_product_id_seq', 13, true);
+SELECT pg_catalog.setval('catalog_product_id_seq', 16, true);
 
 
 --
@@ -1402,6 +1410,15 @@ COPY catalog_product_pic (id, product_id, url, display_order, created_on, create
 40	11	images/catalog/products/2591-15042014020034.jpg	0	2014-04-18 05:10:51.693925+05	mysteryjeans
 41	12	images/catalog/products/0000033_best-grilling-recipes_300.jpeg	0	2014-04-18 05:23:10.377787+05	mysteryjeans
 42	13	images/catalog/products/0000045_cooking-for-two_300.jpeg	0	2014-04-18 05:25:04.557828+05	mysteryjeans
+43	14	images/catalog/products/0001209-apple-iphone-5-32-gb-70.jpg	0	2014-04-18 05:49:19.876107+05	mysteryjeans
+44	14	images/catalog/products/0000785-apple-iphone-5-32-gb-70.jpg	0	2014-04-18 05:49:29.307124+05	mysteryjeans
+45	14	images/catalog/products/0000787-apple-iphone-5-32-gb-70.jpg	0	2014-04-18 05:49:40.984871+05	mysteryjeans
+46	14	images/catalog/products/0000788-apple-iphone-5-32-gb-70.jpg	0	2014-04-18 05:49:51.048987+05	mysteryjeans
+47	14	images/catalog/products/0000788-apple-iphone-5-32-gb-70_1.jpg	0	2014-04-18 05:49:59.946245+05	mysteryjeans
+48	14	images/catalog/products/0000786-apple-iphone-5-32-gb-70.jpg	0	2014-04-18 05:50:08.540255+05	mysteryjeans
+49	14	images/catalog/products/0000789-apple-iphone-5-32-gb-70.jpg	0	2014-04-18 05:50:16.815913+05	mysteryjeans
+50	15	images/catalog/products/2068-20082013022614.jpg	0	2014-04-18 05:56:00.968796+05	mysteryjeans
+51	16	images/catalog/products/1487.jpg	0	2014-04-18 05:58:55.714915+05	mysteryjeans
 \.
 
 
@@ -1409,7 +1426,7 @@ COPY catalog_product_pic (id, product_id, url, display_order, created_on, create
 -- Name: catalog_product_pic_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('catalog_product_pic_id_seq', 42, true);
+SELECT pg_catalog.setval('catalog_product_pic_id_seq', 51, true);
 
 
 --
@@ -1733,6 +1750,23 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 129	2014-04-18 05:24:29.805495+05	1	12	13	Cooking for Two	1	
 130	2014-04-18 05:25:04.561511+05	1	14	42	Cooking for Two [Pic #id 42]	1	
 131	2014-04-18 05:25:30.931035+05	1	12	13	Cooking for Two	2	Changed description.
+132	2014-04-18 05:47:39.115188+05	1	12	14	iPhone 5s	1	
+133	2014-04-18 05:49:19.87832+05	1	14	43	iPhone 5s [Pic #id 43]	1	
+134	2014-04-18 05:49:29.308893+05	1	14	44	iPhone 5s [Pic #id 44]	1	
+135	2014-04-18 05:49:40.986541+05	1	14	45	iPhone 5s [Pic #id 45]	1	
+136	2014-04-18 05:49:51.050705+05	1	14	46	iPhone 5s [Pic #id 46]	1	
+137	2014-04-18 05:49:59.947809+05	1	14	47	iPhone 5s [Pic #id 47]	1	
+138	2014-04-18 05:50:08.542432+05	1	14	48	iPhone 5s [Pic #id 48]	1	
+139	2014-04-18 05:50:16.817666+05	1	14	49	iPhone 5s [Pic #id 49]	1	
+140	2014-04-18 05:51:24.6456+05	1	12	14	iPhone 5S	2	Changed name.
+141	2014-04-18 05:51:40.325941+05	1	12	14	iPhone 5s	2	Changed name.
+142	2014-04-18 05:53:17.638785+05	1	10	11	Mcafee	1	
+143	2014-04-18 05:55:24.886024+05	1	12	15	McAfee AntiVirus Plus - 1 PC for 1 Year	1	
+144	2014-04-18 05:56:00.970865+05	1	14	50	McAfee AntiVirus Plus - 1 PC for 1 Year [Pic #id 50]	1	
+145	2014-04-18 05:57:00.481789+05	1	10	12	Node 32	1	
+146	2014-04-18 05:58:27.14351+05	1	12	16	ESET NOD32 Antivirus 5	1	
+147	2014-04-18 05:58:55.716734+05	1	14	51	ESET NOD32 Antivirus 5 [Pic #id 51]	1	
+148	2014-04-18 05:59:23.930359+05	1	10	12	NOD32	2	Changed name and slug.
 \.
 
 
@@ -1740,7 +1774,7 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 131, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 148, true);
 
 
 --
