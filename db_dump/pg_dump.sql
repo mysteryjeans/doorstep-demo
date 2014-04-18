@@ -184,7 +184,7 @@ CREATE TABLE catalog_manufacturer (
     name character varying(100) NOT NULL,
     slug character varying(100) NOT NULL,
     description text,
-    pic character varying(100) NOT NULL,
+    pic character varying(100),
     is_active boolean NOT NULL,
     updated_by character varying(100) NOT NULL,
     updated_on timestamp with time zone NOT NULL,
@@ -353,7 +353,7 @@ ALTER SEQUENCE catalog_product_pic_id_seq OWNED BY catalog_product_pic.id;
 CREATE TABLE catalog_product_spec (
     id integer NOT NULL,
     name character varying(100) NOT NULL,
-    value character varying(100) NOT NULL,
+    value character varying(250) NOT NULL,
     product_id integer NOT NULL,
     display_order integer NOT NULL,
     created_on timestamp with time zone NOT NULL,
@@ -1264,6 +1264,8 @@ COPY catalog_category (id, name, slug, description, pic, parent_id, tags, displa
 14	Jeans	jeans		images/catalog/categories/25-jeans.jpg	12		14	t	mysteryjeans	2014-04-13 05:52:53.110508+05	2014-04-13 05:48:21.216238+05	mysteryjeans
 15	Shoes	shoes		images/catalog/categories/supra-muska-skytop-skate-shoes-black-white-red.jpg	12		15	t	mysteryjeans	2014-04-13 05:52:58.590387+05	2014-04-13 05:52:23.522664+05	mysteryjeans
 16	Jewelry	jewelry			\N		16	t	mysteryjeans	2014-04-13 05:54:15.711036+05	2014-04-13 05:54:15.711071+05	mysteryjeans
+17	Speakers	speakers			8		0	t	mysteryjeans	2014-04-18 05:01:21.461268+05	2014-04-18 05:01:21.461327+05	mysteryjeans
+18	Tablet	tablet			8	iPad, Surface, Android, iOS	0	t	mysteryjeans	2014-04-18 05:08:23.865222+05	2014-04-18 05:08:23.865259+05	mysteryjeans
 \.
 
 
@@ -1271,7 +1273,7 @@ COPY catalog_category (id, name, slug, description, pic, parent_id, tags, displa
 -- Name: catalog_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('catalog_category_id_seq', 16, true);
+SELECT pg_catalog.setval('catalog_category_id_seq', 18, true);
 
 
 --
@@ -1285,6 +1287,10 @@ COPY catalog_manufacturer (id, name, slug, description, pic, is_active, updated_
 2	Dell	dell	Official Dell site covering the personal computers and technology related products they manufacture, support and sell.	images/catalog/manufacturers/Dell_Logo.png	t	mysteryjeans	2014-04-15 02:07:20.251314+05	2014-04-13 05:07:02.00372+05	mysteryjeans
 1	Apple	apple	Apple designs and creates iPod and iTunes, Mac laptop and desktop computers, the OS X operating system, and the revolutionary iPhone and iPad.	images/catalog/manufacturers/apple-logo.gif	t	mysteryjeans	2014-04-15 02:08:25.592952+05	2014-04-13 05:06:10.461952+05	mysteryjeans
 3	HP	hp	Hewlett-Packard Company or HP is an American multinational information technology corporation headquartered in Palo Alto, California, United States.	images/catalog/manufacturers/hp.jpeg	t	mysteryjeans	2014-04-15 02:08:56.084945+05	2014-04-13 05:08:27.068082+05	mysteryjeans
+7	Acer	acer		images/catalog/manufacturers/acer.png	t	mysteryjeans	2014-04-18 02:42:25.004112+05	2014-04-18 02:42:25.00417+05	mysteryjeans
+8	Microsoft	microsoft		images/catalog/manufacturers/microsoft.jpg	t	mysteryjeans	2014-04-18 04:34:25.387466+05	2014-04-18 04:34:25.387537+05	mysteryjeans
+9	Logitech	logitech			t	mysteryjeans	2014-04-18 05:00:24.133596+05	2014-04-18 05:00:24.133632+05	mysteryjeans
+10	Miscellaneous	miscellaneous			t	mysteryjeans	2014-04-18 05:20:34.37619+05	2014-04-18 05:20:34.376247+05	mysteryjeans
 \.
 
 
@@ -1292,7 +1298,7 @@ COPY catalog_manufacturer (id, name, slug, description, pic, is_active, updated_
 -- Name: catalog_manufacturer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('catalog_manufacturer_id_seq', 6, true);
+SELECT pg_catalog.setval('catalog_manufacturer_id_seq', 10, true);
 
 
 --
@@ -1301,8 +1307,18 @@ SELECT pg_catalog.setval('catalog_manufacturer_id_seq', 6, true);
 
 COPY catalog_product (id, name, slug, brand_id, part_number, sku, gtin, gist, description, price, cost, old_price, quantity, is_active, is_bestseller, is_featured, is_free_shipping, tax_rate_id, tags, weight, length, width, height, updated_by, updated_on, created_on, created_by, shipping_cost) FROM stdin;
 1	Lenovo G510 Laptop	lenovo-g510-laptop	5				Super Hybrid Engine offers a choice of performance and power consumption modes for easy adjustments according to various needs	15.6-inch HD Widescreen Display\r\nThe 15.6" LED-backlit HD display (1366 x 768) delivers bright, crisp visuals in 16:9 widescreen on the G510.\r\nAbundant Multimedia Features\r\nThe G510 offers stunning, stutter-free visuals and immersive sound for a fuller, more satisfying home entertainment experience.\r\nAccuType Keyboard\r\nThe acclaimed AccuType keyboard is ergonomically designed to make typing more comfortable and to reduce errors.\r\nFast Data Transfer\r\nMove data between the G510 and other devices quickly with USB 3.0. It's up to 10 times faster than previous USB technologies.\r\nBattery-Saving Technology\r\nLenovo Energy Management protects the long-term durability of the battery and uses advanced energy-saving technology to increase time spent between charges to up to 5 hours, giving you flexibility on the go.\r\nSimple Maintenance\r\nWith OneKey Recovery, recovering from viruses or other technical difficulties is a snap.\r\nConnectivity\r\nWith 802.11 b/g/n WiFi connectivity, 10/100 LAN, and Bluetooth®, you'll be able to connect to the internet wherever you go.\r\nIntegrated Webcam\r\nThe optional 720p HD High-Sense webcam will help you enjoy web conferences or online video chats like you’re really there.\r\nHDMI Output\r\nFor easy connection to a television or other display.\r\nAmple storage\r\nWith 500GB HDD storage on the G510, you won't have to worry about where to put all your data, videos, music or photos.\r\nLenovo Cloud Storage\r\nProtect your important files and data, while also making access to information and file-sharing quick and convenient. Automatically back-up and synchronize data across your home, while enabling access from multiple devices. Data is encrypted on transfer for an extra level of security.	428.00	0.00	0.00	50	t	f	f	f	1	Laptop, G510	0	0	0	0	mysteryjeans	2014-04-15 01:11:50.502709+05	2014-04-15 01:11:50.502752+05	mysteryjeans	0.00
+7	Dell Optiplex 3010 DT Base	dell-optiplex-3010-dt-base	2				SPECIAL: additional 50 € discount on all Dell OptiPlex desktops from a value of 549 €. Online Coupon:? W8DWQ0ZRKTM1, valid until 12.04.2012.	Also included in this system\r\nTo change these selections "Next" to continue the button to the next page.\r\n\r\n1Yr Basic Service - No Upgrade Selected - on-site service, NBD\r\nNo asset tag required\r\n\r\nThe following options are default selections included with your order.\r\n\r\nGerman (QWERTY) Dell KB212-B USB Keyboard Black QuietKey\r\nX11301001\r\nWINDOWS LIVE\r\nOptiPlex ™ order - Germany\r\nOptiPlex ™ Intel ® Core ™ i3 sticker\r\nOptical software is not required, operating system software sufficiently	478.76	0.00	0.00	10	t	f	f	f	1	Tower	0	0	0	0	mysteryjeans	2014-04-18 03:17:59.480606+05	2014-04-18 03:17:59.480641+05	mysteryjeans	0.00
+8	HP IQ506 TouchSmart Desktop PC 	hp-iq506-touchsmart-desktop-pc	3					Redesigned with a next-generation, touch-enabled 22-inch high-definition LCD screen, the HP TouchSmart IQ506 all-in-one desktop PC is designed to fit wherever life happens: in the kitchen, family room, or living room. With one touch you can check the weather, download your e-mail, or watch your favorite TV show. It's also designed to maximize energy, with a power-saving Intel Core 2 Duo processor and advanced power management technology, as well as material efficiency--right down to the packaging. It has a sleek piano black design with elegant espresso side-panel highlights, and the HP Ambient Light lets you set a mood--or see your keyboard in the dark.	1199.00	0.00	0.00	10	t	f	f	f	1	All-in-One	0	0	0	0	mysteryjeans	2014-04-18 03:21:21.074187+05	2014-04-18 03:21:21.074223+05	mysteryjeans	0.00
 3	HP Pavilion 15-n242se Notebook PC	hp-pavilion-15-n242se-notebook-pc	3				Intel® Core™ i5-4200U.  4 GB 1600 MHz DDR3 Memory.  750 GB 5400 rpm SATA Hard Drive.  NVIDIA GeForce GT 740M (2 GB DDR3 dedicated).  Pearl white color. 	Intel® Core™ i5-4200U. \r\n4 GB 1600 MHz DDR3 Memory. \r\n750 GB 5400 rpm SATA Hard Drive. \r\nNVIDIA GeForce GT 740M (2 GB DDR3 dedicated). \r\nPearl white color. 	610.00	0.00	0.00	50	t	f	f	f	1	Pavilion	0	0	0	0	mysteryjeans	2014-04-15 01:44:02.269376+05	2014-04-15 01:42:13.758533+05	mysteryjeans	0.00
 2	HP 15-d008se Notebook PC	hp-15-d008se-notebook	3				Intel Core i5 3230M Processor. 4GB RAM. 1TB Hard Drive. 15.6" LED Display. 1GB Dedicated Graphic Card. Windows 8.1 (64 bits).	Intel Core i5 3230M Processor. \r\n4GB RAM. 1TB Hard Drive. \r\n15.6" LED Display. \r\n1GB Dedicated Graphic Card. \r\nWindows 8.1 (64 bits). 	595.00	6.00	0.00	50	t	f	f	f	1	Ultrabook, Envy 15	0	0	0	0	mysteryjeans	2014-04-15 01:44:19.953418+05	2014-04-15 01:30:18.542023+05	mysteryjeans	0.00
+4	Toshiba Satellite C50-A539	toshiba-satellite-c50-a539	6				Intel Core i3 3110M Processor. 4GB RAM - 500GB Hard Drive. 1GB Dedicated Graphic Card. Gloss Luxe White Pearl Color. International Warranty.	Intel Core i3 3110M Processor.\r\n4GB RAM - 500GB Hard Drive.\r\n1GB Dedicated Graphic Card.\r\nGloss Luxe White Pearl Color.\r\nInternational Warranty.	500.00	0.00	0.00	50	t	f	t	f	1	Satellite	2.29999999999999982	0	0	0	mysteryjeans	2014-04-18 02:13:40.623281+05	2014-04-18 02:13:40.623315+05	mysteryjeans	0.00
+5	Acer Aspire E1-570G	acer-aspire-e1-570g	7						439.00	0.00	0.00	50	t	f	f	f	1		0	0	0	0	mysteryjeans	2014-04-18 02:44:30.933988+05	2014-04-18 02:44:30.934033+05	mysteryjeans	0.00
+6	Dell Inspiron One 23	dell-inspiron-one-23	2				Interact and entertain with the new Inspiron One 23 all-in-one. It features an optional 23" touchscreen and up to 3rd Gen Intel® Core™ processors	Make your home entertainment experience riveting. Choose the unrelenting speed of up to 3rd Gen Intel® Core™ i7 processors and be efficient with the new Windows 8 operating system. With up to 8GB DDR3 memory7, you can easily:\r\n\r\nPower your HD entertainment: enjoy a cinema-like experience.\r\n\r\nEnjoy non-stop action: fast photo and video editing8, stunning movies and seamless multitasking.\r\n\r\nExperience smooth apps and games: everyone’s favorite applications work the way they were intended to.	800.00	0.00	0.00	50	t	f	f	f	1	All-in-One	0	0	0	0	mysteryjeans	2014-04-18 03:01:12.516898+05	2014-04-18 03:01:12.516931+05	mysteryjeans	0.00
+9	Microsoft Windows 8.1 Pro x64 English	microsoft-windows-81-pro-x64-english	8				Your familiar desktop. Enhanced data protection. Your own unique start screen. The best of work and play. Your Office, your way. 	The best of work and play\r\n\r\nWith the new Windows, you get the best of work and play. Windows 8.1 Pro includes everything in Windows 8.1, plus enhanced features that help you easily connect to company networks, manage your devices, access one PC from another, encrypt your data, and more.\r\n	145.00	0.00	0.00	10	t	f	f	f	1	Windows8	0	0	0	0	mysteryjeans	2014-04-18 04:41:49.972861+05	2014-04-18 04:41:29.384885+05	mysteryjeans	0.00
+10	Logitech X100 Mobile Wireless Speaker	logitech-x100-mobile-wireless-speaker	9				Go-anywhere mobile speaker that delivers rocking sound. Wireless speaker for smartphones and tablets. Connect and play. Take it anywhere. 5 hour Battery. 	Rocking sound\r\nCrystal clear sound. Pump up the volume and enjoy!\r\nRocking Sound\r\nConnect and play\r\n\r\nWirelessly connect, stream music, manage phone calls and control volume.\r\nTake it anywhere\r\n\r\nPerfect for life on the go. Take it on the road or relax and listen at home.\r\nDesign\r\n\r\nIn five bold colors, this unique design is sure to turn some heads.\r\n5 hour Battery\r\n\r\nEnjoy 5 hours of continuous play without recharging. Recharge the built-in lithium-ion battery with the convenience of the included micro-USB cable and rock on.	43.00	0.00	0.00	10	t	f	f	f	1		0	0	0	0	mysteryjeans	2014-04-18 05:03:10.414113+05	2014-04-18 05:03:10.414147+05	mysteryjeans	0.00
+11	Acer Iconia A1-810	acer-iconia-a1-810	7				MediaTek 1.2 Ghz Quad-Core Processor. 16GB Flash Memory. 1GB RAM. 7.9" XGA IPS multi-touch screen. Android 4.2 Jelly Bean. Dual Camera. Bluetooth. 	MediaTek 1.2 Ghz Quad-Core Processor.\r\n16GB Flash Memory. 1GB RAM.\r\n7.9" XGA IPS multi-touch screen.\r\nAndroid 4.2 Jelly Bean.\r\nDual Camera. Bluetooth.	175.00	0.00	0.00	10	t	f	f	t	1	Android	0	0	0	0	mysteryjeans	2014-04-18 05:09:25.452491+05	2014-04-18 05:09:25.45253+05	mysteryjeans	0.00
+12	Best Grilling Recipes	best-grilling-recipes	10				 More Than 100 Regional Favorites Tested and Perfected for the Outdoor Cook (Hardcover)	Take a winding cross-country trip and you'll discover barbecue shacks with offerings like tender-smoky Baltimore pit beef and saucy St. Louis pork steaks. To bring you the best of these hidden gems, along with all the classics, the editors of Cook's Country magazine scoured the country, then tested and perfected their favorites. HEre traditions large and small are brought into the backyard, from Hawaii's rotisserie favorite, the golden-hued Huli Huli Chicken, to fall-off-the-bone Chicago Barbecued Ribs. In Kansas City, they're all about the sauce, and for our saucy Kansas City Sticky Ribs, we found a surprise ingredient-root beer. We also tackle all the best sides.\r\n\r\nNot sure where or how to start? This cookbook kicks off with an easy-to-follow primer that will get newcomers all fired up. Whether you want to entertain a crowd or just want to learn to make perfect burgers, Best Grilling Recipes shows you the way.	27.00	0.00	0.00	20	t	f	f	f	2	Recipes	0	0	0	0	mysteryjeans	2014-04-18 05:22:29.069639+05	2014-04-18 05:22:29.069673+05	mysteryjeans	0.00
+13	Cooking for Two	cooking-two	10				 More Than 200 Foolproof Recipes for Weeknights and Special Occasions (Hardcover) 	Hardcover: 352 pages\r\nPublisher: America's Test Kitchen (May 2009)\r\nLanguage: English\r\nISBN-10: 1933615435\r\nISBN-13: 978-1933615431	19.00	0.00	0.00	10	t	f	f	t	2	Cooking, Recipies	0	0	0	0	mysteryjeans	2014-04-18 05:25:30.923959+05	2014-04-18 05:24:29.774523+05	mysteryjeans	0.00
 \.
 
 
@@ -1314,6 +1330,16 @@ COPY catalog_product_categories (id, product_id, category_id) FROM stdin;
 1	1	4
 6	3	4
 8	2	4
+9	4	4
+10	5	4
+11	6	3
+12	7	3
+13	8	3
+15	9	7
+16	10	17
+17	11	18
+18	12	1
+20	13	1
 \.
 
 
@@ -1321,14 +1347,14 @@ COPY catalog_product_categories (id, product_id, category_id) FROM stdin;
 -- Name: catalog_product_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('catalog_product_categories_id_seq', 8, true);
+SELECT pg_catalog.setval('catalog_product_categories_id_seq', 20, true);
 
 
 --
 -- Name: catalog_product_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('catalog_product_id_seq', 3, true);
+SELECT pg_catalog.setval('catalog_product_id_seq', 13, true);
 
 
 --
@@ -1348,6 +1374,35 @@ COPY catalog_product_pic (id, product_id, url, display_order, created_on, create
 11	3	images/catalog/products/2578-10042014124036.jpg	0	2014-04-15 01:46:27.128324+05	mysteryjeans
 12	3	images/catalog/products/2578-10042014124125.jpg	0	2014-04-15 01:46:49.215692+05	mysteryjeans
 13	3	images/catalog/products/2578-10042014124210.jpg	0	2014-04-15 01:46:56.547976+05	mysteryjeans
+14	4	images/catalog/products/2532-15032014122600.jpg	0	2014-04-18 02:15:36.6025+05	mysteryjeans
+15	4	images/catalog/products/2532-15032014122644.jpg	0	2014-04-18 02:15:49.226314+05	mysteryjeans
+16	4	images/catalog/products/2532-15032014122738.jpeg	0	2014-04-18 02:15:56.535827+05	mysteryjeans
+17	4	images/catalog/products/2532-15032014122838.jpg	0	2014-04-18 02:16:04.611387+05	mysteryjeans
+18	5	images/catalog/products/2530-13032014020713.jpg	0	2014-04-18 02:45:20.537049+05	mysteryjeans
+19	5	images/catalog/products/2530-13032014020804.jpg	0	2014-04-18 02:45:28.34175+05	mysteryjeans
+20	5	images/catalog/products/2530-13032014020830.jpg	0	2014-04-18 02:45:36.609997+05	mysteryjeans
+21	5	images/catalog/products/2530-13032014020922.jpg	0	2014-04-18 02:45:45.438976+05	mysteryjeans
+22	6	images/catalog/products/0000953-dell-inspiron-one-23-70.jpg	0	2014-04-18 03:02:33.28521+05	mysteryjeans
+23	6	images/catalog/products/0000954-dell-inspiron-one-23-70.jpg	0	2014-04-18 03:02:41.43355+05	mysteryjeans
+24	6	images/catalog/products/0000955-dell-inspiron-one-23-70.jpg	0	2014-04-18 03:02:51.586995+05	mysteryjeans
+25	6	images/catalog/products/0000956-dell-inspiron-one-23-70.jpg	0	2014-04-18 03:02:59.789296+05	mysteryjeans
+26	6	images/catalog/products/0000957-dell-inspiron-one-23-70.jpg	0	2014-04-18 03:03:11.042195+05	mysteryjeans
+27	6	images/catalog/products/0000958-dell-inspiron-one-23-70.jpg	0	2014-04-18 03:03:24.741527+05	mysteryjeans
+28	6	images/catalog/products/0000959-dell-inspiron-one-23-70.jpg	0	2014-04-18 03:03:32.998695+05	mysteryjeans
+29	6	images/catalog/products/0000960-dell-inspiron-one-23-70.jpg	0	2014-04-18 03:03:40.485372+05	mysteryjeans
+30	7	images/catalog/products/0000952-dell-optiplex-3010-dt-base.jpg	0	2014-04-18 03:22:19.371211+05	mysteryjeans
+31	8	images/catalog/products/0000055_hp-iq506-touchsmart-desktop-pc_300.jpeg	0	2014-04-18 03:22:35.366454+05	mysteryjeans
+32	9	images/catalog/products/2590-15042014010512.jpg	0	2014-04-18 05:04:23.326892+05	mysteryjeans
+33	10	images/catalog/products/2593-17042014014316.jpg	0	2014-04-18 05:05:36.33623+05	mysteryjeans
+34	10	images/catalog/products/2593-17042014014531.jpg	0	2014-04-18 05:05:46.090679+05	mysteryjeans
+35	10	images/catalog/products/2593-17042014014629.jpg	0	2014-04-18 05:05:57.476751+05	mysteryjeans
+36	10	images/catalog/products/2593-17042014014703.jpg	0	2014-04-18 05:06:06.988615+05	mysteryjeans
+37	11	images/catalog/products/2591-15042014015650.jpg	0	2014-04-18 05:10:19.413676+05	mysteryjeans
+38	11	images/catalog/products/2591-15042014015710.jpg	0	2014-04-18 05:10:31.206894+05	mysteryjeans
+39	11	images/catalog/products/2591-15042014015925.jpg	0	2014-04-18 05:10:38.810019+05	mysteryjeans
+40	11	images/catalog/products/2591-15042014020034.jpg	0	2014-04-18 05:10:51.693925+05	mysteryjeans
+41	12	images/catalog/products/0000033_best-grilling-recipes_300.jpeg	0	2014-04-18 05:23:10.377787+05	mysteryjeans
+42	13	images/catalog/products/0000045_cooking-for-two_300.jpeg	0	2014-04-18 05:25:04.557828+05	mysteryjeans
 \.
 
 
@@ -1355,7 +1410,7 @@ COPY catalog_product_pic (id, product_id, url, display_order, created_on, create
 -- Name: catalog_product_pic_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('catalog_product_pic_id_seq', 13, true);
+SELECT pg_catalog.setval('catalog_product_pic_id_seq', 42, true);
 
 
 --
@@ -1372,6 +1427,106 @@ COPY catalog_product_spec (id, name, value, product_id, display_order, created_o
 7	LAN	Integrated 10/100 BASE-T Ethernet LAN	3	0	2014-04-15 01:56:40.331922+05	mysteryjeans
 8	Wireless LAN - WiFi	802.11b/g/n	3	0	2014-04-15 01:57:46.694998+05	mysteryjeans
 9	Bluetooth	Bluetooth 4.0	3	0	2014-04-15 01:59:02.615183+05	mysteryjeans
+10	Card Reader	1 multi-format SD media card reader	3	0	2014-04-16 02:11:59.832775+05	mysteryjeans
+11	Webcam	HP TrueVision HD Webcam (front-facing) with integrated dual array digital microphone	3	0	2014-04-18 01:24:09.204735+05	mysteryjeans
+12	Graphic Card	 NVIDIA GeForce GT 740M (2 GB DDR3 dedicated)	3	0	2014-04-18 01:24:38.969725+05	mysteryjeans
+13	Sound	DTS Sound+ with 2 speakers	3	0	2014-04-18 01:25:02.602123+05	mysteryjeans
+14	Keyboard	Full-size island-style with numeric keypad	3	0	2014-04-18 01:25:21.127426+05	mysteryjeans
+15	Dimensions	38.56 x 25.8 x 2.26 cm	3	0	2014-04-18 01:25:41.142581+05	mysteryjeans
+16	Weight	2.3 kg	3	0	2014-04-18 01:26:05.013306+05	mysteryjeans
+17	USB	1 USB 2.0 - 2 USB 3.0	3	0	2014-04-18 01:26:34.192544+05	mysteryjeans
+18	HDMI	1 HDMI	3	0	2014-04-18 01:27:00.902861+05	mysteryjeans
+19	Audiojack	1 headphone/microphone combo	3	0	2014-04-18 01:28:25.354623+05	mysteryjeans
+20	Processor	Intel Core i5-3230M with Intel HD Graphics 4000 (2.6 GHz, 3 MB cache, 2 cores)	2	0	2014-04-18 01:43:44.756071+05	mysteryjeans
+21	Memory	4 GB 1600 MHz DDR3L SDRAM (1 x 4 GB)	2	0	2014-04-18 01:43:44.818786+05	mysteryjeans
+22	Hard Drive	1 TB 5400 rpm SATA	2	0	2014-04-18 01:43:44.840555+05	mysteryjeans
+23	Display	39.6 cm (15.6") diagonal HD BrightView LED-backlit (1366 x 768)	2	0	2014-04-18 01:43:44.862179+05	mysteryjeans
+24	Operating System	Windows 8.1 (64 bits)	2	0	2014-04-18 01:43:44.883819+05	mysteryjeans
+25	Optical Drive	SuperMulti DVD burner	2	0	2014-04-18 01:43:44.906136+05	mysteryjeans
+26	LAN	Integrated 10/100 BASE-T Ethernet LAN	2	0	2014-04-18 01:43:44.927276+05	mysteryjeans
+27	Wireless LAN - WiFi	802.11b/g/n	2	0	2014-04-18 01:43:44.948922+05	mysteryjeans
+28	Bluetooth	Bluetooth 4.0	2	0	2014-04-18 01:43:44.969525+05	mysteryjeans
+29	Card Reader	1 multi-format SD media card reader	2	0	2014-04-18 01:43:44.991557+05	mysteryjeans
+30	Webcam	HP TrueVision HD Webcam (front-facing) with integrated digital microphone	2	0	2014-04-18 01:43:45.013088+05	mysteryjeans
+31	Graphic Card	NVIDIA GeForce 820M (1 GB DDR3 dedicated)	2	0	2014-04-18 01:43:45.03522+05	mysteryjeans
+32	Sound	Dual speakers	2	0	2014-04-18 01:43:45.057781+05	mysteryjeans
+33	Keyboard	Full-size island-style	2	0	2014-04-18 01:43:45.079574+05	mysteryjeans
+34	Dimensions	37.8 x 26 x 2.8 cm	2	0	2014-04-18 01:43:45.101246+05	mysteryjeans
+35	Weight	2.5 kg	2	0	2014-04-18 01:43:45.123643+05	mysteryjeans
+36	USB	2 USB 2.0 - 1 USB 3.0	2	0	2014-04-18 01:43:45.144914+05	mysteryjeans
+37	HDMI	1 HDMI	2	0	2014-04-18 01:43:45.166859+05	mysteryjeans
+38	VGA	1 VGA	2	0	2014-04-18 01:43:45.189184+05	mysteryjeans
+39	Audiojack	1 headphone/microphone combo	2	0	2014-04-18 01:43:45.210967+05	mysteryjeans
+40	Processor	Intel® Core™ i3-4000M Processor (3M Cache, 2.40 GHz)	1	0	2014-04-18 02:01:09.162669+05	mysteryjeans
+41	Memory	4GB	1	0	2014-04-18 02:01:09.184379+05	mysteryjeans
+42	Hard Drive	500GB	1	0	2014-04-18 02:01:09.206285+05	mysteryjeans
+43	Display	15.6" high-definition (1366 x 768) / 200 nit display, 16:9 widescreen	1	0	2014-04-18 02:01:09.227412+05	mysteryjeans
+44	Optical Drive	DVDRW	1	0	2014-04-18 02:01:09.249783+05	mysteryjeans
+45	LAN	10 / 100 Mbps LAN	1	0	2014-04-18 02:01:09.271406+05	mysteryjeans
+46	Wireless LAN - WiFi	802.11 b/g/n	1	0	2014-04-18 02:01:09.293164+05	mysteryjeans
+47	Bluetooth	Bluetooth® 4.0	1	0	2014-04-18 02:01:09.314384+05	mysteryjeans
+48	Card Reader	2 x 1 (SD / MMC) card reader	1	0	2014-04-18 02:01:09.335458+05	mysteryjeans
+49	Webcam	Integrated HD 720p camera	1	0	2014-04-18 02:01:09.35697+05	mysteryjeans
+50	Graphic Card	Intel® HD Graphics 4600	1	0	2014-04-18 02:01:09.400619+05	mysteryjeans
+51	Sound	Integrated Stereo speakers with Dolby® - Advanced Audio™ certification	1	0	2014-04-18 02:01:09.422123+05	mysteryjeans
+52	Keyboard	Full Size with Numeric Keys	1	0	2014-04-18 02:01:09.443652+05	mysteryjeans
+53	Dimensions	14.84" x 9.84" x 1.33"	1	0	2014-04-18 02:01:09.464994+05	mysteryjeans
+54	Weight	5.73 lbs Approx	1	0	2014-04-18 02:01:09.486617+05	mysteryjeans
+55	USB	USB 3.0 x 2, USB 2.0 x 1	1	0	2014-04-18 02:01:09.508181+05	mysteryjeans
+56	HDMI	HDMI-out	1	0	2014-04-18 02:01:09.530204+05	mysteryjeans
+57	VGA	VGA connector	1	0	2014-04-18 02:01:09.551403+05	mysteryjeans
+58	Audiojack	2-in-1 Audio jack (headphone and mic)	1	0	2014-04-18 02:01:09.572697+05	mysteryjeans
+59	Processor	Intel® Core™ i3-3110M Processor (3M Cache, 2.40 GHz)	4	0	2014-04-18 02:27:56.757942+05	mysteryjeans
+60	Memory	4GB DDR3 1600Mhz	4	0	2014-04-18 02:27:56.779136+05	mysteryjeans
+61	Hard Drive	500GB 5400 RPM	4	0	2014-04-18 02:27:56.801117+05	mysteryjeans
+62	Optical Drive	DVDRW	4	0	2014-04-18 02:27:56.845099+05	mysteryjeans
+63	LAN	Fast Ethernet LAN 10BASE-T/100BASE-TX	4	0	2014-04-18 02:27:56.865957+05	mysteryjeans
+64	Wireless LAN - WiFi	802.11b/g/n (up to 150 Mbps)	4	0	2014-04-18 02:27:56.887836+05	mysteryjeans
+65	Bluetooth	Bluetooth® 4.0	4	0	2014-04-18 02:27:56.910016+05	mysteryjeans
+66	Webcam	1 x integrated 0.9MP HD Web Camera (1,280 x 720) with built-in microphone	4	0	2014-04-18 02:27:56.952275+05	mysteryjeans
+137	Optical Drive	DVD-Writer	5	0	2014-04-18 02:48:58.130359+05	mysteryjeans
+67	Graphic Card	NVIDIA® GeForce® 710M with CUDA™ Technology and NVIDIA® Optimus™ Technology 1,024 MB dedicated VRAM.	4	0	2014-04-18 02:27:56.973813+05	mysteryjeans
+68	Sound	Built-in stereo speaker - HD Audio supporting	4	0	2014-04-18 02:27:57.019132+05	mysteryjeans
+69	Keyboard	Flat matt keyboard and 10-digit numeric keypad	4	0	2014-04-18 02:27:57.039573+05	mysteryjeans
+70	Dimensions	W x L x H : 380.0 x 242.0 x 30.8 (front) / 33.35 (rear) mm	4	0	2014-04-18 02:27:57.060837+05	mysteryjeans
+71	Weight	starting at 2.3 kg	4	0	2014-04-18 02:27:57.082569+05	mysteryjeans
+72	USB	2 x USB 2.0 & 1 x USB 3.0	4	0	2014-04-18 02:27:57.104517+05	mysteryjeans
+73	HDMI	1 x HDMI-out supporting 1080p signal format	4	0	2014-04-18 02:27:57.126182+05	mysteryjeans
+74	VGA	1 x external monitor	4	0	2014-04-18 02:27:57.14699+05	mysteryjeans
+75	Audiojack	1 x headphone (stereo)	4	0	2014-04-18 02:27:57.168606+05	mysteryjeans
+79	Resolution	1,366 x 768	4	0	2014-04-18 02:34:46.787818+05	mysteryjeans
+115	Display	39.6cm (15.6") Toshiba TruBrite®	4	0	2014-04-18 02:38:23.013385+05	mysteryjeans
+121	Card Reader	1 x Multi-Card Reader (supports SD™ Card up to 2 GB, miniSD™/microSD™ Card with adapter up to 2 GB, SDHC™ Card up to 32 GB, SDXC™ Card up to 64 GB and MultiMedia Card™ up to 2 GB)	4	0	2014-04-18 02:38:23.143178+05	mysteryjeans
+132	Processor	Intel® Core™ i3-3217U Processor (3M Cache, 1.80 GHz)	5	0	2014-04-18 02:48:58.022653+05	mysteryjeans
+133	Memory	4 GB DDR3 SDRAM	5	0	2014-04-18 02:48:58.044434+05	mysteryjeans
+134	Hard Drive	500 GB Serial ATA	5	0	2014-04-18 02:48:58.065945+05	mysteryjeans
+135	Display	39.6 cm (15.6") WXGA Acer CineCrystal LED	5	0	2014-04-18 02:48:58.087463+05	mysteryjeans
+136	Operating System	Windows 8.1 Single Language 64-bit	5	0	2014-04-18 02:48:58.109442+05	mysteryjeans
+138	LAN	Gigabit Ethernet	5	0	2014-04-18 02:48:58.152401+05	mysteryjeans
+139	Wireless LAN - WiFi	IEEE 802.11b/g/n	5	0	2014-04-18 02:48:58.174029+05	mysteryjeans
+140	Bluetooth	Yes	5	0	2014-04-18 02:48:58.195746+05	mysteryjeans
+141	Card Reader	Secure Digital (SD) Card	5	0	2014-04-18 02:48:58.217215+05	mysteryjeans
+142	Webcam	Acer Crystal Eye HD Webcam	5	0	2014-04-18 02:48:58.238751+05	mysteryjeans
+143	Graphic Card	Intel HD Graphics 4000	5	0	2014-04-18 02:48:58.259847+05	mysteryjeans
+144	CPU-manufacturer	Intel	6	0	2014-04-18 03:08:58.07919+05	mysteryjeans
+145	RAM	4 GB	6	0	2014-04-18 03:09:26.589554+05	mysteryjeans
+146	Mass Storage Type 	HDD	6	0	2014-04-18 03:09:56.796401+05	mysteryjeans
+147	Color	Black	6	0	2014-04-18 03:10:14.240396+05	mysteryjeans
+148	OS	Windows 7 32 Bit	6	0	2014-04-18 03:10:29.520014+05	mysteryjeans
+149	Frequency	1.2 Ghz	11	0	2014-04-18 05:15:53.507087+05	mysteryjeans
+150	CPU	MediaTek Quad-Core	11	0	2014-04-18 05:15:53.528592+05	mysteryjeans
+151	Graphics Processing	PowerVR SGX544	11	0	2014-04-18 05:15:53.550163+05	mysteryjeans
+152	Screen Size	7.9"	11	0	2014-04-18 05:15:53.571887+05	mysteryjeans
+153	Screen Resolution	1024 x 768	11	0	2014-04-18 05:15:53.594381+05	mysteryjeans
+154	Screen Type	XGA TFT Capacitive multi-touch with IPS technology	11	0	2014-04-18 05:15:53.615048+05	mysteryjeans
+155	Internal Storage	16 GB	11	0	2014-04-18 05:15:53.63687+05	mysteryjeans
+156	RAM	1 GB	11	0	2014-04-18 05:15:53.658482+05	mysteryjeans
+157	Exapandable	microSD, up to 32 GB	11	0	2014-04-18 05:15:53.679379+05	mysteryjeans
+158	WiFi	IEEE 802.11 b/g/n	11	0	2014-04-18 05:15:53.700909+05	mysteryjeans
+159	Bluetooth	Bluetooth 4.0	11	0	2014-04-18 05:15:53.722566+05	mysteryjeans
+160	HDMI	HDMI port	11	0	2014-04-18 05:15:53.744156+05	mysteryjeans
+161	Camera	5 MP Rear & 0.3 MP Front Camera	11	0	2014-04-18 05:15:53.766101+05	mysteryjeans
+162	Operating System	Android OS, v4.2 (Jelly Bean)	11	0	2014-04-18 05:15:53.787795+05	mysteryjeans
 \.
 
 
@@ -1379,7 +1534,7 @@ COPY catalog_product_spec (id, name, value, product_id, display_order, created_o
 -- Name: catalog_product_spec_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('catalog_product_spec_id_seq', 9, true);
+SELECT pg_catalog.setval('catalog_product_spec_id_seq', 162, true);
 
 
 --
@@ -1402,7 +1557,7 @@ SELECT pg_catalog.setval('common_address_id_seq', 1, false);
 --
 
 COPY common_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, birthday, gender, billing_address_id, shipping_adress_id, is_verified, verification_code, updated_on, updated_by, created_on, created_by) FROM stdin;
-1	pbkdf2_sha256$12000$adgKWsDV5clx$7xr0vIvOdXxf8RItZzQENVxw6WX4HIXhgJyDETqNqkg=	2014-04-13 04:52:17.736586+05	t	mysteryjeans			mk.faraz@gmail.com	t	t	2014-04-13 04:51:50.059959+05	\N		\N	\N	t	\N	2014-04-13 04:51:50.15636+05	faraz	2014-04-13 04:51:50.156387+05	faraz
+1	pbkdf2_sha256$12000$adgKWsDV5clx$7xr0vIvOdXxf8RItZzQENVxw6WX4HIXhgJyDETqNqkg=	2014-04-18 01:21:38.74455+05	t	mysteryjeans			mk.faraz@gmail.com	t	t	2014-04-13 04:51:50.059959+05	\N		\N	\N	t	\N	2014-04-13 04:51:50.15636+05	faraz	2014-04-13 04:51:50.156387+05	faraz
 \.
 
 
@@ -1516,6 +1671,69 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 66	2014-04-15 02:07:47.59689+05	1	10	1	Apple	2	Changed pic.
 67	2014-04-15 02:08:25.595192+05	1	10	1	Apple	2	Changed pic.
 68	2014-04-15 02:08:56.086826+05	1	10	3	HP	2	Changed pic.
+69	2014-04-16 02:11:59.883724+05	1	13	10	Card Reader: 1 multi-format SD media card reader	1	
+70	2014-04-18 01:24:09.205921+05	1	13	11	Webcam: HP TrueVision HD Webcam (front-facing) with integrated dual array digital microphone	1	
+71	2014-04-18 01:24:38.970829+05	1	13	12	Graphic Card:  NVIDIA GeForce GT 740M (2 GB DDR3 dedicated)	1	
+72	2014-04-18 01:25:02.603241+05	1	13	13	Sound: DTS Sound+ with 2 speakers	1	
+73	2014-04-18 01:25:21.12874+05	1	13	14	Keyboard: Full-size island-style with numeric keypad	1	
+74	2014-04-18 01:25:41.143888+05	1	13	15	Dimensions: 38.56 x 25.8 x 2.26 cm	1	
+75	2014-04-18 01:26:05.014433+05	1	13	16	Weight: 2.3 kg	1	
+76	2014-04-18 01:26:34.194125+05	1	13	17	USB: 1 USB 2.0 - 2 USB 3.0	1	
+77	2014-04-18 01:27:00.90396+05	1	13	18	HDMI: 1 HDMI	1	
+78	2014-04-18 01:28:25.355911+05	1	13	19	Audiojack: 1 headphone/microphone combo	1	
+79	2014-04-18 02:13:40.68291+05	1	12	4	Toshiba Satellite C50-A539	1	
+80	2014-04-18 02:15:36.629747+05	1	14	14	Toshiba Satellite C50-A539 [Pic #id 14]	1	
+81	2014-04-18 02:15:49.227704+05	1	14	15	Toshiba Satellite C50-A539 [Pic #id 15]	1	
+82	2014-04-18 02:15:56.537516+05	1	14	16	Toshiba Satellite C50-A539 [Pic #id 16]	1	
+83	2014-04-18 02:16:04.612973+05	1	14	17	Toshiba Satellite C50-A539 [Pic #id 17]	1	
+84	2014-04-18 02:42:25.03977+05	1	10	7	Acer	1	
+85	2014-04-18 02:44:30.941556+05	1	12	5	Acer Aspire E1-570G	1	
+86	2014-04-18 02:45:20.539431+05	1	14	18	Acer Aspire E1-570G [Pic #id 18]	1	
+87	2014-04-18 02:45:28.343331+05	1	14	19	Acer Aspire E1-570G [Pic #id 19]	1	
+88	2014-04-18 02:45:36.613414+05	1	14	20	Acer Aspire E1-570G [Pic #id 20]	1	
+89	2014-04-18 02:45:45.44063+05	1	14	21	Acer Aspire E1-570G [Pic #id 21]	1	
+90	2014-04-18 03:01:12.523471+05	1	12	6	Dell Inspiron One 23	1	
+91	2014-04-18 03:02:33.286696+05	1	14	22	Dell Inspiron One 23 [Pic #id 22]	1	
+92	2014-04-18 03:02:41.435104+05	1	14	23	Dell Inspiron One 23 [Pic #id 23]	1	
+93	2014-04-18 03:02:51.588593+05	1	14	24	Dell Inspiron One 23 [Pic #id 24]	1	
+94	2014-04-18 03:02:59.791008+05	1	14	25	Dell Inspiron One 23 [Pic #id 25]	1	
+95	2014-04-18 03:03:11.044202+05	1	14	26	Dell Inspiron One 23 [Pic #id 26]	1	
+96	2014-04-18 03:03:24.743073+05	1	14	27	Dell Inspiron One 23 [Pic #id 27]	1	
+97	2014-04-18 03:03:33.000143+05	1	14	28	Dell Inspiron One 23 [Pic #id 28]	1	
+98	2014-04-18 03:03:40.487058+05	1	14	29	Dell Inspiron One 23 [Pic #id 29]	1	
+99	2014-04-18 03:08:58.080484+05	1	13	144	CPU-manufacturer: Intel	1	
+100	2014-04-18 03:09:26.591114+05	1	13	145	RAM: 4 GB	1	
+101	2014-04-18 03:09:56.797624+05	1	13	146	Mass Storage Type : HDD	1	
+102	2014-04-18 03:10:14.241805+05	1	13	147	Color: Black	1	
+103	2014-04-18 03:10:29.521933+05	1	13	148	OS: Windows 7 32 Bit	1	
+104	2014-04-18 03:17:59.486176+05	1	12	7	Dell Optiplex 3010 DT Base	1	
+105	2014-04-18 03:21:21.080098+05	1	12	8	HP IQ506 TouchSmart Desktop PC 	1	
+106	2014-04-18 03:22:19.374858+05	1	14	30	Dell Optiplex 3010 DT Base [Pic #id 30]	1	
+107	2014-04-18 03:22:35.367913+05	1	14	31	HP IQ506 TouchSmart Desktop PC  [Pic #id 31]	1	
+108	2014-04-18 04:34:25.392197+05	1	10	8	Microsoft	1	
+109	2014-04-18 04:41:29.392451+05	1	12	9	Microsoft Windows 8.1 Pro x64 English	1	
+110	2014-04-18 04:41:49.979382+05	1	12	9	Microsoft Windows 8.1 Pro x64 English	2	Changed tags.
+111	2014-04-18 05:00:24.135153+05	1	10	9	Logitech	1	
+112	2014-04-18 05:01:21.509472+05	1	11	17	Electronics > Speakers	1	
+113	2014-04-18 05:03:10.420223+05	1	12	10	Logitech X100 Mobile Wireless Speaker	1	
+114	2014-04-18 05:04:23.329782+05	1	14	32	Microsoft Windows 8.1 Pro x64 English [Pic #id 32]	1	
+115	2014-04-18 05:05:36.337896+05	1	14	33	Logitech X100 Mobile Wireless Speaker [Pic #id 33]	1	
+116	2014-04-18 05:05:46.092692+05	1	14	34	Logitech X100 Mobile Wireless Speaker [Pic #id 34]	1	
+117	2014-04-18 05:05:57.478141+05	1	14	35	Logitech X100 Mobile Wireless Speaker [Pic #id 35]	1	
+118	2014-04-18 05:06:06.990818+05	1	14	36	Logitech X100 Mobile Wireless Speaker [Pic #id 36]	1	
+119	2014-04-18 05:08:23.866917+05	1	11	18	Electronics > Tablet	1	
+120	2014-04-18 05:09:25.458494+05	1	12	11	Acer Iconia A1-810	1	
+121	2014-04-18 05:10:19.415147+05	1	14	37	Acer Iconia A1-810 [Pic #id 37]	1	
+122	2014-04-18 05:10:31.208364+05	1	14	38	Acer Iconia A1-810 [Pic #id 38]	1	
+123	2014-04-18 05:10:38.811551+05	1	14	39	Acer Iconia A1-810 [Pic #id 39]	1	
+124	2014-04-18 05:10:51.696117+05	1	14	40	Acer Iconia A1-810 [Pic #id 40]	1	
+125	2014-04-18 05:20:34.378119+05	1	10	10	Miscellaneous	1	
+126	2014-04-18 05:22:10.451153+05	1	20	2	Books [PE]: 0.02	1	
+127	2014-04-18 05:22:29.075165+05	1	12	12	Best Grilling Recipes	1	
+128	2014-04-18 05:23:10.379399+05	1	14	41	Best Grilling Recipes [Pic #id 41]	1	
+129	2014-04-18 05:24:29.805495+05	1	12	13	Cooking for Two	1	
+130	2014-04-18 05:25:04.561511+05	1	14	42	Cooking for Two [Pic #id 42]	1	
+131	2014-04-18 05:25:30.931035+05	1	12	13	Cooking for Two	2	Changed description.
 \.
 
 
@@ -1523,7 +1741,7 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 68, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 131, true);
 
 
 --
@@ -1567,6 +1785,9 @@ SELECT pg_catalog.setval('django_content_type_id_seq', 20, true);
 
 COPY django_session (session_key, session_data, expire_date) FROM stdin;
 mzbijqdky6zju9j3ftnp6jvvggl7eoj1	ODY4ZjkyMmQ3Y2NmY2E3YWU3MGRiYjg1OTZjMWY1ZTg1NTNlNzZkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-04-27 04:52:17.740841+05
+ht305fo3zb2100r3n43tl92ipty8ein1	ODY4ZjkyMmQ3Y2NmY2E3YWU3MGRiYjg1OTZjMWY1ZTg1NTNlNzZkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-04-30 02:10:14.99748+05
+wi84zpdcn9ebg86q6234vs2xmrwkh8yt	ODY4ZjkyMmQ3Y2NmY2E3YWU3MGRiYjg1OTZjMWY1ZTg1NTNlNzZkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-05-02 01:16:44.607254+05
+wyq0l7kcuq276nz6go7f9olb2o56tatz	ODY4ZjkyMmQ3Y2NmY2E3YWU3MGRiYjg1OTZjMWY1ZTg1NTNlNzZkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-05-02 01:21:38.747505+05
 \.
 
 
@@ -1603,6 +1824,7 @@ SELECT pg_catalog.setval('financial_currency_id_seq', 12, true);
 
 COPY financial_tax_rate (id, name, method, rate, updated_by, updated_on, created_on, created_by) FROM stdin;
 1	Computers & Electronics	PE	0.0200000000000000004	mysteryjeans	2014-04-15 01:11:10.584838+05	2014-04-15 01:11:10.584874+05	mysteryjeans
+2	Books	PE	0.0200000000000000004	mysteryjeans	2014-04-18 05:22:10.362108+05	2014-04-18 05:22:10.362189+05	mysteryjeans
 \.
 
 
@@ -1610,7 +1832,7 @@ COPY financial_tax_rate (id, name, method, rate, updated_by, updated_on, created
 -- Name: financial_tax_rate_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('financial_tax_rate_id_seq', 1, true);
+SELECT pg_catalog.setval('financial_tax_rate_id_seq', 2, true);
 
 
 --
