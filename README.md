@@ -3,7 +3,7 @@ Doorsale-demo
 
 Demo site for [Doorsale](http://github.com/mysteryjeans/doorsale) e-commerce solution built on Django. [Doorsale](http://github.com/mysteryjeans/doorsale) has been actively developed, although it is far from ready, this repo gives you chance to contribute in [Doorsale](http://github.com/mysteryjeans/doorsale) project, your feedbacks & contributions will be highly encourge.
 
-**To get head start in [Doorsale](http://github.com/mysteryjeans/doorsale) development, all you need to do is clone both repos and restore demo database. This repo is following master branch on [Doorsale](http://github.com/mysteryjeans/doorsale), so you should pull chanages frequently to keep things synchronized and running smoothly.**
+**Getting head start in [Doorsale](http://github.com/mysteryjeans/doorsale) development is easy, just clone both repos and restore demo database dump.**
 
 ### Setting UP
 
@@ -50,4 +50,9 @@ $ psql -U doorsale doorsale < pg_dump.sql
 $ python manage.py runserver
 ```
 
-* Go to http://localhost:8000/admin and login with user: "mysteryjeans" and password: "password".
+* Go to http://localhost:8000/admin and login using following credentials.
+  - user: "mysteryjeans"
+  - password: "password"
+
+
+**This repo is following master branch on [Doorsale](http://github.com/mysteryjeans/doorsale), so you should pull changes frequently to keep things synchronized and running smoothly.**
