@@ -59,8 +59,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'doorsale',                      # Or path to database file if using sqlite3.
-        'USER': 'doorsale',                      # Not used with sqlite3.
-        'PASSWORD': 'doorsale',                  # Not used with sqlite3.
+        'USER': 'postgres',                      # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -86,15 +86,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # doorsale settings
-import doorsale.settings
+from doorsale import apps_settings
 
 AUTH_USER_MODEL = 'common.User'
 
 # Including doorsale apps
-INSTALLED_APPS += doorsale.settings.APPS
+INSTALLED_APPS += apps_settings.DOORSALE_APPS
 
 # Including PIPELINE_CSS
-PIPELINE_CSS = doorsale.settings.PIPELINE_CSS
+PIPELINE_CSS = apps_settings.PIPELINE_CSS
 
 
 
