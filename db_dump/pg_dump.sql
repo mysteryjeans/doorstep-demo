@@ -1573,7 +1573,7 @@ SELECT pg_catalog.setval('common_address_id_seq', 1, false);
 --
 
 COPY common_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, birthday, gender, billing_address_id, shipping_adress_id, is_verified, verification_code, updated_on, updated_by, created_on, created_by) FROM stdin;
-1	pbkdf2_sha256$12000$adgKWsDV5clx$7xr0vIvOdXxf8RItZzQENVxw6WX4HIXhgJyDETqNqkg=	2014-04-18 01:21:38.74455+05	t	mysteryjeans			mk.faraz@gmail.com	t	t	2014-04-13 04:51:50.059959+05	\N		\N	\N	t	\N	2014-04-13 04:51:50.15636+05	faraz	2014-04-13 04:51:50.156387+05	faraz
+1	pbkdf2_sha256$12000$adgKWsDV5clx$7xr0vIvOdXxf8RItZzQENVxw6WX4HIXhgJyDETqNqkg=	2014-04-22 00:21:14.981119+05	t	mysteryjeans			mk.faraz@gmail.com	t	t	2014-04-13 04:51:50.059959+05	\N		\N	\N	t	\N	2014-04-13 04:51:50.15636+05	faraz	2014-04-13 04:51:50.156387+05	faraz
 \.
 
 
@@ -1819,8 +1819,8 @@ SELECT pg_catalog.setval('django_content_type_id_seq', 20, true);
 COPY django_session (session_key, session_data, expire_date) FROM stdin;
 mzbijqdky6zju9j3ftnp6jvvggl7eoj1	ODY4ZjkyMmQ3Y2NmY2E3YWU3MGRiYjg1OTZjMWY1ZTg1NTNlNzZkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-04-27 04:52:17.740841+05
 ht305fo3zb2100r3n43tl92ipty8ein1	ODY4ZjkyMmQ3Y2NmY2E3YWU3MGRiYjg1OTZjMWY1ZTg1NTNlNzZkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-04-30 02:10:14.99748+05
-wi84zpdcn9ebg86q6234vs2xmrwkh8yt	ODY4ZjkyMmQ3Y2NmY2E3YWU3MGRiYjg1OTZjMWY1ZTg1NTNlNzZkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-05-02 01:16:44.607254+05
 wyq0l7kcuq276nz6go7f9olb2o56tatz	ODY4ZjkyMmQ3Y2NmY2E3YWU3MGRiYjg1OTZjMWY1ZTg1NTNlNzZkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-05-02 01:21:38.747505+05
+zmt4bmlqpl6zpqcqbq3ic2vbnnqz918y	Yzk0MGViMTY5YTU2M2QyZDQ5NWQyYmRkNmRlNjk2NjRmYmY3NDljYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-05-06 00:21:14.985442+05
 \.
 
 
