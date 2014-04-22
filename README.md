@@ -19,11 +19,17 @@ $ git clone git@github.com:mysteryjeans/doorsale.git
 $ git clone git@github.com:mysteryjeans/doorsale-demo.git
 ```
 
-* You need to include path of Doorsale app in python search paths for packages, so you need to include its path in PYTHONPATH variable or create a simple doorsale.pth file in python site-packages directory, which will contains an actuall path to your doorsale project, example...
+* You need to include path of Doorsale app in python search paths for packages, so include doorsale cloned repo in PYTHONPATH variable or simply create a doorsale.pth file in python site-packages directory having an actuall path of the project repo, e.g...
 
 ```
 $ cat /Library/Python/2.7/site-packages/doorsale.pth 
 /Users/faraz/Workspace/doorsale
+```
+
+* If you want to install Doorsale app using pip, go to repository and run.
+
+```
+$ pip install --upgrade .
 ```
 
 * Create PostgreSQL user
