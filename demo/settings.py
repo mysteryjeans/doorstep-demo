@@ -92,20 +92,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 AUTH_USER_MODEL = 'common.User'
 
-from doorsale import apps_settings
+import doorsale.settings
 
 # Including doorsale apps
-INSTALLED_APPS += apps_settings.DOORSALE_APPS 
+INSTALLED_APPS += doorsale.settings.DOORSALE_APPS 
 
-PIPELINE_CSS =  apps_settings.PIPELINE_CSS
+PIPELINE_CSS =  doorsale.settings.PIPELINE_CSS
 
-PIPELINE_JS =  apps_settings.PIPELINE_JS
+PIPELINE_JS =  doorsale.settings.PIPELINE_JS
 
-PIPELINE_COMPILERS = apps_settings.PIPELINE_COMPILERS
+PIPELINE_COMPILERS = doorsale.settings.PIPELINE_COMPILERS
 
-STATICFILES_STORAGE = apps_settings.STATICFILES_STORAGE
+STATICFILES_STORAGE = doorsale.settings.STATICFILES_STORAGE
 
-PIPELINE_DISABLE_WRAPPER = apps_settings.PIPELINE_DISABLE_WRAPPER
+PIPELINE_DISABLE_WRAPPER = doorsale.settings.PIPELINE_DISABLE_WRAPPER
 
 SITE_NAME = 'Doorsale Demo'
 SITE_TITLE = 'The powerful e-commerce solution for Django | Doorsale Demo'
