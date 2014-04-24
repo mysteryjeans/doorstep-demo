@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pipeline',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -85,16 +86,39 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 # doorsale settings
-from doorsale import apps_settings
 
 AUTH_USER_MODEL = 'common.User'
 
-# Including doorsale apps
-INSTALLED_APPS += apps_settings.DOORSALE_APPS
+from doorsale import apps_settings
 
-# Including PIPELINE_CSS
-PIPELINE_CSS = apps_settings.PIPELINE_CSS
+# Including doorsale apps
+INSTALLED_APPS += apps_settings.DOORSALE_APPS 
+
+PIPELINE_CSS =  apps_settings.PIPELINE_CSS
+
+PIPELINE_JS =  apps_settings.PIPELINE_JS
+
+PIPELINE_COMPILERS = apps_settings.PIPELINE_COMPILERS
+
+STATICFILES_STORAGE = apps_settings.STATICFILES_STORAGE
+
+PIPELINE_DISABLE_WRAPPER = apps_settings.PIPELINE_DISABLE_WRAPPER
+
+SITE_NAME = 'Doorsale Demo'
+SITE_TITLE = 'The powerful e-commerce solution for Django | Doorsale Demo'
+SITE_DESCRIPTION = 'The e-commerce solution demo site build using Doorsale'
+COPYRIGHT = 'Doorsale (c) 2014'
+CONTACT_EMAIL = 'demo@doorsaledemo.com'
+
+from django.conf import settings
+TEMPLATE_CONTEXT_PROCESSORS = settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    'django.core.context_processors.request', 
+    'doorsale.common.context_processors.bootstrip',
+)
+
 
 
 
