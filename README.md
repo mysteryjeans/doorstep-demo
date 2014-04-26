@@ -1,3 +1,5 @@
+![Doorsale Demo Screenshot](https://raw.github.com/mysteryjeans/doorsale-demo/master/media/images/demo-screenshot.png)
+
 Doorsale-demo
 =============
 
