@@ -247,45 +247,12 @@ CREATE TABLE catalog_product (
     updated_on timestamp with time zone NOT NULL,
     created_on timestamp with time zone NOT NULL,
     created_by character varying(100) NOT NULL,
-    shipping_cost numeric(9,2) NOT NULL
-);
-
-
-ALTER TABLE public.catalog_product OWNER TO doorsale;
-
---
--- Name: catalog_product_categories; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
---
-
-CREATE TABLE catalog_product_categories (
-    id integer NOT NULL,
-    product_id integer NOT NULL,
+    shipping_cost numeric(9,2) NOT NULL,
     category_id integer NOT NULL
 );
 
 
-ALTER TABLE public.catalog_product_categories OWNER TO doorsale;
-
---
--- Name: catalog_product_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: doorsale
---
-
-CREATE SEQUENCE catalog_product_categories_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.catalog_product_categories_id_seq OWNER TO doorsale;
-
---
--- Name: catalog_product_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: doorsale
---
-
-ALTER SEQUENCE catalog_product_categories_id_seq OWNED BY catalog_product_categories.id;
-
+ALTER TABLE public.catalog_product OWNER TO doorsale;
 
 --
 -- Name: catalog_product_id_seq; Type: SEQUENCE; Schema: public; Owner: doorsale
@@ -1022,13 +989,6 @@ ALTER TABLE ONLY catalog_product ALTER COLUMN id SET DEFAULT nextval('catalog_pr
 -- Name: id; Type: DEFAULT; Schema: public; Owner: doorsale
 --
 
-ALTER TABLE ONLY catalog_product_categories ALTER COLUMN id SET DEFAULT nextval('catalog_product_categories_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: doorsale
---
-
 ALTER TABLE ONLY catalog_product_pic ALTER COLUMN id SET DEFAULT nextval('catalog_product_pic_id_seq'::regclass);
 
 
@@ -1308,55 +1268,24 @@ SELECT pg_catalog.setval('catalog_manufacturer_id_seq', 12, true);
 -- Data for Name: catalog_product; Type: TABLE DATA; Schema: public; Owner: doorsale
 --
 
-COPY catalog_product (id, name, slug, brand_id, part_number, sku, gtin, gist, description, price, cost, old_price, quantity, is_active, is_bestseller, is_featured, is_free_shipping, tax_rate_id, tags, weight, length, width, height, updated_by, updated_on, created_on, created_by, shipping_cost) FROM stdin;
-7	Dell Optiplex 3010 DT Base	dell-optiplex-3010-dt-base	2				SPECIAL: additional 50 € discount on all Dell OptiPlex desktops from a value of 549 €. Online Coupon:? W8DWQ0ZRKTM1, valid until 12.04.2012.	Also included in this system\r\nTo change these selections "Next" to continue the button to the next page.\r\n\r\n1Yr Basic Service - No Upgrade Selected - on-site service, NBD\r\nNo asset tag required\r\n\r\nThe following options are default selections included with your order.\r\n\r\nGerman (QWERTY) Dell KB212-B USB Keyboard Black QuietKey\r\nX11301001\r\nWINDOWS LIVE\r\nOptiPlex ™ order - Germany\r\nOptiPlex ™ Intel ® Core ™ i3 sticker\r\nOptical software is not required, operating system software sufficiently	478.76	0.00	0.00	10	t	f	f	f	1	Tower	0	0	0	0	mysteryjeans	2014-04-18 03:17:59.480606+05	2014-04-18 03:17:59.480641+05	mysteryjeans	0.00
-8	HP IQ506 TouchSmart Desktop PC 	hp-iq506-touchsmart-desktop-pc	3					Redesigned with a next-generation, touch-enabled 22-inch high-definition LCD screen, the HP TouchSmart IQ506 all-in-one desktop PC is designed to fit wherever life happens: in the kitchen, family room, or living room. With one touch you can check the weather, download your e-mail, or watch your favorite TV show. It's also designed to maximize energy, with a power-saving Intel Core 2 Duo processor and advanced power management technology, as well as material efficiency--right down to the packaging. It has a sleek piano black design with elegant espresso side-panel highlights, and the HP Ambient Light lets you set a mood--or see your keyboard in the dark.	1199.00	0.00	0.00	10	t	f	f	f	1	All-in-One	0	0	0	0	mysteryjeans	2014-04-18 03:21:21.074187+05	2014-04-18 03:21:21.074223+05	mysteryjeans	0.00
-3	HP Pavilion 15-n242se Notebook PC	hp-pavilion-15-n242se-notebook-pc	3				Intel® Core™ i5-4200U.  4 GB 1600 MHz DDR3 Memory.  750 GB 5400 rpm SATA Hard Drive.  NVIDIA GeForce GT 740M (2 GB DDR3 dedicated).  Pearl white color. 	Intel® Core™ i5-4200U. \r\n4 GB 1600 MHz DDR3 Memory. \r\n750 GB 5400 rpm SATA Hard Drive. \r\nNVIDIA GeForce GT 740M (2 GB DDR3 dedicated). \r\nPearl white color. 	610.00	0.00	0.00	50	t	f	f	f	1	Pavilion	0	0	0	0	mysteryjeans	2014-04-15 01:44:02.269376+05	2014-04-15 01:42:13.758533+05	mysteryjeans	0.00
-2	HP 15-d008se Notebook PC	hp-15-d008se-notebook	3				Intel Core i5 3230M Processor. 4GB RAM. 1TB Hard Drive. 15.6" LED Display. 1GB Dedicated Graphic Card. Windows 8.1 (64 bits).	Intel Core i5 3230M Processor. \r\n4GB RAM. 1TB Hard Drive. \r\n15.6" LED Display. \r\n1GB Dedicated Graphic Card. \r\nWindows 8.1 (64 bits). 	595.00	6.00	0.00	50	t	f	f	f	1	Ultrabook, Envy 15	0	0	0	0	mysteryjeans	2014-04-15 01:44:19.953418+05	2014-04-15 01:30:18.542023+05	mysteryjeans	0.00
-5	Acer Aspire E1-570G	acer-aspire-e1-570g	7						439.00	0.00	0.00	50	t	f	f	f	1		0	0	0	0	mysteryjeans	2014-04-18 02:44:30.933988+05	2014-04-18 02:44:30.934033+05	mysteryjeans	0.00
-6	Dell Inspiron One 23	dell-inspiron-one-23	2				Interact and entertain with the new Inspiron One 23 all-in-one. It features an optional 23" touchscreen and up to 3rd Gen Intel® Core™ processors	Make your home entertainment experience riveting. Choose the unrelenting speed of up to 3rd Gen Intel® Core™ i7 processors and be efficient with the new Windows 8 operating system. With up to 8GB DDR3 memory7, you can easily:\r\n\r\nPower your HD entertainment: enjoy a cinema-like experience.\r\n\r\nEnjoy non-stop action: fast photo and video editing8, stunning movies and seamless multitasking.\r\n\r\nExperience smooth apps and games: everyone’s favorite applications work the way they were intended to.	800.00	0.00	0.00	50	t	f	f	f	1	All-in-One	0	0	0	0	mysteryjeans	2014-04-18 03:01:12.516898+05	2014-04-18 03:01:12.516931+05	mysteryjeans	0.00
-1	Lenovo G510 Laptop  This is the world class windows you will really like it	lenovo-g510-laptop	5				Super Hybrid Engine offers a choice of performance and power consumption modes for easy adjustments according to various needs	15.6-inch HD Widescreen Display\r\nThe 15.6" LED-backlit HD display (1366 x 768) delivers bright, crisp visuals in 16:9 widescreen on the G510.\r\nAbundant Multimedia Features\r\nThe G510 offers stunning, stutter-free visuals and immersive sound for a fuller, more satisfying home entertainment experience.\r\nAccuType Keyboard\r\nThe acclaimed AccuType keyboard is ergonomically designed to make typing more comfortable and to reduce errors.\r\nFast Data Transfer\r\nMove data between the G510 and other devices quickly with USB 3.0. It's up to 10 times faster than previous USB technologies.\r\nBattery-Saving Technology\r\nLenovo Energy Management protects the long-term durability of the battery and uses advanced energy-saving technology to increase time spent between charges to up to 5 hours, giving you flexibility on the go.\r\nSimple Maintenance\r\nWith OneKey Recovery, recovering from viruses or other technical difficulties is a snap.\r\nConnectivity\r\nWith 802.11 b/g/n WiFi connectivity, 10/100 LAN, and Bluetooth®, you'll be able to connect to the internet wherever you go.\r\nIntegrated Webcam\r\nThe optional 720p HD High-Sense webcam will help you enjoy web conferences or online video chats like you’re really there.\r\nHDMI Output\r\nFor easy connection to a television or other display.\r\nAmple storage\r\nWith 500GB HDD storage on the G510, you won't have to worry about where to put all your data, videos, music or photos.\r\nLenovo Cloud Storage\r\nProtect your important files and data, while also making access to information and file-sharing quick and convenient. Automatically back-up and synchronize data across your home, while enabling access from multiple devices. Data is encrypted on transfer for an extra level of security.	428.00	0.00	0.00	50	t	f	f	f	1	Laptop, G510	0	0	0	0	mysteryjeans	2014-04-26 04:16:57.314998+05	2014-04-15 01:11:50.502752+05	mysteryjeans	0.00
-10	Logitech X100 Mobile Wireless Speaker	logitech-x100-mobile-wireless-speaker	9				Go-anywhere mobile speaker that delivers rocking sound. Wireless speaker for smartphones and tablets. Connect and play. Take it anywhere. 5 hour Battery. 	Rocking sound\r\nCrystal clear sound. Pump up the volume and enjoy!\r\nRocking Sound\r\nConnect and play\r\n\r\nWirelessly connect, stream music, manage phone calls and control volume.\r\nTake it anywhere\r\n\r\nPerfect for life on the go. Take it on the road or relax and listen at home.\r\nDesign\r\n\r\nIn five bold colors, this unique design is sure to turn some heads.\r\n5 hour Battery\r\n\r\nEnjoy 5 hours of continuous play without recharging. Recharge the built-in lithium-ion battery with the convenience of the included micro-USB cable and rock on.	43.00	0.00	0.00	10	t	f	f	f	1		0	0	0	0	mysteryjeans	2014-04-18 05:03:10.414113+05	2014-04-18 05:03:10.414147+05	mysteryjeans	0.00
-11	Acer Iconia A1-810	acer-iconia-a1-810	7				MediaTek 1.2 Ghz Quad-Core Processor. 16GB Flash Memory. 1GB RAM. 7.9" XGA IPS multi-touch screen. Android 4.2 Jelly Bean. Dual Camera. Bluetooth. 	MediaTek 1.2 Ghz Quad-Core Processor.\r\n16GB Flash Memory. 1GB RAM.\r\n7.9" XGA IPS multi-touch screen.\r\nAndroid 4.2 Jelly Bean.\r\nDual Camera. Bluetooth.	175.00	0.00	0.00	10	t	f	f	t	1	Android	0	0	0	0	mysteryjeans	2014-04-18 05:09:25.452491+05	2014-04-18 05:09:25.45253+05	mysteryjeans	0.00
-12	Best Grilling Recipes	best-grilling-recipes	10				 More Than 100 Regional Favorites Tested and Perfected for the Outdoor Cook (Hardcover)	Take a winding cross-country trip and you'll discover barbecue shacks with offerings like tender-smoky Baltimore pit beef and saucy St. Louis pork steaks. To bring you the best of these hidden gems, along with all the classics, the editors of Cook's Country magazine scoured the country, then tested and perfected their favorites. HEre traditions large and small are brought into the backyard, from Hawaii's rotisserie favorite, the golden-hued Huli Huli Chicken, to fall-off-the-bone Chicago Barbecued Ribs. In Kansas City, they're all about the sauce, and for our saucy Kansas City Sticky Ribs, we found a surprise ingredient-root beer. We also tackle all the best sides.\r\n\r\nNot sure where or how to start? This cookbook kicks off with an easy-to-follow primer that will get newcomers all fired up. Whether you want to entertain a crowd or just want to learn to make perfect burgers, Best Grilling Recipes shows you the way.	27.00	0.00	0.00	20	t	f	f	f	2	Recipes	0	0	0	0	mysteryjeans	2014-04-18 05:22:29.069639+05	2014-04-18 05:22:29.069673+05	mysteryjeans	0.00
-13	Cooking for Two	cooking-two	10				 More Than 200 Foolproof Recipes for Weeknights and Special Occasions (Hardcover) 	Hardcover: 352 pages\r\nPublisher: America's Test Kitchen (May 2009)\r\nLanguage: English\r\nISBN-10: 1933615435\r\nISBN-13: 978-1933615431	19.00	0.00	0.00	10	t	f	f	t	2	Cooking, Recipies	0	0	0	0	mysteryjeans	2014-04-18 05:25:30.923959+05	2014-04-18 05:24:29.774523+05	mysteryjeans	0.00
-14	iPhone 5s	iphone-5s	1				Apple iPhone 5 32 GB	New design .\r\n\r\nWith 7.6 mm and 112 g3 the iPhone 5 has a remarkably thin and light design . It is made of anodized aluminum. The beveled edges have been precisely cut with a diamond.\r\n\r\nBrilliant 4 " Retina Display .\r\n\r\nNow you can see everything more vivid and detailed. And even though the display is bigger, it has the same width as the iPhone 4S and can be just as easily operated with one hand , therefore .\r\n\r\nPowerful A6 chip.\r\n\r\nCompared with the A5 chip , he has up to twice the CPU and graphics performance . And despite its speed , the iPhone 5 is an amazing battery life .\r\n\r\nUltra-fast mobile data .\r\n\r\nThe iPhone 5 supports the latest wireless technologies and can thus even more networks around the world verbinden.4Und also Wi -Fi is faster.\r\n\r\nScope of delivery\r\n\r\niPhone 5 with iOS 6 Apple EarPods with Remote and Mic Lightning to USB Cable USB Power Adapter (power supply)\r\n\r\nChoose the iPhone that suits you. 16 GB, 32 GB or 64 GB capacity ?\r\n\r\nThe iPhone is available in three capacities : 16, 32 and 64 GB. "GB" stands for gigabytes. The more gigabytes has your iPhone , the more space you have for content such as apps , games, photos , HD videos, music, movies and more. On a large music or photo library or if you load frequently HD movies, an iPhone with a larger storage is recommended . If your music or photo library is rather small and you rarely make films or buy an iPhone with a smaller amount of memory for you enough. With time comes Some of content together on your iPhone . Therefore, you should consider your growing storage needs with the iPhone purchase.\r\n\r\nThe unlocked iPhone\r\n\r\nThe unlocked iPhone is not bound to a cellular network , which means you can select your any supported GSM network worldwide . Buy an iPhone without a contract at the Apple Online Store , then look for a tariff for the iPhone, which only covers the SIM card. Or contact to your current provider if you want to keep your current tariff.\r\n\r\nPrePaid\r\n\r\nIf you do not want a contract , you can choose one of the " prepaid " Starter Packages of available network operators at the Apple Online Store. With " PrePaid " you get your iPhone ready for use with a compatible SIM card. A credit check is not required. You pay just online for what you consume , and you can change the network operator at any time. " PrePaid " is a good option if you would rather want to use a local provider when traveling abroad.	799.77	0.00	0.00	10	t	t	f	t	1	iPhone, SmartPhone	0	0	0	0	mysteryjeans	2014-04-18 05:51:40.318342+05	2014-04-18 05:47:39.106744+05	mysteryjeans	0.00
-15	McAfee AntiVirus Plus - 1 PC for 1 Year	mcafee-antivirus-plus-1-pc-1-year	11				 Confidently surf, shop, and socialize online as our essential antivirus, antimalware, and firewall protect your PC and data. 	\r\n\r\nOur powerful combination of performance, accuracy, and reinforcing protections keeps criminals away from your PC and data.\r\n\r\n    NEW Unobtrusive, High Speed Scanning Engine—From startup to on-access scans, get high performance to minimize scan times and extend battery life.\r\n\r\n    NEW Vulnerability Scanner—Find and seal up holes in Windows and your favorite browsers and applications.\r\n\r\n    Real-time Antimalware—Block threats like viruses, Trojans, and spyware in your files, email, and web downloads using instant risk assessments through the cloud.\r\n\r\n    Adaptive Two-Way Firewall—Let our advanced firewall with buffer overflow protection prevent software from exploiting your OS or stealing information, even in hotspots.\r\n\r\n    NEW Malicious Ad Protection—Block cybercrime networks and their malicious ads and hidden iFrame code from loading and infecting your PC.\r\n\r\n    ENHANCED Digital Data Shredder—Destroy sensitive data and erase cookies, memory, cache, browser history, and more.\r\n\r\n    IMPROVED Safe Socializing, Searching, and Shopping—Click with confidence because you know which sites are safe.\r\n\r\n    BETTER Anti-bot Protection—Block contact with criminals’ computers based on the very latest research and reputation.\r\n\r\n    NEW Home Screen—Navigate easily through common security tasks with a redesigned home screen that supports touch-friendly devices.\r\n\r\n    ENHANCED Reports—Quickly understand how your protections are securing your data and system.\r\n\r\n    PC Tune-up—Remove unused applications, cached browser files, and other junk to speed up your PC.\r\n\r\n	6.50	0.00	0.00	10	t	f	t	f	1	Antivirus	0	0	0	0	mysteryjeans	2014-04-18 05:55:24.879086+05	2014-04-18 05:55:24.879139+05	mysteryjeans	0.00
-16	ESET NOD32 Antivirus 5	eset-nod32-antivirus-5	12				Intercept and eliminate viruses, worms, trojans, spyware and other Internet threats with our award-winning heuristic technology. ESET NOD32® Antivirus 5 protects you from known and emerging threats when competing products can’t and keeps your system running fast. Get ESET NOD32 Antivirus 5 for advanced security. 	Intercept and eliminate viruses, worms, trojans, spyware and other Internet threats with our award-winning heuristic technology. ESET NOD32® Antivirus 5 protects you from known and emerging threats when competing products can’t and keeps your system running fast. Get ESET NOD32 Antivirus 5 for advanced security. 	13.50	0.00	0.00	10	t	f	f	t	1		0	0	0	0	mysteryjeans	2014-04-18 05:58:27.137736+05	2014-04-18 05:58:27.137776+05	mysteryjeans	0.00
-4	Toshiba Satellite C50-A539	toshiba-satellite-c50-a539	6				Intel Core i3 3110M Processor. 4GB RAM - 500GB Hard Drive. 1GB Dedicated Graphic Card. Gloss Luxe White Pearl Color. International Warranty.	Intel Core i3 3110M Processor.\r\n4GB RAM - 500GB Hard Drive.\r\n1GB Dedicated Graphic Card.\r\nGloss Luxe White Pearl Color.\r\nInternational Warranty.	500.00	0.00	525.00	50	t	f	t	f	1	Satellite	2.29999999999999982	0	0	0	mysteryjeans	2014-04-26 02:29:16.791128+05	2014-04-18 02:13:40.623315+05	mysteryjeans	0.00
-9	Microsoft Windows 8.1 Pro x64 English This is the world class windows you will really like it	microsoft-windows-81-pro-x64-english	8				Your familiar desktop. Enhanced data protection. Your own unique start screen. The best of work and play. Your Office, your way. 	The best of work and play\r\n\r\nWith the new Windows, you get the best of work and play. Windows 8.1 Pro includes everything in Windows 8.1, plus enhanced features that help you easily connect to company networks, manage your devices, access one PC from another, encrypt your data, and more.\r\n	145.00	0.00	0.00	10	t	f	f	f	1	Windows8	0	0	0	0	mysteryjeans	2014-04-26 04:16:24.516835+05	2014-04-18 04:41:29.384885+05	mysteryjeans	0.00
+COPY catalog_product (id, name, slug, brand_id, part_number, sku, gtin, gist, description, price, cost, old_price, quantity, is_active, is_bestseller, is_featured, is_free_shipping, tax_rate_id, tags, weight, length, width, height, updated_by, updated_on, created_on, created_by, shipping_cost, category_id) FROM stdin;
+2	HP 15-d008se Notebook PC	hp-15-d008se-notebook	3				Intel Core i5 3230M Processor. 4GB RAM. 1TB Hard Drive. 15.6" LED Display. 1GB Dedicated Graphic Card. Windows 8.1 (64 bits).	Intel Core i5 3230M Processor. \r\n4GB RAM. 1TB Hard Drive. \r\n15.6" LED Display. \r\n1GB Dedicated Graphic Card. \r\nWindows 8.1 (64 bits). 	595.00	6.00	0.00	50	t	f	f	f	1	Ultrabook, Envy 15	0	0	0	0	mysteryjeans	2014-04-26 17:27:51.09288+05	2014-04-15 01:30:18.542023+05	mysteryjeans	0.00	4
+5	Acer Aspire E1-570G	acer-aspire-e1-570g	7						439.00	0.00	0.00	50	t	f	f	f	1		0	0	0	0	mysteryjeans	2014-04-26 17:29:03.017805+05	2014-04-18 02:44:30.934033+05	mysteryjeans	0.00	4
+3	HP Pavilion 15-n242se Notebook PC	hp-pavilion-15-n242se-notebook-pc	3				Intel® Core™ i5-4200U.  4 GB 1600 MHz DDR3 Memory.  750 GB 5400 rpm SATA Hard Drive.  NVIDIA GeForce GT 740M (2 GB DDR3 dedicated).  Pearl white color. 	Intel® Core™ i5-4200U. \r\n4 GB 1600 MHz DDR3 Memory. \r\n750 GB 5400 rpm SATA Hard Drive. \r\nNVIDIA GeForce GT 740M (2 GB DDR3 dedicated). \r\nPearl white color. 	610.00	0.00	0.00	50	t	f	f	f	1	Pavilion	0	0	0	0	mysteryjeans	2014-04-26 17:28:03.296843+05	2014-04-15 01:42:13.758533+05	mysteryjeans	0.00	4
+6	Dell Inspiron One 23	dell-inspiron-one-23	2				Interact and entertain with the new Inspiron One 23 all-in-one. It features an optional 23" touchscreen and up to 3rd Gen Intel® Core™ processors	Make your home entertainment experience riveting. Choose the unrelenting speed of up to 3rd Gen Intel® Core™ i7 processors and be efficient with the new Windows 8 operating system. With up to 8GB DDR3 memory7, you can easily:\r\n\r\nPower your HD entertainment: enjoy a cinema-like experience.\r\n\r\nEnjoy non-stop action: fast photo and video editing8, stunning movies and seamless multitasking.\r\n\r\nExperience smooth apps and games: everyone’s favorite applications work the way they were intended to.	800.00	0.00	0.00	50	t	f	f	f	1	All-in-One	0	0	0	0	mysteryjeans	2014-04-26 17:29:14.62433+05	2014-04-18 03:01:12.516931+05	mysteryjeans	0.00	3
+7	Dell Optiplex 3010 DT Base	dell-optiplex-3010-dt-base	2				SPECIAL: additional 50 € discount on all Dell OptiPlex desktops from a value of 549 €. Online Coupon:? W8DWQ0ZRKTM1, valid until 12.04.2012.	Also included in this system\r\nTo change these selections "Next" to continue the button to the next page.\r\n\r\n1Yr Basic Service - No Upgrade Selected - on-site service, NBD\r\nNo asset tag required\r\n\r\nThe following options are default selections included with your order.\r\n\r\nGerman (QWERTY) Dell KB212-B USB Keyboard Black QuietKey\r\nX11301001\r\nWINDOWS LIVE\r\nOptiPlex ™ order - Germany\r\nOptiPlex ™ Intel ® Core ™ i3 sticker\r\nOptical software is not required, operating system software sufficiently	478.76	0.00	0.00	10	t	f	f	f	1	Tower	0	0	0	0	mysteryjeans	2014-04-26 17:29:21.852466+05	2014-04-18 03:17:59.480641+05	mysteryjeans	0.00	3
+8	HP IQ506 TouchSmart Desktop PC 	hp-iq506-touchsmart-desktop-pc	3					Redesigned with a next-generation, touch-enabled 22-inch high-definition LCD screen, the HP TouchSmart IQ506 all-in-one desktop PC is designed to fit wherever life happens: in the kitchen, family room, or living room. With one touch you can check the weather, download your e-mail, or watch your favorite TV show. It's also designed to maximize energy, with a power-saving Intel Core 2 Duo processor and advanced power management technology, as well as material efficiency--right down to the packaging. It has a sleek piano black design with elegant espresso side-panel highlights, and the HP Ambient Light lets you set a mood--or see your keyboard in the dark.	1199.00	0.00	0.00	10	t	f	f	f	1	All-in-One	0	0	0	0	mysteryjeans	2014-04-26 17:29:31.887263+05	2014-04-18 03:21:21.074223+05	mysteryjeans	0.00	3
+10	Logitech X100 Mobile Wireless Speaker	logitech-x100-mobile-wireless-speaker	9				Go-anywhere mobile speaker that delivers rocking sound. Wireless speaker for smartphones and tablets. Connect and play. Take it anywhere. 5 hour Battery. 	Rocking sound\r\nCrystal clear sound. Pump up the volume and enjoy!\r\nRocking Sound\r\nConnect and play\r\n\r\nWirelessly connect, stream music, manage phone calls and control volume.\r\nTake it anywhere\r\n\r\nPerfect for life on the go. Take it on the road or relax and listen at home.\r\nDesign\r\n\r\nIn five bold colors, this unique design is sure to turn some heads.\r\n5 hour Battery\r\n\r\nEnjoy 5 hours of continuous play without recharging. Recharge the built-in lithium-ion battery with the convenience of the included micro-USB cable and rock on.	43.00	0.00	0.00	10	t	f	f	f	1		0	0	0	0	mysteryjeans	2014-04-26 17:30:31.882576+05	2014-04-18 05:03:10.414147+05	mysteryjeans	0.00	17
+11	Acer Iconia A1-810	acer-iconia-a1-810	7				MediaTek 1.2 Ghz Quad-Core Processor. 16GB Flash Memory. 1GB RAM. 7.9" XGA IPS multi-touch screen. Android 4.2 Jelly Bean. Dual Camera. Bluetooth. 	MediaTek 1.2 Ghz Quad-Core Processor.\r\n16GB Flash Memory. 1GB RAM.\r\n7.9" XGA IPS multi-touch screen.\r\nAndroid 4.2 Jelly Bean.\r\nDual Camera. Bluetooth.	175.00	0.00	0.00	10	t	f	f	t	1	Android	0	0	0	0	mysteryjeans	2014-04-26 17:31:25.518625+05	2014-04-18 05:09:25.45253+05	mysteryjeans	0.00	18
+1	Lenovo G510 Laptop	lenovo-g510-laptop	5				Super Hybrid Engine offers a choice of performance and power consumption modes for easy adjustments according to various needs	15.6-inch HD Widescreen Display\r\nThe 15.6" LED-backlit HD display (1366 x 768) delivers bright, crisp visuals in 16:9 widescreen on the G510.\r\nAbundant Multimedia Features\r\nThe G510 offers stunning, stutter-free visuals and immersive sound for a fuller, more satisfying home entertainment experience.\r\nAccuType Keyboard\r\nThe acclaimed AccuType keyboard is ergonomically designed to make typing more comfortable and to reduce errors.\r\nFast Data Transfer\r\nMove data between the G510 and other devices quickly with USB 3.0. It's up to 10 times faster than previous USB technologies.\r\nBattery-Saving Technology\r\nLenovo Energy Management protects the long-term durability of the battery and uses advanced energy-saving technology to increase time spent between charges to up to 5 hours, giving you flexibility on the go.\r\nSimple Maintenance\r\nWith OneKey Recovery, recovering from viruses or other technical difficulties is a snap.\r\nConnectivity\r\nWith 802.11 b/g/n WiFi connectivity, 10/100 LAN, and Bluetooth®, you'll be able to connect to the internet wherever you go.\r\nIntegrated Webcam\r\nThe optional 720p HD High-Sense webcam will help you enjoy web conferences or online video chats like you’re really there.\r\nHDMI Output\r\nFor easy connection to a television or other display.\r\nAmple storage\r\nWith 500GB HDD storage on the G510, you won't have to worry about where to put all your data, videos, music or photos.\r\nLenovo Cloud Storage\r\nProtect your important files and data, while also making access to information and file-sharing quick and convenient. Automatically back-up and synchronize data across your home, while enabling access from multiple devices. Data is encrypted on transfer for an extra level of security.	428.00	0.00	0.00	50	t	f	f	f	1	Laptop, G510	0	0	0	0	mysteryjeans	2014-04-26 17:59:00.945661+05	2014-04-15 01:11:50.502752+05	mysteryjeans	0.00	4
+13	Cooking for Two	cooking-two	10				 More Than 200 Foolproof Recipes for Weeknights and Special Occasions (Hardcover) 	Hardcover: 352 pages\r\nPublisher: America's Test Kitchen (May 2009)\r\nLanguage: English\r\nISBN-10: 1933615435\r\nISBN-13: 978-1933615431	19.00	0.00	0.00	10	t	f	f	t	2	Cooking, Recipies	0	0	0	0	mysteryjeans	2014-04-26 17:31:44.491804+05	2014-04-18 05:24:29.774523+05	mysteryjeans	0.00	1
+4	Toshiba Satellite C50-A539	toshiba-satellite-c50-a539	6				Intel Core i3 3110M Processor. 4GB RAM - 500GB Hard Drive. 1GB Dedicated Graphic Card. Gloss Luxe White Pearl Color. International Warranty.	Intel Core i3 3110M Processor.\r\n4GB RAM - 500GB Hard Drive.\r\n1GB Dedicated Graphic Card.\r\nGloss Luxe White Pearl Color.\r\nInternational Warranty.	500.00	0.00	525.00	50	t	f	t	f	1	Satellite	2.29999999999999982	0	0	0	mysteryjeans	2014-04-26 17:28:15.979226+05	2014-04-18 02:13:40.623315+05	mysteryjeans	0.00	4
+9	Microsoft Windows 8.1 Pro x64 English	microsoft-windows-81-pro-x64-english	8				Your familiar desktop. Enhanced data protection. Your own unique start screen. The best of work and play. Your Office, your way. 	The best of work and play\r\n\r\nWith the new Windows, you get the best of work and play. Windows 8.1 Pro includes everything in Windows 8.1, plus enhanced features that help you easily connect to company networks, manage your devices, access one PC from another, encrypt your data, and more.\r\n	145.00	0.00	0.00	10	t	f	f	f	1	Windows8	0	0	0	0	mysteryjeans	2014-04-26 17:30:13.871397+05	2014-04-18 04:41:29.384885+05	mysteryjeans	0.00	7
+12	Best Grilling Recipes	best-grilling-recipes	10				 More Than 100 Regional Favorites Tested and Perfected for the Outdoor Cook (Hardcover)	Take a winding cross-country trip and you'll discover barbecue shacks with offerings like tender-smoky Baltimore pit beef and saucy St. Louis pork steaks. To bring you the best of these hidden gems, along with all the classics, the editors of Cook's Country magazine scoured the country, then tested and perfected their favorites. HEre traditions large and small are brought into the backyard, from Hawaii's rotisserie favorite, the golden-hued Huli Huli Chicken, to fall-off-the-bone Chicago Barbecued Ribs. In Kansas City, they're all about the sauce, and for our saucy Kansas City Sticky Ribs, we found a surprise ingredient-root beer. We also tackle all the best sides.\r\n\r\nNot sure where or how to start? This cookbook kicks off with an easy-to-follow primer that will get newcomers all fired up. Whether you want to entertain a crowd or just want to learn to make perfect burgers, Best Grilling Recipes shows you the way.	27.00	0.00	0.00	20	t	f	f	f	2	Recipes	0	0	0	0	mysteryjeans	2014-04-26 17:31:34.331917+05	2014-04-18 05:22:29.069673+05	mysteryjeans	0.00	1
+16	ESET NOD32 Antivirus 5	eset-nod32-antivirus-5	12				Intercept and eliminate viruses, worms, trojans, spyware and other Internet threats with our award-winning heuristic technology. ESET NOD32® Antivirus 5 protects you from known and emerging threats when competing products can’t and keeps your system running fast. Get ESET NOD32 Antivirus 5 for advanced security. 	Intercept and eliminate viruses, worms, trojans, spyware and other Internet threats with our award-winning heuristic technology. ESET NOD32® Antivirus 5 protects you from known and emerging threats when competing products can’t and keeps your system running fast. Get ESET NOD32 Antivirus 5 for advanced security. 	13.50	0.00	0.00	10	t	f	f	t	1		0	0	0	0	mysteryjeans	2014-04-26 17:32:12.763994+05	2014-04-18 05:58:27.137776+05	mysteryjeans	0.00	7
+14	iPhone 5s	iphone-5s	1				Apple iPhone 5 32 GB	New design .\r\n\r\nWith 7.6 mm and 112 g3 the iPhone 5 has a remarkably thin and light design . It is made of anodized aluminum. The beveled edges have been precisely cut with a diamond.\r\n\r\nBrilliant 4 " Retina Display .\r\n\r\nNow you can see everything more vivid and detailed. And even though the display is bigger, it has the same width as the iPhone 4S and can be just as easily operated with one hand , therefore .\r\n\r\nPowerful A6 chip.\r\n\r\nCompared with the A5 chip , he has up to twice the CPU and graphics performance . And despite its speed , the iPhone 5 is an amazing battery life .\r\n\r\nUltra-fast mobile data .\r\n\r\nThe iPhone 5 supports the latest wireless technologies and can thus even more networks around the world verbinden.4Und also Wi -Fi is faster.\r\n\r\nScope of delivery\r\n\r\niPhone 5 with iOS 6 Apple EarPods with Remote and Mic Lightning to USB Cable USB Power Adapter (power supply)\r\n\r\nChoose the iPhone that suits you. 16 GB, 32 GB or 64 GB capacity ?\r\n\r\nThe iPhone is available in three capacities : 16, 32 and 64 GB. "GB" stands for gigabytes. The more gigabytes has your iPhone , the more space you have for content such as apps , games, photos , HD videos, music, movies and more. On a large music or photo library or if you load frequently HD movies, an iPhone with a larger storage is recommended . If your music or photo library is rather small and you rarely make films or buy an iPhone with a smaller amount of memory for you enough. With time comes Some of content together on your iPhone . Therefore, you should consider your growing storage needs with the iPhone purchase.\r\n\r\nThe unlocked iPhone\r\n\r\nThe unlocked iPhone is not bound to a cellular network , which means you can select your any supported GSM network worldwide . Buy an iPhone without a contract at the Apple Online Store , then look for a tariff for the iPhone, which only covers the SIM card. Or contact to your current provider if you want to keep your current tariff.\r\n\r\nPrePaid\r\n\r\nIf you do not want a contract , you can choose one of the " prepaid " Starter Packages of available network operators at the Apple Online Store. With " PrePaid " you get your iPhone ready for use with a compatible SIM card. A credit check is not required. You pay just online for what you consume , and you can change the network operator at any time. " PrePaid " is a good option if you would rather want to use a local provider when traveling abroad.	799.77	0.00	0.00	10	t	t	f	t	1	iPhone, SmartPhone	0	0	0	0	mysteryjeans	2014-04-26 17:31:52.85477+05	2014-04-18 05:47:39.106744+05	mysteryjeans	0.00	10
+15	McAfee AntiVirus Plus - 1 PC for 1 Year	mcafee-antivirus-plus-1-pc-1-year	11				 Confidently surf, shop, and socialize online as our essential antivirus, antimalware, and firewall protect your PC and data. 	\r\n\r\nOur powerful combination of performance, accuracy, and reinforcing protections keeps criminals away from your PC and data.\r\n\r\n    NEW Unobtrusive, High Speed Scanning Engine—From startup to on-access scans, get high performance to minimize scan times and extend battery life.\r\n\r\n    NEW Vulnerability Scanner—Find and seal up holes in Windows and your favorite browsers and applications.\r\n\r\n    Real-time Antimalware—Block threats like viruses, Trojans, and spyware in your files, email, and web downloads using instant risk assessments through the cloud.\r\n\r\n    Adaptive Two-Way Firewall—Let our advanced firewall with buffer overflow protection prevent software from exploiting your OS or stealing information, even in hotspots.\r\n\r\n    NEW Malicious Ad Protection—Block cybercrime networks and their malicious ads and hidden iFrame code from loading and infecting your PC.\r\n\r\n    ENHANCED Digital Data Shredder—Destroy sensitive data and erase cookies, memory, cache, browser history, and more.\r\n\r\n    IMPROVED Safe Socializing, Searching, and Shopping—Click with confidence because you know which sites are safe.\r\n\r\n    BETTER Anti-bot Protection—Block contact with criminals’ computers based on the very latest research and reputation.\r\n\r\n    NEW Home Screen—Navigate easily through common security tasks with a redesigned home screen that supports touch-friendly devices.\r\n\r\n    ENHANCED Reports—Quickly understand how your protections are securing your data and system.\r\n\r\n    PC Tune-up—Remove unused applications, cached browser files, and other junk to speed up your PC.\r\n\r\n	6.50	0.00	0.00	10	t	f	t	f	1	Antivirus	0	0	0	0	mysteryjeans	2014-04-26 17:32:01.488042+05	2014-04-18 05:55:24.879139+05	mysteryjeans	0.00	7
 \.
-
-
---
--- Data for Name: catalog_product_categories; Type: TABLE DATA; Schema: public; Owner: doorsale
---
-
-COPY catalog_product_categories (id, product_id, category_id) FROM stdin;
-6	3	4
-8	2	4
-10	5	4
-11	6	3
-12	7	3
-13	8	3
-16	10	17
-17	11	18
-18	12	1
-20	13	1
-23	14	10
-24	15	7
-25	16	7
-26	4	4
-27	9	7
-28	1	4
-\.
-
-
---
--- Name: catalog_product_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
---
-
-SELECT pg_catalog.setval('catalog_product_categories_id_seq', 28, true);
 
 
 --
@@ -1778,6 +1707,23 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 155	2014-04-26 02:29:16.801177+05	1	12	4	Toshiba Satellite C50-A539	2	Changed old_price.
 156	2014-04-26 04:16:24.525494+05	1	12	9	Microsoft Windows 8.1 Pro x64 English This is the world class windows you will really like it	2	Changed name.
 157	2014-04-26 04:16:57.326276+05	1	12	1	Lenovo G510 Laptop  This is the world class windows you will really like it	2	Changed name.
+158	2014-04-26 17:27:40.876551+05	1	12	1	Lenovo G510 Laptop  This is the world class windows you will really like it	2	Changed category.
+159	2014-04-26 17:27:51.096276+05	1	12	2	HP 15-d008se Notebook PC	2	Changed category.
+160	2014-04-26 17:28:03.300963+05	1	12	3	HP Pavilion 15-n242se Notebook PC	2	Changed category.
+161	2014-04-26 17:28:15.982904+05	1	12	4	Toshiba Satellite C50-A539	2	Changed category.
+162	2014-04-26 17:29:03.021207+05	1	12	5	Acer Aspire E1-570G	2	Changed category.
+163	2014-04-26 17:29:14.628036+05	1	12	6	Dell Inspiron One 23	2	Changed category.
+164	2014-04-26 17:29:21.855792+05	1	12	7	Dell Optiplex 3010 DT Base	2	Changed category.
+165	2014-04-26 17:29:31.891333+05	1	12	8	HP IQ506 TouchSmart Desktop PC 	2	Changed category.
+166	2014-04-26 17:30:13.875646+05	1	12	9	Microsoft Windows 8.1 Pro x64 English	2	Changed name and category.
+167	2014-04-26 17:30:31.886379+05	1	12	10	Logitech X100 Mobile Wireless Speaker	2	Changed category.
+168	2014-04-26 17:31:25.522515+05	1	12	11	Acer Iconia A1-810	2	Changed category.
+169	2014-04-26 17:31:34.336193+05	1	12	12	Best Grilling Recipes	2	Changed category.
+170	2014-04-26 17:31:44.495802+05	1	12	13	Cooking for Two	2	Changed category.
+171	2014-04-26 17:31:52.860176+05	1	12	14	iPhone 5s	2	Changed category.
+172	2014-04-26 17:32:01.491983+05	1	12	15	McAfee AntiVirus Plus - 1 PC for 1 Year	2	Changed category.
+173	2014-04-26 17:32:12.7677+05	1	12	16	ESET NOD32 Antivirus 5	2	Changed category.
+174	2014-04-26 17:59:00.950759+05	1	12	1	Lenovo G510 Laptop	2	Changed name.
 \.
 
 
@@ -1785,7 +1731,7 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 157, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 174, true);
 
 
 --
@@ -2384,22 +2330,6 @@ ALTER TABLE ONLY catalog_manufacturer
 
 
 --
--- Name: catalog_product_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
---
-
-ALTER TABLE ONLY catalog_product_categories
-    ADD CONSTRAINT catalog_product_categories_pkey PRIMARY KEY (id);
-
-
---
--- Name: catalog_product_categories_product_id_category_id_key; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
---
-
-ALTER TABLE ONLY catalog_product_categories
-    ADD CONSTRAINT catalog_product_categories_product_id_category_id_key UNIQUE (product_id, category_id);
-
-
---
 -- Name: catalog_product_name_key; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
@@ -2726,20 +2656,6 @@ CREATE INDEX catalog_product_brand_id ON catalog_product USING btree (brand_id);
 
 
 --
--- Name: catalog_product_categories_category_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
---
-
-CREATE INDEX catalog_product_categories_category_id ON catalog_product_categories USING btree (category_id);
-
-
---
--- Name: catalog_product_categories_product_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
---
-
-CREATE INDEX catalog_product_categories_product_id ON catalog_product_categories USING btree (product_id);
-
-
---
 -- Name: catalog_product_name_like; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
@@ -3009,11 +2925,11 @@ ALTER TABLE ONLY catalog_product
 
 
 --
--- Name: catalog_product_categories_category_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
+-- Name: catalog_product_category_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
 --
 
-ALTER TABLE ONLY catalog_product_categories
-    ADD CONSTRAINT catalog_product_categories_category_id_fkey FOREIGN KEY (category_id) REFERENCES catalog_category(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY catalog_product
+    ADD CONSTRAINT catalog_product_category_id_fkey FOREIGN KEY (category_id) REFERENCES catalog_category(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -3126,14 +3042,6 @@ ALTER TABLE ONLY geo_state
 
 ALTER TABLE ONLY auth_group_permissions
     ADD CONSTRAINT group_id_refs_id_f4b32aac FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: product_id_refs_id_7b03e3b7; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
---
-
-ALTER TABLE ONLY catalog_product_categories
-    ADD CONSTRAINT product_id_refs_id_7b03e3b7 FOREIGN KEY (product_id) REFERENCES catalog_product(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

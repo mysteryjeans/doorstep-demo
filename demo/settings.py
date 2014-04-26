@@ -117,11 +117,5 @@ SITE_DESCRIPTION = 'The e-commerce solution demo site build using Doorsale'
 COPYRIGHT = 'Doorsale (c) 2014'
 CONTACT_EMAIL = 'demo@doorsaledemo.com'
 
-from django.conf import settings
-TEMPLATE_CONTEXT_PROCESSORS = settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    'django.core.context_processors.request',
-) + doorsale.settings.TEMPLATE_CONTEXT_PROCESSORS
-
-
 
 
