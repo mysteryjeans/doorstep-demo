@@ -651,7 +651,7 @@ CREATE TABLE financial_currency (
     is_active boolean NOT NULL,
     is_primary boolean NOT NULL,
     exchange_rate double precision NOT NULL,
-    price_format character varying(100) NOT NULL,
+    display_format character varying(100) NOT NULL,
     updated_by character varying(100) NOT NULL,
     updated_on timestamp with time zone NOT NULL,
     created_on timestamp with time zone NOT NULL,
@@ -1248,7 +1248,6 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 60, true);
 
 COPY catalog_category (id, name, slug, description, pic, parent_id, tags, display_order, is_active, updated_by, updated_on, created_on, created_by) FROM stdin;
 1	Books	books			\N	Books	0	t	mysteryjeans	2014-04-13 05:21:05.700238+05	2014-04-13 05:21:05.700274+05	mysteryjeans
-2	Computer	computer			\N	Laptops, PC, Macbook	1	t	mysteryjeans	2014-04-13 05:22:33.071704+05	2014-04-13 05:22:33.071737+05	mysteryjeans
 8	Electronics	electronics			\N		8	t	mysteryjeans	2014-04-13 05:27:30.631035+05	2014-04-13 05:27:30.631076+05	mysteryjeans
 4	Notebooks	notebooks		images/catalog/categories/0000004_notebooks_125.jpg	2		4	t	mysteryjeans	2014-04-13 05:35:53.488355+05	2014-04-13 05:23:48.15332+05	mysteryjeans
 5	Accessories	accessories		images/catalog/categories/0001535-zubehor-125.jpg	2		5	t	mysteryjeans	2014-04-13 05:36:07.047365+05	2014-04-13 05:25:27.87635+05	mysteryjeans
@@ -1265,6 +1264,9 @@ COPY catalog_category (id, name, slug, description, pic, parent_id, tags, displa
 16	Jewelry	jewelry			\N		16	t	mysteryjeans	2014-04-13 05:54:15.711036+05	2014-04-13 05:54:15.711071+05	mysteryjeans
 17	Speakers	speakers			8		0	t	mysteryjeans	2014-04-18 05:01:21.461268+05	2014-04-18 05:01:21.461327+05	mysteryjeans
 18	Tablet	tablet			8	iPad, Surface, Android, iOS	0	t	mysteryjeans	2014-04-18 05:08:23.865222+05	2014-04-18 05:08:23.865259+05	mysteryjeans
+2	Computers	computers			\N	Laptops, PC, Macbook	1	t	mysteryjeans	2014-04-25 12:15:56.751212+05	2014-04-13 05:22:33.071737+05	mysteryjeans
+19	PS4	ps4			6		0	t	mysteryjeans	2014-04-25 13:03:19.853861+05	2014-04-25 13:03:19.853895+05	mysteryjeans
+20	XBox	xbox			6		0	t	mysteryjeans	2014-04-25 13:03:33.660308+05	2014-04-25 13:03:33.660345+05	mysteryjeans
 \.
 
 
@@ -1272,7 +1274,7 @@ COPY catalog_category (id, name, slug, description, pic, parent_id, tags, displa
 -- Name: catalog_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('catalog_category_id_seq', 18, true);
+SELECT pg_catalog.setval('catalog_category_id_seq', 20, true);
 
 
 --
@@ -1307,15 +1309,13 @@ SELECT pg_catalog.setval('catalog_manufacturer_id_seq', 12, true);
 --
 
 COPY catalog_product (id, name, slug, brand_id, part_number, sku, gtin, gist, description, price, cost, old_price, quantity, is_active, is_bestseller, is_featured, is_free_shipping, tax_rate_id, tags, weight, length, width, height, updated_by, updated_on, created_on, created_by, shipping_cost) FROM stdin;
-1	Lenovo G510 Laptop	lenovo-g510-laptop	5				Super Hybrid Engine offers a choice of performance and power consumption modes for easy adjustments according to various needs	15.6-inch HD Widescreen Display\r\nThe 15.6" LED-backlit HD display (1366 x 768) delivers bright, crisp visuals in 16:9 widescreen on the G510.\r\nAbundant Multimedia Features\r\nThe G510 offers stunning, stutter-free visuals and immersive sound for a fuller, more satisfying home entertainment experience.\r\nAccuType Keyboard\r\nThe acclaimed AccuType keyboard is ergonomically designed to make typing more comfortable and to reduce errors.\r\nFast Data Transfer\r\nMove data between the G510 and other devices quickly with USB 3.0. It's up to 10 times faster than previous USB technologies.\r\nBattery-Saving Technology\r\nLenovo Energy Management protects the long-term durability of the battery and uses advanced energy-saving technology to increase time spent between charges to up to 5 hours, giving you flexibility on the go.\r\nSimple Maintenance\r\nWith OneKey Recovery, recovering from viruses or other technical difficulties is a snap.\r\nConnectivity\r\nWith 802.11 b/g/n WiFi connectivity, 10/100 LAN, and Bluetooth®, you'll be able to connect to the internet wherever you go.\r\nIntegrated Webcam\r\nThe optional 720p HD High-Sense webcam will help you enjoy web conferences or online video chats like you’re really there.\r\nHDMI Output\r\nFor easy connection to a television or other display.\r\nAmple storage\r\nWith 500GB HDD storage on the G510, you won't have to worry about where to put all your data, videos, music or photos.\r\nLenovo Cloud Storage\r\nProtect your important files and data, while also making access to information and file-sharing quick and convenient. Automatically back-up and synchronize data across your home, while enabling access from multiple devices. Data is encrypted on transfer for an extra level of security.	428.00	0.00	0.00	50	t	f	f	f	1	Laptop, G510	0	0	0	0	mysteryjeans	2014-04-15 01:11:50.502709+05	2014-04-15 01:11:50.502752+05	mysteryjeans	0.00
 7	Dell Optiplex 3010 DT Base	dell-optiplex-3010-dt-base	2				SPECIAL: additional 50 € discount on all Dell OptiPlex desktops from a value of 549 €. Online Coupon:? W8DWQ0ZRKTM1, valid until 12.04.2012.	Also included in this system\r\nTo change these selections "Next" to continue the button to the next page.\r\n\r\n1Yr Basic Service - No Upgrade Selected - on-site service, NBD\r\nNo asset tag required\r\n\r\nThe following options are default selections included with your order.\r\n\r\nGerman (QWERTY) Dell KB212-B USB Keyboard Black QuietKey\r\nX11301001\r\nWINDOWS LIVE\r\nOptiPlex ™ order - Germany\r\nOptiPlex ™ Intel ® Core ™ i3 sticker\r\nOptical software is not required, operating system software sufficiently	478.76	0.00	0.00	10	t	f	f	f	1	Tower	0	0	0	0	mysteryjeans	2014-04-18 03:17:59.480606+05	2014-04-18 03:17:59.480641+05	mysteryjeans	0.00
 8	HP IQ506 TouchSmart Desktop PC 	hp-iq506-touchsmart-desktop-pc	3					Redesigned with a next-generation, touch-enabled 22-inch high-definition LCD screen, the HP TouchSmart IQ506 all-in-one desktop PC is designed to fit wherever life happens: in the kitchen, family room, or living room. With one touch you can check the weather, download your e-mail, or watch your favorite TV show. It's also designed to maximize energy, with a power-saving Intel Core 2 Duo processor and advanced power management technology, as well as material efficiency--right down to the packaging. It has a sleek piano black design with elegant espresso side-panel highlights, and the HP Ambient Light lets you set a mood--or see your keyboard in the dark.	1199.00	0.00	0.00	10	t	f	f	f	1	All-in-One	0	0	0	0	mysteryjeans	2014-04-18 03:21:21.074187+05	2014-04-18 03:21:21.074223+05	mysteryjeans	0.00
 3	HP Pavilion 15-n242se Notebook PC	hp-pavilion-15-n242se-notebook-pc	3				Intel® Core™ i5-4200U.  4 GB 1600 MHz DDR3 Memory.  750 GB 5400 rpm SATA Hard Drive.  NVIDIA GeForce GT 740M (2 GB DDR3 dedicated).  Pearl white color. 	Intel® Core™ i5-4200U. \r\n4 GB 1600 MHz DDR3 Memory. \r\n750 GB 5400 rpm SATA Hard Drive. \r\nNVIDIA GeForce GT 740M (2 GB DDR3 dedicated). \r\nPearl white color. 	610.00	0.00	0.00	50	t	f	f	f	1	Pavilion	0	0	0	0	mysteryjeans	2014-04-15 01:44:02.269376+05	2014-04-15 01:42:13.758533+05	mysteryjeans	0.00
 2	HP 15-d008se Notebook PC	hp-15-d008se-notebook	3				Intel Core i5 3230M Processor. 4GB RAM. 1TB Hard Drive. 15.6" LED Display. 1GB Dedicated Graphic Card. Windows 8.1 (64 bits).	Intel Core i5 3230M Processor. \r\n4GB RAM. 1TB Hard Drive. \r\n15.6" LED Display. \r\n1GB Dedicated Graphic Card. \r\nWindows 8.1 (64 bits). 	595.00	6.00	0.00	50	t	f	f	f	1	Ultrabook, Envy 15	0	0	0	0	mysteryjeans	2014-04-15 01:44:19.953418+05	2014-04-15 01:30:18.542023+05	mysteryjeans	0.00
-4	Toshiba Satellite C50-A539	toshiba-satellite-c50-a539	6				Intel Core i3 3110M Processor. 4GB RAM - 500GB Hard Drive. 1GB Dedicated Graphic Card. Gloss Luxe White Pearl Color. International Warranty.	Intel Core i3 3110M Processor.\r\n4GB RAM - 500GB Hard Drive.\r\n1GB Dedicated Graphic Card.\r\nGloss Luxe White Pearl Color.\r\nInternational Warranty.	500.00	0.00	0.00	50	t	f	t	f	1	Satellite	2.29999999999999982	0	0	0	mysteryjeans	2014-04-18 02:13:40.623281+05	2014-04-18 02:13:40.623315+05	mysteryjeans	0.00
 5	Acer Aspire E1-570G	acer-aspire-e1-570g	7						439.00	0.00	0.00	50	t	f	f	f	1		0	0	0	0	mysteryjeans	2014-04-18 02:44:30.933988+05	2014-04-18 02:44:30.934033+05	mysteryjeans	0.00
 6	Dell Inspiron One 23	dell-inspiron-one-23	2				Interact and entertain with the new Inspiron One 23 all-in-one. It features an optional 23" touchscreen and up to 3rd Gen Intel® Core™ processors	Make your home entertainment experience riveting. Choose the unrelenting speed of up to 3rd Gen Intel® Core™ i7 processors and be efficient with the new Windows 8 operating system. With up to 8GB DDR3 memory7, you can easily:\r\n\r\nPower your HD entertainment: enjoy a cinema-like experience.\r\n\r\nEnjoy non-stop action: fast photo and video editing8, stunning movies and seamless multitasking.\r\n\r\nExperience smooth apps and games: everyone’s favorite applications work the way they were intended to.	800.00	0.00	0.00	50	t	f	f	f	1	All-in-One	0	0	0	0	mysteryjeans	2014-04-18 03:01:12.516898+05	2014-04-18 03:01:12.516931+05	mysteryjeans	0.00
-9	Microsoft Windows 8.1 Pro x64 English	microsoft-windows-81-pro-x64-english	8				Your familiar desktop. Enhanced data protection. Your own unique start screen. The best of work and play. Your Office, your way. 	The best of work and play\r\n\r\nWith the new Windows, you get the best of work and play. Windows 8.1 Pro includes everything in Windows 8.1, plus enhanced features that help you easily connect to company networks, manage your devices, access one PC from another, encrypt your data, and more.\r\n	145.00	0.00	0.00	10	t	f	f	f	1	Windows8	0	0	0	0	mysteryjeans	2014-04-18 04:41:49.972861+05	2014-04-18 04:41:29.384885+05	mysteryjeans	0.00
+1	Lenovo G510 Laptop  This is the world class windows you will really like it	lenovo-g510-laptop	5				Super Hybrid Engine offers a choice of performance and power consumption modes for easy adjustments according to various needs	15.6-inch HD Widescreen Display\r\nThe 15.6" LED-backlit HD display (1366 x 768) delivers bright, crisp visuals in 16:9 widescreen on the G510.\r\nAbundant Multimedia Features\r\nThe G510 offers stunning, stutter-free visuals and immersive sound for a fuller, more satisfying home entertainment experience.\r\nAccuType Keyboard\r\nThe acclaimed AccuType keyboard is ergonomically designed to make typing more comfortable and to reduce errors.\r\nFast Data Transfer\r\nMove data between the G510 and other devices quickly with USB 3.0. It's up to 10 times faster than previous USB technologies.\r\nBattery-Saving Technology\r\nLenovo Energy Management protects the long-term durability of the battery and uses advanced energy-saving technology to increase time spent between charges to up to 5 hours, giving you flexibility on the go.\r\nSimple Maintenance\r\nWith OneKey Recovery, recovering from viruses or other technical difficulties is a snap.\r\nConnectivity\r\nWith 802.11 b/g/n WiFi connectivity, 10/100 LAN, and Bluetooth®, you'll be able to connect to the internet wherever you go.\r\nIntegrated Webcam\r\nThe optional 720p HD High-Sense webcam will help you enjoy web conferences or online video chats like you’re really there.\r\nHDMI Output\r\nFor easy connection to a television or other display.\r\nAmple storage\r\nWith 500GB HDD storage on the G510, you won't have to worry about where to put all your data, videos, music or photos.\r\nLenovo Cloud Storage\r\nProtect your important files and data, while also making access to information and file-sharing quick and convenient. Automatically back-up and synchronize data across your home, while enabling access from multiple devices. Data is encrypted on transfer for an extra level of security.	428.00	0.00	0.00	50	t	f	f	f	1	Laptop, G510	0	0	0	0	mysteryjeans	2014-04-26 04:16:57.314998+05	2014-04-15 01:11:50.502752+05	mysteryjeans	0.00
 10	Logitech X100 Mobile Wireless Speaker	logitech-x100-mobile-wireless-speaker	9				Go-anywhere mobile speaker that delivers rocking sound. Wireless speaker for smartphones and tablets. Connect and play. Take it anywhere. 5 hour Battery. 	Rocking sound\r\nCrystal clear sound. Pump up the volume and enjoy!\r\nRocking Sound\r\nConnect and play\r\n\r\nWirelessly connect, stream music, manage phone calls and control volume.\r\nTake it anywhere\r\n\r\nPerfect for life on the go. Take it on the road or relax and listen at home.\r\nDesign\r\n\r\nIn five bold colors, this unique design is sure to turn some heads.\r\n5 hour Battery\r\n\r\nEnjoy 5 hours of continuous play without recharging. Recharge the built-in lithium-ion battery with the convenience of the included micro-USB cable and rock on.	43.00	0.00	0.00	10	t	f	f	f	1		0	0	0	0	mysteryjeans	2014-04-18 05:03:10.414113+05	2014-04-18 05:03:10.414147+05	mysteryjeans	0.00
 11	Acer Iconia A1-810	acer-iconia-a1-810	7				MediaTek 1.2 Ghz Quad-Core Processor. 16GB Flash Memory. 1GB RAM. 7.9" XGA IPS multi-touch screen. Android 4.2 Jelly Bean. Dual Camera. Bluetooth. 	MediaTek 1.2 Ghz Quad-Core Processor.\r\n16GB Flash Memory. 1GB RAM.\r\n7.9" XGA IPS multi-touch screen.\r\nAndroid 4.2 Jelly Bean.\r\nDual Camera. Bluetooth.	175.00	0.00	0.00	10	t	f	f	t	1	Android	0	0	0	0	mysteryjeans	2014-04-18 05:09:25.452491+05	2014-04-18 05:09:25.45253+05	mysteryjeans	0.00
 12	Best Grilling Recipes	best-grilling-recipes	10				 More Than 100 Regional Favorites Tested and Perfected for the Outdoor Cook (Hardcover)	Take a winding cross-country trip and you'll discover barbecue shacks with offerings like tender-smoky Baltimore pit beef and saucy St. Louis pork steaks. To bring you the best of these hidden gems, along with all the classics, the editors of Cook's Country magazine scoured the country, then tested and perfected their favorites. HEre traditions large and small are brought into the backyard, from Hawaii's rotisserie favorite, the golden-hued Huli Huli Chicken, to fall-off-the-bone Chicago Barbecued Ribs. In Kansas City, they're all about the sauce, and for our saucy Kansas City Sticky Ribs, we found a surprise ingredient-root beer. We also tackle all the best sides.\r\n\r\nNot sure where or how to start? This cookbook kicks off with an easy-to-follow primer that will get newcomers all fired up. Whether you want to entertain a crowd or just want to learn to make perfect burgers, Best Grilling Recipes shows you the way.	27.00	0.00	0.00	20	t	f	f	f	2	Recipes	0	0	0	0	mysteryjeans	2014-04-18 05:22:29.069639+05	2014-04-18 05:22:29.069673+05	mysteryjeans	0.00
@@ -1323,6 +1323,8 @@ COPY catalog_product (id, name, slug, brand_id, part_number, sku, gtin, gist, de
 14	iPhone 5s	iphone-5s	1				Apple iPhone 5 32 GB	New design .\r\n\r\nWith 7.6 mm and 112 g3 the iPhone 5 has a remarkably thin and light design . It is made of anodized aluminum. The beveled edges have been precisely cut with a diamond.\r\n\r\nBrilliant 4 " Retina Display .\r\n\r\nNow you can see everything more vivid and detailed. And even though the display is bigger, it has the same width as the iPhone 4S and can be just as easily operated with one hand , therefore .\r\n\r\nPowerful A6 chip.\r\n\r\nCompared with the A5 chip , he has up to twice the CPU and graphics performance . And despite its speed , the iPhone 5 is an amazing battery life .\r\n\r\nUltra-fast mobile data .\r\n\r\nThe iPhone 5 supports the latest wireless technologies and can thus even more networks around the world verbinden.4Und also Wi -Fi is faster.\r\n\r\nScope of delivery\r\n\r\niPhone 5 with iOS 6 Apple EarPods with Remote and Mic Lightning to USB Cable USB Power Adapter (power supply)\r\n\r\nChoose the iPhone that suits you. 16 GB, 32 GB or 64 GB capacity ?\r\n\r\nThe iPhone is available in three capacities : 16, 32 and 64 GB. "GB" stands for gigabytes. The more gigabytes has your iPhone , the more space you have for content such as apps , games, photos , HD videos, music, movies and more. On a large music or photo library or if you load frequently HD movies, an iPhone with a larger storage is recommended . If your music or photo library is rather small and you rarely make films or buy an iPhone with a smaller amount of memory for you enough. With time comes Some of content together on your iPhone . Therefore, you should consider your growing storage needs with the iPhone purchase.\r\n\r\nThe unlocked iPhone\r\n\r\nThe unlocked iPhone is not bound to a cellular network , which means you can select your any supported GSM network worldwide . Buy an iPhone without a contract at the Apple Online Store , then look for a tariff for the iPhone, which only covers the SIM card. Or contact to your current provider if you want to keep your current tariff.\r\n\r\nPrePaid\r\n\r\nIf you do not want a contract , you can choose one of the " prepaid " Starter Packages of available network operators at the Apple Online Store. With " PrePaid " you get your iPhone ready for use with a compatible SIM card. A credit check is not required. You pay just online for what you consume , and you can change the network operator at any time. " PrePaid " is a good option if you would rather want to use a local provider when traveling abroad.	799.77	0.00	0.00	10	t	t	f	t	1	iPhone, SmartPhone	0	0	0	0	mysteryjeans	2014-04-18 05:51:40.318342+05	2014-04-18 05:47:39.106744+05	mysteryjeans	0.00
 15	McAfee AntiVirus Plus - 1 PC for 1 Year	mcafee-antivirus-plus-1-pc-1-year	11				 Confidently surf, shop, and socialize online as our essential antivirus, antimalware, and firewall protect your PC and data. 	\r\n\r\nOur powerful combination of performance, accuracy, and reinforcing protections keeps criminals away from your PC and data.\r\n\r\n    NEW Unobtrusive, High Speed Scanning Engine—From startup to on-access scans, get high performance to minimize scan times and extend battery life.\r\n\r\n    NEW Vulnerability Scanner—Find and seal up holes in Windows and your favorite browsers and applications.\r\n\r\n    Real-time Antimalware—Block threats like viruses, Trojans, and spyware in your files, email, and web downloads using instant risk assessments through the cloud.\r\n\r\n    Adaptive Two-Way Firewall—Let our advanced firewall with buffer overflow protection prevent software from exploiting your OS or stealing information, even in hotspots.\r\n\r\n    NEW Malicious Ad Protection—Block cybercrime networks and their malicious ads and hidden iFrame code from loading and infecting your PC.\r\n\r\n    ENHANCED Digital Data Shredder—Destroy sensitive data and erase cookies, memory, cache, browser history, and more.\r\n\r\n    IMPROVED Safe Socializing, Searching, and Shopping—Click with confidence because you know which sites are safe.\r\n\r\n    BETTER Anti-bot Protection—Block contact with criminals’ computers based on the very latest research and reputation.\r\n\r\n    NEW Home Screen—Navigate easily through common security tasks with a redesigned home screen that supports touch-friendly devices.\r\n\r\n    ENHANCED Reports—Quickly understand how your protections are securing your data and system.\r\n\r\n    PC Tune-up—Remove unused applications, cached browser files, and other junk to speed up your PC.\r\n\r\n	6.50	0.00	0.00	10	t	f	t	f	1	Antivirus	0	0	0	0	mysteryjeans	2014-04-18 05:55:24.879086+05	2014-04-18 05:55:24.879139+05	mysteryjeans	0.00
 16	ESET NOD32 Antivirus 5	eset-nod32-antivirus-5	12				Intercept and eliminate viruses, worms, trojans, spyware and other Internet threats with our award-winning heuristic technology. ESET NOD32® Antivirus 5 protects you from known and emerging threats when competing products can’t and keeps your system running fast. Get ESET NOD32 Antivirus 5 for advanced security. 	Intercept and eliminate viruses, worms, trojans, spyware and other Internet threats with our award-winning heuristic technology. ESET NOD32® Antivirus 5 protects you from known and emerging threats when competing products can’t and keeps your system running fast. Get ESET NOD32 Antivirus 5 for advanced security. 	13.50	0.00	0.00	10	t	f	f	t	1		0	0	0	0	mysteryjeans	2014-04-18 05:58:27.137736+05	2014-04-18 05:58:27.137776+05	mysteryjeans	0.00
+4	Toshiba Satellite C50-A539	toshiba-satellite-c50-a539	6				Intel Core i3 3110M Processor. 4GB RAM - 500GB Hard Drive. 1GB Dedicated Graphic Card. Gloss Luxe White Pearl Color. International Warranty.	Intel Core i3 3110M Processor.\r\n4GB RAM - 500GB Hard Drive.\r\n1GB Dedicated Graphic Card.\r\nGloss Luxe White Pearl Color.\r\nInternational Warranty.	500.00	0.00	525.00	50	t	f	t	f	1	Satellite	2.29999999999999982	0	0	0	mysteryjeans	2014-04-26 02:29:16.791128+05	2014-04-18 02:13:40.623315+05	mysteryjeans	0.00
+9	Microsoft Windows 8.1 Pro x64 English This is the world class windows you will really like it	microsoft-windows-81-pro-x64-english	8				Your familiar desktop. Enhanced data protection. Your own unique start screen. The best of work and play. Your Office, your way. 	The best of work and play\r\n\r\nWith the new Windows, you get the best of work and play. Windows 8.1 Pro includes everything in Windows 8.1, plus enhanced features that help you easily connect to company networks, manage your devices, access one PC from another, encrypt your data, and more.\r\n	145.00	0.00	0.00	10	t	f	f	f	1	Windows8	0	0	0	0	mysteryjeans	2014-04-26 04:16:24.516835+05	2014-04-18 04:41:29.384885+05	mysteryjeans	0.00
 \.
 
 
@@ -1331,15 +1333,12 @@ COPY catalog_product (id, name, slug, brand_id, part_number, sku, gtin, gist, de
 --
 
 COPY catalog_product_categories (id, product_id, category_id) FROM stdin;
-1	1	4
 6	3	4
 8	2	4
-9	4	4
 10	5	4
 11	6	3
 12	7	3
 13	8	3
-15	9	7
 16	10	17
 17	11	18
 18	12	1
@@ -1347,6 +1346,9 @@ COPY catalog_product_categories (id, product_id, category_id) FROM stdin;
 23	14	10
 24	15	7
 25	16	7
+26	4	4
+27	9	7
+28	1	4
 \.
 
 
@@ -1354,7 +1356,7 @@ COPY catalog_product_categories (id, product_id, category_id) FROM stdin;
 -- Name: catalog_product_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('catalog_product_categories_id_seq', 25, true);
+SELECT pg_catalog.setval('catalog_product_categories_id_seq', 28, true);
 
 
 --
@@ -1573,7 +1575,7 @@ SELECT pg_catalog.setval('common_address_id_seq', 1, false);
 --
 
 COPY common_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, birthday, gender, billing_address_id, shipping_adress_id, is_verified, verification_code, updated_on, updated_by, created_on, created_by) FROM stdin;
-1	pbkdf2_sha256$12000$adgKWsDV5clx$7xr0vIvOdXxf8RItZzQENVxw6WX4HIXhgJyDETqNqkg=	2014-04-22 00:21:14.981119+05	t	mysteryjeans			mk.faraz@gmail.com	t	t	2014-04-13 04:51:50.059959+05	\N		\N	\N	t	\N	2014-04-13 04:51:50.15636+05	faraz	2014-04-13 04:51:50.156387+05	faraz
+1	pbkdf2_sha256$12000$adgKWsDV5clx$7xr0vIvOdXxf8RItZzQENVxw6WX4HIXhgJyDETqNqkg=	2014-04-25 12:15:48.015587+05	t	mysteryjeans			mk.faraz@gmail.com	t	t	2014-04-13 04:51:50.059959+05	\N		\N	\N	t	\N	2014-04-13 04:51:50.15636+05	faraz	2014-04-13 04:51:50.156387+05	faraz
 \.
 
 
@@ -1767,6 +1769,15 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 146	2014-04-18 05:58:27.14351+05	1	12	16	ESET NOD32 Antivirus 5	1	
 147	2014-04-18 05:58:55.716734+05	1	14	51	ESET NOD32 Antivirus 5 [Pic #id 51]	1	
 148	2014-04-18 05:59:23.930359+05	1	10	12	NOD32	2	Changed name and slug.
+149	2014-04-25 12:15:56.75587+05	1	11	2	Computers	2	Changed name and slug.
+150	2014-04-25 13:03:19.856763+05	1	11	19	Computers > Games > PS4	1	
+151	2014-04-25 13:03:33.663682+05	1	11	20	Computers > Games > XBox	1	
+152	2014-04-25 21:03:12.850261+05	1	19	1	Currency object	2	Changed price_format.
+153	2014-04-25 21:04:55.013477+05	1	19	1	Currency object	2	Changed price_format.
+154	2014-04-25 21:09:53.021991+05	1	19	1	Currency object	2	Changed price_format.
+155	2014-04-26 02:29:16.801177+05	1	12	4	Toshiba Satellite C50-A539	2	Changed old_price.
+156	2014-04-26 04:16:24.525494+05	1	12	9	Microsoft Windows 8.1 Pro x64 English This is the world class windows you will really like it	2	Changed name.
+157	2014-04-26 04:16:57.326276+05	1	12	1	Lenovo G510 Laptop  This is the world class windows you will really like it	2	Changed name.
 \.
 
 
@@ -1774,7 +1785,7 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 148, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 157, true);
 
 
 --
@@ -1821,6 +1832,7 @@ mzbijqdky6zju9j3ftnp6jvvggl7eoj1	ODY4ZjkyMmQ3Y2NmY2E3YWU3MGRiYjg1OTZjMWY1ZTg1NTN
 ht305fo3zb2100r3n43tl92ipty8ein1	ODY4ZjkyMmQ3Y2NmY2E3YWU3MGRiYjg1OTZjMWY1ZTg1NTNlNzZkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-04-30 02:10:14.99748+05
 wyq0l7kcuq276nz6go7f9olb2o56tatz	ODY4ZjkyMmQ3Y2NmY2E3YWU3MGRiYjg1OTZjMWY1ZTg1NTNlNzZkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-05-02 01:21:38.747505+05
 zmt4bmlqpl6zpqcqbq3ic2vbnnqz918y	Yzk0MGViMTY5YTU2M2QyZDQ5NWQyYmRkNmRlNjk2NjRmYmY3NDljYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-05-06 00:21:14.985442+05
+qjw9d7mt29f0nf0i7xiq2qkjibx9plqa	Yzk0MGViMTY5YTU2M2QyZDQ5NWQyYmRkNmRlNjk2NjRmYmY3NDljYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-05-09 12:15:48.019365+05
 \.
 
 
@@ -1828,19 +1840,19 @@ zmt4bmlqpl6zpqcqbq3ic2vbnnqz918y	Yzk0MGViMTY5YTU2M2QyZDQ5NWQyYmRkNmRlNjk2NjRmYmY
 -- Data for Name: financial_currency; Type: TABLE DATA; Schema: public; Owner: doorsale
 --
 
-COPY financial_currency (id, name, code, is_active, is_primary, exchange_rate, price_format, updated_by, updated_on, created_on, created_by, locale) FROM stdin;
-1	US Dollar	USD	t	t	1	$.2f	system	2014-04-13 04:52:37.886872+05	2014-04-13 04:52:37.886872+05	system	en-US
-2	Pakistani Rupee	PKR	t	f	0.0100000000000000002	Rs.2f	system	2014-04-13 04:52:37.908595+05	2014-04-13 04:52:37.908595+05	system	ur-PK
-3	Australian Dollar	AUD	f	f	0.939999999999999947		system	2014-04-13 04:52:37.929659+05	2014-04-13 04:52:37.929659+05	system	en-AU
-4	British Pound	GBP	f	f	0.609999999999999987		system	2014-04-13 04:52:37.950968+05	2014-04-13 04:52:37.950968+05	system	en-GB
-5	Canadian Dollar	CAD	f	f	0.979999999999999982		system	2014-04-13 04:52:37.972093+05	2014-04-13 04:52:37.972093+05	system	en-CA
-6	Chinese Yuan Renminbi	CNY	f	f	6.48000000000000043		system	2014-04-13 04:52:37.993761+05	2014-04-13 04:52:37.993761+05	system	zh-CN
-7	Euro	EUR	t	f	0.790000000000000036	€.2f	system	2014-04-13 04:52:38.014874+05	2014-04-13 04:52:38.014874+05	system	
-8	Hong Kong Dollar	HKD	f	f	7.75		system	2014-04-13 04:52:38.036504+05	2014-04-13 04:52:38.036504+05	system	zh-HK
-9	Japanese Yen	JPY	f	f	80.0699999999999932		system	2014-04-13 04:52:38.058143+05	2014-04-13 04:52:38.058143+05	system	ja-JP
-10	Russian Rouble	RUB	f	f	27.6999999999999993		system	2014-04-13 04:52:38.080317+05	2014-04-13 04:52:38.080317+05	system	ru-RU
-11	Swedish Krona	SEK	f	f	6.19000000000000039		system	2014-04-13 04:52:38.101056+05	2014-04-13 04:52:38.101056+05	system	sv-SE
-12	Romanian Leu	RON	f	f	2.85000000000000009		system	2014-04-13 04:52:38.122991+05	2014-04-13 04:52:38.122991+05	system	ro-RO
+COPY financial_currency (id, name, code, is_active, is_primary, exchange_rate, display_format, updated_by, updated_on, created_on, created_by, locale) FROM stdin;
+13	US Dollar	USD	t	t	1	$%.2f	system	2014-04-26 01:59:31.276756+05	2014-04-26 01:59:31.276756+05	system	en-US
+14	Pakistani Rupee	PKR	t	f	0.0100000000000000002	Rs.%.2f	system	2014-04-26 01:59:31.333433+05	2014-04-26 01:59:31.333433+05	system	ur-PK
+15	Australian Dollar	AUD	f	f	0.939999999999999947	A$%.2f	system	2014-04-26 01:59:31.376474+05	2014-04-26 01:59:31.376474+05	system	en-AU
+16	British Pound	GBP	f	f	0.609999999999999987	€%.2f	system	2014-04-26 01:59:31.3974+05	2014-04-26 01:59:31.3974+05	system	en-GB
+17	Canadian Dollar	CAD	f	f	0.979999999999999982	C$%.2f	system	2014-04-26 01:59:31.419044+05	2014-04-26 01:59:31.419044+05	system	en-CA
+18	Chinese Yuan Renminbi	CNY	f	f	6.48000000000000043	￥%.2f	system	2014-04-26 01:59:31.440077+05	2014-04-26 01:59:31.440077+05	system	zh-CN
+19	Euro	EUR	t	f	0.790000000000000036	€.2f	system	2014-04-26 01:59:31.462553+05	2014-04-26 01:59:31.462553+05	system	
+20	Hong Kong Dollar	HKD	f	f	7.75	HK$%.2f	system	2014-04-26 01:59:31.807515+05	2014-04-26 01:59:31.807515+05	system	zh-HK
+21	Japanese Yen	JPY	f	f	80.0699999999999932	￥%.2f	system	2014-04-26 01:59:31.850331+05	2014-04-26 01:59:31.850331+05	system	ja-JP
+22	Russian Rouble	RUB	f	f	27.6999999999999993	RUB%.2f	system	2014-04-26 01:59:31.871968+05	2014-04-26 01:59:31.871968+05	system	ru-RU
+23	Swedish Krona	SEK	f	f	6.19000000000000039	kr%.2f	system	2014-04-26 01:59:31.89285+05	2014-04-26 01:59:31.89285+05	system	sv-SE
+24	Romanian Leu	RON	f	f	2.85000000000000009	%.2f lei	system	2014-04-26 01:59:31.915354+05	2014-04-26 01:59:31.915354+05	system	ro-RO
 \.
 
 
@@ -1848,7 +1860,7 @@ COPY financial_currency (id, name, code, is_active, is_primary, exchange_rate, p
 -- Name: financial_currency_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('financial_currency_id_seq', 12, true);
+SELECT pg_catalog.setval('financial_currency_id_seq', 24, true);
 
 
 --

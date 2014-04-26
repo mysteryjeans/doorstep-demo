@@ -88,6 +88,10 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # doorsale settings
 
 AUTH_USER_MODEL = 'common.User'
@@ -115,9 +119,8 @@ CONTACT_EMAIL = 'demo@doorsaledemo.com'
 
 from django.conf import settings
 TEMPLATE_CONTEXT_PROCESSORS = settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    'django.core.context_processors.request', 
-    'doorsale.common.context_processors.bootstrip',
-)
+    'django.core.context_processors.request',
+) + doorsale.settings.TEMPLATE_CONTEXT_PROCESSORS
 
 
 
