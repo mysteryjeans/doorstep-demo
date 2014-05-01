@@ -1102,6 +1102,7 @@ ALTER TABLE ONLY sales_order_item ALTER COLUMN id SET DEFAULT nextval('sales_ord
 --
 
 COPY accounts_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, birth_date, gender, billing_address_id, shipping_adress_id, is_verified, verification_code, updated_on, updated_by, created_on, created_by) FROM stdin;
+1	pbkdf2_sha256$12000$J25OPTB58fJe$8d5X9ox3VTDEDDbVqvavdaQ5tkyWeiZAPbXtldGpXDc=	2014-05-01 19:13:06.433074+05	t	mysteryjeans	Faraz	Masood Khan	faraz@fanaticlab.com	t	t	2014-05-01 19:13:06.219876+05	\N	M	\N	\N	f	3776b902d00aaec77ceba965995f2265	2014-05-01 19:13:06.314491+05	mysteryjeans	2014-05-01 19:13:06.314519+05	mysteryjeans
 \.
 
 
@@ -1124,7 +1125,7 @@ SELECT pg_catalog.setval('accounts_user_groups_id_seq', 1, false);
 -- Name: accounts_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('accounts_user_id_seq', 1, false);
+SELECT pg_catalog.setval('accounts_user_id_seq', 1, true);
 
 
 --
@@ -1534,6 +1535,29 @@ SELECT pg_catalog.setval('catalog_product_spec_id_seq', 162, true);
 --
 
 COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, object_repr, action_flag, change_message) FROM stdin;
+1	2014-05-01 19:14:17.216877+05	1	19	19	Euro	2	Changed display_format.
+2	2014-05-01 19:19:55.368456+05	1	19	14	Pakistani Rupee	2	Changed exchange_rate.
+3	2014-05-01 19:21:23.611971+05	1	19	14	Pakistani Rupee	2	Changed display_format.
+4	2014-05-01 19:21:39.17047+05	1	19	14	Pakistani Rupee	2	Changed display_format.
+5	2014-05-01 19:21:54.119114+05	1	19	14	Pakistani Rupee	2	Changed display_format.
+6	2014-05-01 19:22:03.084964+05	1	19	14	Pakistani Rupee	2	Changed display_format.
+7	2014-05-01 19:57:55.694511+05	1	19	13	US Dollar	2	Changed display_format.
+8	2014-05-01 19:59:06.579493+05	1	19	14	Pakistani Rupee	2	Changed display_format.
+9	2014-05-01 19:59:30.56433+05	1	19	15	Australian Dollar	2	Changed display_format.
+10	2014-05-01 20:01:02.268404+05	1	19	16	British Pound	2	Changed display_format.
+11	2014-05-01 20:01:14.171148+05	1	19	17	Canadian Dollar	2	Changed display_format.
+12	2014-05-01 20:01:24.605284+05	1	19	18	Chinese Yuan Renminbi	2	Changed display_format.
+13	2014-05-01 20:01:41.017782+05	1	19	19	Euro	2	Changed display_format.
+14	2014-05-01 20:02:01.764983+05	1	19	20	Hong Kong Dollar	2	Changed display_format.
+15	2014-05-01 20:02:17.050323+05	1	19	21	Japanese Yen	2	Changed display_format.
+16	2014-05-01 20:02:49.382507+05	1	19	22	Russian Rouble	2	Changed display_format.
+17	2014-05-01 20:03:00.795163+05	1	19	23	Swedish Krona	2	Changed display_format.
+18	2014-05-01 20:03:11.934963+05	1	19	24	Romanian Leu	2	Changed display_format.
+19	2014-05-01 20:18:07.41809+05	1	19	74	Pakistani Rupee	2	Changed display_format.
+20	2014-05-01 20:21:37.845973+05	1	19	74	Pakistani Rupee	2	Changed display_format.
+21	2014-05-01 21:10:28.128789+05	1	19	97	US Dollar	2	Changed is_primary.
+22	2014-05-01 21:22:16.804163+05	1	19	97	US Dollar	2	Changed is_primary.
+23	2014-05-01 21:22:49.722477+05	1	19	99	Australian Dollar	2	No fields changed.
 \.
 
 
@@ -1541,7 +1565,7 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 1, false);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 23, true);
 
 
 --
@@ -1590,7 +1614,8 @@ mzbijqdky6zju9j3ftnp6jvvggl7eoj1	ODY4ZjkyMmQ3Y2NmY2E3YWU3MGRiYjg1OTZjMWY1ZTg1NTN
 ht305fo3zb2100r3n43tl92ipty8ein1	ODY4ZjkyMmQ3Y2NmY2E3YWU3MGRiYjg1OTZjMWY1ZTg1NTNlNzZkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-04-30 02:10:14.99748+05
 wyq0l7kcuq276nz6go7f9olb2o56tatz	ODY4ZjkyMmQ3Y2NmY2E3YWU3MGRiYjg1OTZjMWY1ZTg1NTNlNzZkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-05-02 01:21:38.747505+05
 zmt4bmlqpl6zpqcqbq3ic2vbnnqz918y	Yzk0MGViMTY5YTU2M2QyZDQ5NWQyYmRkNmRlNjk2NjRmYmY3NDljYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-05-06 00:21:14.985442+05
-727x6feubmmlki8r91nnagtdw4aytxhb	MzIxMjZlODcxYWU2ODUyY2Y4NzkyMTRlNjVkOWM3YjcxOWI0OTA0ODp7fQ==	2014-05-15 06:52:39.081573+05
+si0mjwgqazmlt2hfemtnbdtl75q2cneq	ZDdkYjRiODZjN2U3NjAwNTQxMmEwZWI2YTFiZmYyZTNjYTg1ZTdlZTp7InVzZXJfY3VycmVuY3kiOiJFVVIifQ==	2014-05-15 21:30:11.115768+05
+jnuk6nbrpzmaaxfth58pwyv6jz5mm5hf	OGQ5OTZhMDhkY2YyYThmZWEyZjkxZTAzYWJkYTlhNThlNjFkZjNkZTp7ImNhcnRfaWQiOjksImRlZmF1bHRfY3VycmVuY3kiOiJVU0QifQ==	2014-05-16 03:40:36.491419+05
 \.
 
 
@@ -1599,18 +1624,18 @@ zmt4bmlqpl6zpqcqbq3ic2vbnnqz918y	Yzk0MGViMTY5YTU2M2QyZDQ5NWQyYmRkNmRlNjk2NjRmYmY
 --
 
 COPY financial_currency (id, name, code, is_active, is_primary, exchange_rate, display_format, updated_by, updated_on, created_on, created_by, locale) FROM stdin;
-13	US Dollar	USD	t	t	1	$%.2f	system	2014-04-26 01:59:31.276756+05	2014-04-26 01:59:31.276756+05	system	en-US
-14	Pakistani Rupee	PKR	t	f	0.0100000000000000002	Rs.%.2f	system	2014-04-26 01:59:31.333433+05	2014-04-26 01:59:31.333433+05	system	ur-PK
-15	Australian Dollar	AUD	f	f	0.939999999999999947	A$%.2f	system	2014-04-26 01:59:31.376474+05	2014-04-26 01:59:31.376474+05	system	en-AU
-16	British Pound	GBP	f	f	0.609999999999999987	€%.2f	system	2014-04-26 01:59:31.3974+05	2014-04-26 01:59:31.3974+05	system	en-GB
-17	Canadian Dollar	CAD	f	f	0.979999999999999982	C$%.2f	system	2014-04-26 01:59:31.419044+05	2014-04-26 01:59:31.419044+05	system	en-CA
-18	Chinese Yuan Renminbi	CNY	f	f	6.48000000000000043	￥%.2f	system	2014-04-26 01:59:31.440077+05	2014-04-26 01:59:31.440077+05	system	zh-CN
-19	Euro	EUR	t	f	0.790000000000000036	€.2f	system	2014-04-26 01:59:31.462553+05	2014-04-26 01:59:31.462553+05	system	
-20	Hong Kong Dollar	HKD	f	f	7.75	HK$%.2f	system	2014-04-26 01:59:31.807515+05	2014-04-26 01:59:31.807515+05	system	zh-HK
-21	Japanese Yen	JPY	f	f	80.0699999999999932	￥%.2f	system	2014-04-26 01:59:31.850331+05	2014-04-26 01:59:31.850331+05	system	ja-JP
-22	Russian Rouble	RUB	f	f	27.6999999999999993	RUB%.2f	system	2014-04-26 01:59:31.871968+05	2014-04-26 01:59:31.871968+05	system	ru-RU
-23	Swedish Krona	SEK	f	f	6.19000000000000039	kr%.2f	system	2014-04-26 01:59:31.89285+05	2014-04-26 01:59:31.89285+05	system	sv-SE
-24	Romanian Leu	RON	f	f	2.85000000000000009	%.2f lei	system	2014-04-26 01:59:31.915354+05	2014-04-26 01:59:31.915354+05	system	ro-RO
+98	Pakistani Rupee	PKR	t	f	98.6500000000000057	Rs. {0:,.0f}	system	2014-05-01 20:55:42.864477+05	2014-05-01 20:55:42.864477+05	system	ur-PK
+100	British Pound	GBP	t	f	0.609999999999999987	£{0:,.2f}	system	2014-05-01 20:55:42.90866+05	2014-05-01 20:55:42.90866+05	system	en-GB
+101	Canadian Dollar	CAD	t	f	0.979999999999999982	C${0:,.2f}	system	2014-05-01 20:55:42.930064+05	2014-05-01 20:55:42.930064+05	system	en-CA
+102	Chinese Yuan Renminbi	CNY	t	f	6.48000000000000043	￥{0:,.2f}	system	2014-05-01 20:55:42.952291+05	2014-05-01 20:55:42.952291+05	system	zh-CN
+103	Euro	EUR	t	f	0.790000000000000036	€{0:,.2f}	system	2014-05-01 20:55:42.973859+05	2014-05-01 20:55:42.973859+05	system	
+104	Hong Kong Dollar	HKD	t	f	7.75	HK${0:,.2f}	system	2014-05-01 20:55:42.995289+05	2014-05-01 20:55:42.995289+05	system	zh-HK
+105	Japanese Yen	JPY	t	f	80.0699999999999932	￥{0:,.2f}	system	2014-05-01 20:55:43.016973+05	2014-05-01 20:55:43.016973+05	system	ja-JP
+106	Russian Rouble	RUB	t	f	27.6999999999999993	RUB{0:,.2f}	system	2014-05-01 20:55:43.038536+05	2014-05-01 20:55:43.038536+05	system	ru-RU
+107	Swedish Krona	SEK	t	f	6.19000000000000039	kr{0:,.2f}	system	2014-05-01 20:55:43.060298+05	2014-05-01 20:55:43.060298+05	system	sv-SE
+108	Romanian Leu	RON	t	f	2.85000000000000009	{0:,.2f} lei	system	2014-05-01 20:55:43.082875+05	2014-05-01 20:55:43.082875+05	system	ro-RO
+97	US Dollar	USD	t	t	1	${0:,.2f}	mysteryjeans	2014-05-01 21:22:16.802245+05	2014-05-01 20:55:42.842669+05	system	en-US
+99	Australian Dollar	AUD	t	f	0.939999999999999947	A${0:,.2f}	mysteryjeans	2014-05-01 21:22:49.720598+05	2014-05-01 20:55:42.886994+05	system	en-AU
 \.
 
 
@@ -1618,7 +1643,7 @@ COPY financial_currency (id, name, code, is_active, is_primary, exchange_rate, d
 -- Name: financial_currency_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('financial_currency_id_seq', 24, true);
+SELECT pg_catalog.setval('financial_currency_id_seq', 108, true);
 
 
 --
@@ -1902,7 +1927,7 @@ COPY geo_country (id, name, allow_billing, allow_shipping, iso_code2, iso_code3,
 -- Name: geo_country_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('geo_country_id_seq', 237, true);
+SELECT pg_catalog.setval('geo_country_id_seq', 474, true);
 
 
 --
@@ -1997,7 +2022,7 @@ COPY geo_state (id, name, code, country_id, is_active, display_order, updated_on
 -- Name: geo_state_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('geo_state_id_seq', 80, true);
+SELECT pg_catalog.setval('geo_state_id_seq', 160, true);
 
 
 --
@@ -2005,6 +2030,24 @@ SELECT pg_catalog.setval('geo_state_id_seq', 80, true);
 --
 
 COPY sales_cart (id, updated_on, updated_by, created_on, created_by) FROM stdin;
+1	2014-05-02 02:58:49.090394+05		2014-05-02 02:58:49.09044+05	
+2	2014-05-02 03:00:14.655416+05		2014-05-02 03:00:14.655455+05	
+3	2014-05-02 03:00:31.76979+05		2014-05-02 03:00:31.769874+05	
+4	2014-05-02 03:00:47.840181+05		2014-05-02 03:00:47.840242+05	
+5	2014-05-02 03:02:48.568611+05		2014-05-02 03:02:48.568661+05	
+6	2014-05-02 03:03:17.399342+05		2014-05-02 03:03:17.399391+05	
+7	2014-05-02 03:03:46.503285+05		2014-05-02 03:03:46.503344+05	
+8	2014-05-02 03:12:42.008636+05		2014-05-02 03:12:41.964999+05	
+10	2014-05-02 03:14:51.371227+05		2014-05-02 03:14:51.371284+05	
+11	2014-05-02 03:19:23.056222+05		2014-05-02 03:19:23.056278+05	
+12	2014-05-02 03:19:31.184452+05		2014-05-02 03:19:31.184534+05	
+13	2014-05-02 03:19:32.063093+05		2014-05-02 03:19:32.06315+05	
+14	2014-05-02 03:20:51.486115+05		2014-05-02 03:20:51.486168+05	
+15	2014-05-02 03:21:51.858264+05		2014-05-02 03:21:51.858404+05	
+16	2014-05-02 03:23:59.91921+05		2014-05-02 03:23:59.919308+05	
+17	2014-05-02 03:24:20.942312+05		2014-05-02 03:24:20.942364+05	
+18	2014-05-02 03:25:28.078958+05		2014-05-02 03:25:28.07902+05	
+9	2014-05-02 03:43:45.667155+05		2014-05-02 03:14:42.42784+05	
 \.
 
 
@@ -2012,7 +2055,7 @@ COPY sales_cart (id, updated_on, updated_by, created_on, created_by) FROM stdin;
 -- Name: sales_cart_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_cart_id_seq', 1, false);
+SELECT pg_catalog.setval('sales_cart_id_seq', 18, true);
 
 
 --
@@ -2020,6 +2063,13 @@ SELECT pg_catalog.setval('sales_cart_id_seq', 1, false);
 --
 
 COPY sales_cart_item (id, cart_id, product_id, quantity, updated_on, updated_by, created_on, created_by) FROM stdin;
+1	4	1	1	2014-05-02 03:00:47.887948+05	AnonymousUser	2014-05-02 03:00:47.88401+05	AnonymousUser
+2	5	1	1	2014-05-02 03:02:48.576875+05	AnonymousUser	2014-05-02 03:02:48.573826+05	AnonymousUser
+3	6	1	1	2014-05-02 03:03:17.408195+05	AnonymousUser	2014-05-02 03:03:17.404364+05	AnonymousUser
+4	7	1	1	2014-05-02 03:03:46.511594+05	AnonymousUser	2014-05-02 03:03:46.508486+05	AnonymousUser
+5	8	4	1	2014-05-02 03:12:42.006765+05	AnonymousUser	2014-05-02 03:12:42.00329+05	AnonymousUser
+6	9	4	64	2014-05-02 03:39:43.820075+05	AnonymousUser	2014-05-02 03:14:42.433018+05	AnonymousUser
+7	9	13	6	2014-05-02 03:46:53.861123+05	AnonymousUser	2014-05-02 03:43:45.660823+05	AnonymousUser
 \.
 
 
@@ -2027,7 +2077,7 @@ COPY sales_cart_item (id, cart_id, product_id, quantity, updated_on, updated_by,
 -- Name: sales_cart_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_cart_item_id_seq', 1, false);
+SELECT pg_catalog.setval('sales_cart_item_id_seq', 7, true);
 
 
 --
