@@ -92,14 +92,21 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# doorsale settings
-
-AUTH_USER_MODEL = 'common.User'
-
+# Doorsale settings
+# https://github.com/mysteryjeans/doorsale
 import doorsale.settings
 
+
+# Authentication model settings
+AUTH_USER_MODEL = doorsale.settings.AUTH_USER_MODEL
+LOGIN_URL = doorsale.settings.LOGIN_URL
+LOGIN_REDIRECT_URL = doorsale.settings.LOGIN_REDIRECT_URL
+
+
+SUPPORT_EMAIL = 'demo@doorsaledemo.com'
+
 # Including doorsale apps
-INSTALLED_APPS += doorsale.settings.DOORSALE_APPS 
+INSTALLED_APPS += doorsale.settings.DOORSALE_APPS
 
 PIPELINE_CSS =  doorsale.settings.PIPELINE_CSS
 
@@ -112,7 +119,7 @@ STATICFILES_STORAGE = doorsale.settings.STATICFILES_STORAGE
 PIPELINE_DISABLE_WRAPPER = doorsale.settings.PIPELINE_DISABLE_WRAPPER
 
 SITE_NAME = 'Doorsale Demo'
-SITE_TITLE = 'The powerful e-commerce solution for Django | Doorsale Demo'
+SITE_TITLE = 'The powerful e-commerce solution for Django'
 SITE_DESCRIPTION = 'The e-commerce solution demo site build using Doorsale'
 COPYRIGHT = 'Doorsale (c) 2014'
 CONTACT_EMAIL = 'demo@doorsaledemo.com'
