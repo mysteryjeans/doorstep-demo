@@ -650,8 +650,8 @@ CREATE TABLE geo_address (
     first_name character varying(100) NOT NULL,
     last_name character varying(100) NOT NULL,
     email character varying(75) NOT NULL,
-    company character varying(100) NOT NULL,
-    country_id integer,
+    company character varying(100),
+    country_id integer NOT NULL,
     state_id integer,
     city character varying(100) NOT NULL,
     address1 character varying(250) NOT NULL,
@@ -1102,7 +1102,7 @@ ALTER TABLE ONLY sales_order_item ALTER COLUMN id SET DEFAULT nextval('sales_ord
 --
 
 COPY accounts_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, birth_date, gender, billing_address_id, shipping_adress_id, is_verified, verification_code, updated_on, updated_by, created_on, created_by) FROM stdin;
-1	pbkdf2_sha256$12000$J25OPTB58fJe$8d5X9ox3VTDEDDbVqvavdaQ5tkyWeiZAPbXtldGpXDc=	2014-05-01 19:13:06.433074+05	t	mysteryjeans	Faraz	Masood Khan	faraz@fanaticlab.com	t	t	2014-05-01 19:13:06.219876+05	\N	M	\N	\N	f	3776b902d00aaec77ceba965995f2265	2014-05-01 19:13:06.314491+05	mysteryjeans	2014-05-01 19:13:06.314519+05	mysteryjeans
+1	pbkdf2_sha256$12000$J25OPTB58fJe$8d5X9ox3VTDEDDbVqvavdaQ5tkyWeiZAPbXtldGpXDc=	2014-05-16 06:35:33.551735+05	t	mysteryjeans	Faraz	Masood Khan	faraz@fanaticlab.com	t	t	2014-05-01 19:13:06.219876+05	\N	M	\N	\N	f	3776b902d00aaec77ceba965995f2265	2014-05-01 19:13:06.314491+05	mysteryjeans	2014-05-01 19:13:06.314519+05	mysteryjeans
 \.
 
 
@@ -1315,15 +1315,15 @@ SELECT pg_catalog.setval('catalog_manufacturer_id_seq', 12, true);
 --
 
 COPY catalog_product (id, name, slug, brand_id, part_number, sku, gtin, gist, description, price, cost, old_price, quantity, is_active, is_bestseller, is_featured, is_free_shipping, tax_rate_id, tags, weight, length, width, height, updated_by, updated_on, created_on, created_by, shipping_cost, category_id) FROM stdin;
-2	HP 15-d008se Notebook PC	hp-15-d008se-notebook	3				Intel Core i5 3230M Processor. 4GB RAM. 1TB Hard Drive. 15.6" LED Display. 1GB Dedicated Graphic Card. Windows 8.1 (64 bits).	Intel Core i5 3230M Processor. \r\n4GB RAM. 1TB Hard Drive. \r\n15.6" LED Display. \r\n1GB Dedicated Graphic Card. \r\nWindows 8.1 (64 bits). 	595.00	6.00	0.00	50	t	f	f	f	1	Ultrabook, Envy 15	0	0	0	0	mysteryjeans	2014-04-26 17:27:51.09288+05	2014-04-15 01:30:18.542023+05	mysteryjeans	0.00	4
 5	Acer Aspire E1-570G	acer-aspire-e1-570g	7						439.00	0.00	0.00	50	t	f	f	f	1		0	0	0	0	mysteryjeans	2014-04-26 17:29:03.017805+05	2014-04-18 02:44:30.934033+05	mysteryjeans	0.00	4
+1	Lenovo G510 Laptop	lenovo-g510-laptop	5				Super Hybrid Engine offers a choice of performance and power consumption modes for easy adjustments according to various needs	15.6-inch HD Widescreen Display\r\nThe 15.6" LED-backlit HD display (1366 x 768) delivers bright, crisp visuals in 16:9 widescreen on the G510.\r\nAbundant Multimedia Features\r\nThe G510 offers stunning, stutter-free visuals and immersive sound for a fuller, more satisfying home entertainment experience.\r\nAccuType Keyboard\r\nThe acclaimed AccuType keyboard is ergonomically designed to make typing more comfortable and to reduce errors.\r\nFast Data Transfer\r\nMove data between the G510 and other devices quickly with USB 3.0. It's up to 10 times faster than previous USB technologies.\r\nBattery-Saving Technology\r\nLenovo Energy Management protects the long-term durability of the battery and uses advanced energy-saving technology to increase time spent between charges to up to 5 hours, giving you flexibility on the go.\r\nSimple Maintenance\r\nWith OneKey Recovery, recovering from viruses or other technical difficulties is a snap.\r\nConnectivity\r\nWith 802.11 b/g/n WiFi connectivity, 10/100 LAN, and Bluetooth®, you'll be able to connect to the internet wherever you go.\r\nIntegrated Webcam\r\nThe optional 720p HD High-Sense webcam will help you enjoy web conferences or online video chats like you’re really there.\r\nHDMI Output\r\nFor easy connection to a television or other display.\r\nAmple storage\r\nWith 500GB HDD storage on the G510, you won't have to worry about where to put all your data, videos, music or photos.\r\nLenovo Cloud Storage\r\nProtect your important files and data, while also making access to information and file-sharing quick and convenient. Automatically back-up and synchronize data across your home, while enabling access from multiple devices. Data is encrypted on transfer for an extra level of security.	428.00	0.00	500.00	50	t	f	f	t	1	Laptop, G510	0	0	0	0	mysteryjeans	2014-05-15 06:40:42.350756+05	2014-04-15 01:11:50.502752+05	mysteryjeans	0.00	4
 3	HP Pavilion 15-n242se Notebook PC	hp-pavilion-15-n242se-notebook-pc	3				Intel® Core™ i5-4200U.  4 GB 1600 MHz DDR3 Memory.  750 GB 5400 rpm SATA Hard Drive.  NVIDIA GeForce GT 740M (2 GB DDR3 dedicated).  Pearl white color. 	Intel® Core™ i5-4200U. \r\n4 GB 1600 MHz DDR3 Memory. \r\n750 GB 5400 rpm SATA Hard Drive. \r\nNVIDIA GeForce GT 740M (2 GB DDR3 dedicated). \r\nPearl white color. 	610.00	0.00	0.00	50	t	f	f	f	1	Pavilion	0	0	0	0	mysteryjeans	2014-04-26 17:28:03.296843+05	2014-04-15 01:42:13.758533+05	mysteryjeans	0.00	4
 6	Dell Inspiron One 23	dell-inspiron-one-23	2				Interact and entertain with the new Inspiron One 23 all-in-one. It features an optional 23" touchscreen and up to 3rd Gen Intel® Core™ processors	Make your home entertainment experience riveting. Choose the unrelenting speed of up to 3rd Gen Intel® Core™ i7 processors and be efficient with the new Windows 8 operating system. With up to 8GB DDR3 memory7, you can easily:\r\n\r\nPower your HD entertainment: enjoy a cinema-like experience.\r\n\r\nEnjoy non-stop action: fast photo and video editing8, stunning movies and seamless multitasking.\r\n\r\nExperience smooth apps and games: everyone’s favorite applications work the way they were intended to.	800.00	0.00	0.00	50	t	f	f	f	1	All-in-One	0	0	0	0	mysteryjeans	2014-04-26 17:29:14.62433+05	2014-04-18 03:01:12.516931+05	mysteryjeans	0.00	3
-7	Dell Optiplex 3010 DT Base	dell-optiplex-3010-dt-base	2				SPECIAL: additional 50 € discount on all Dell OptiPlex desktops from a value of 549 €. Online Coupon:? W8DWQ0ZRKTM1, valid until 12.04.2012.	Also included in this system\r\nTo change these selections "Next" to continue the button to the next page.\r\n\r\n1Yr Basic Service - No Upgrade Selected - on-site service, NBD\r\nNo asset tag required\r\n\r\nThe following options are default selections included with your order.\r\n\r\nGerman (QWERTY) Dell KB212-B USB Keyboard Black QuietKey\r\nX11301001\r\nWINDOWS LIVE\r\nOptiPlex ™ order - Germany\r\nOptiPlex ™ Intel ® Core ™ i3 sticker\r\nOptical software is not required, operating system software sufficiently	478.76	0.00	0.00	10	t	f	f	f	1	Tower	0	0	0	0	mysteryjeans	2014-04-26 17:29:21.852466+05	2014-04-18 03:17:59.480641+05	mysteryjeans	0.00	3
 8	HP IQ506 TouchSmart Desktop PC 	hp-iq506-touchsmart-desktop-pc	3					Redesigned with a next-generation, touch-enabled 22-inch high-definition LCD screen, the HP TouchSmart IQ506 all-in-one desktop PC is designed to fit wherever life happens: in the kitchen, family room, or living room. With one touch you can check the weather, download your e-mail, or watch your favorite TV show. It's also designed to maximize energy, with a power-saving Intel Core 2 Duo processor and advanced power management technology, as well as material efficiency--right down to the packaging. It has a sleek piano black design with elegant espresso side-panel highlights, and the HP Ambient Light lets you set a mood--or see your keyboard in the dark.	1199.00	0.00	0.00	10	t	f	f	f	1	All-in-One	0	0	0	0	mysteryjeans	2014-04-26 17:29:31.887263+05	2014-04-18 03:21:21.074223+05	mysteryjeans	0.00	3
 10	Logitech X100 Mobile Wireless Speaker	logitech-x100-mobile-wireless-speaker	9				Go-anywhere mobile speaker that delivers rocking sound. Wireless speaker for smartphones and tablets. Connect and play. Take it anywhere. 5 hour Battery. 	Rocking sound\r\nCrystal clear sound. Pump up the volume and enjoy!\r\nRocking Sound\r\nConnect and play\r\n\r\nWirelessly connect, stream music, manage phone calls and control volume.\r\nTake it anywhere\r\n\r\nPerfect for life on the go. Take it on the road or relax and listen at home.\r\nDesign\r\n\r\nIn five bold colors, this unique design is sure to turn some heads.\r\n5 hour Battery\r\n\r\nEnjoy 5 hours of continuous play without recharging. Recharge the built-in lithium-ion battery with the convenience of the included micro-USB cable and rock on.	43.00	0.00	0.00	10	t	f	f	f	1		0	0	0	0	mysteryjeans	2014-04-26 17:30:31.882576+05	2014-04-18 05:03:10.414147+05	mysteryjeans	0.00	17
 11	Acer Iconia A1-810	acer-iconia-a1-810	7				MediaTek 1.2 Ghz Quad-Core Processor. 16GB Flash Memory. 1GB RAM. 7.9" XGA IPS multi-touch screen. Android 4.2 Jelly Bean. Dual Camera. Bluetooth. 	MediaTek 1.2 Ghz Quad-Core Processor.\r\n16GB Flash Memory. 1GB RAM.\r\n7.9" XGA IPS multi-touch screen.\r\nAndroid 4.2 Jelly Bean.\r\nDual Camera. Bluetooth.	175.00	0.00	0.00	10	t	f	f	t	1	Android	0	0	0	0	mysteryjeans	2014-04-26 17:31:25.518625+05	2014-04-18 05:09:25.45253+05	mysteryjeans	0.00	18
-1	Lenovo G510 Laptop	lenovo-g510-laptop	5				Super Hybrid Engine offers a choice of performance and power consumption modes for easy adjustments according to various needs	15.6-inch HD Widescreen Display\r\nThe 15.6" LED-backlit HD display (1366 x 768) delivers bright, crisp visuals in 16:9 widescreen on the G510.\r\nAbundant Multimedia Features\r\nThe G510 offers stunning, stutter-free visuals and immersive sound for a fuller, more satisfying home entertainment experience.\r\nAccuType Keyboard\r\nThe acclaimed AccuType keyboard is ergonomically designed to make typing more comfortable and to reduce errors.\r\nFast Data Transfer\r\nMove data between the G510 and other devices quickly with USB 3.0. It's up to 10 times faster than previous USB technologies.\r\nBattery-Saving Technology\r\nLenovo Energy Management protects the long-term durability of the battery and uses advanced energy-saving technology to increase time spent between charges to up to 5 hours, giving you flexibility on the go.\r\nSimple Maintenance\r\nWith OneKey Recovery, recovering from viruses or other technical difficulties is a snap.\r\nConnectivity\r\nWith 802.11 b/g/n WiFi connectivity, 10/100 LAN, and Bluetooth®, you'll be able to connect to the internet wherever you go.\r\nIntegrated Webcam\r\nThe optional 720p HD High-Sense webcam will help you enjoy web conferences or online video chats like you’re really there.\r\nHDMI Output\r\nFor easy connection to a television or other display.\r\nAmple storage\r\nWith 500GB HDD storage on the G510, you won't have to worry about where to put all your data, videos, music or photos.\r\nLenovo Cloud Storage\r\nProtect your important files and data, while also making access to information and file-sharing quick and convenient. Automatically back-up and synchronize data across your home, while enabling access from multiple devices. Data is encrypted on transfer for an extra level of security.	428.00	0.00	0.00	50	t	f	f	f	1	Laptop, G510	0	0	0	0	mysteryjeans	2014-04-26 17:59:00.945661+05	2014-04-15 01:11:50.502752+05	mysteryjeans	0.00	4
+7	Dell Optiplex 3010 DT Base	dell-optiplex-3010-dt-base	2				SPECIAL: additional 50 € discount on all Dell OptiPlex desktops from a value of 549 €. Online Coupon:? W8DWQ0ZRKTM1, valid until 12.04.2012.	Also included in this system\r\nTo change these selections "Next" to continue the button to the next page.\r\n\r\n1Yr Basic Service - No Upgrade Selected - on-site service, NBD\r\nNo asset tag required\r\n\r\nThe following options are default selections included with your order.\r\n\r\nGerman (QWERTY) Dell KB212-B USB Keyboard Black QuietKey\r\nX11301001\r\nWINDOWS LIVE\r\nOptiPlex ™ order - Germany\r\nOptiPlex ™ Intel ® Core ™ i3 sticker\r\nOptical software is not required, operating system software sufficiently	478.76	0.00	0.00	10	t	f	t	f	1	Tower	0	0	0	0	mysteryjeans	2014-05-15 05:35:56.355803+05	2014-04-18 03:17:59.480641+05	mysteryjeans	0.00	3
+2	HP 15-d008se Notebook PC	hp-15-d008se-notebook	3				Intel Core i5 3230M Processor. 4GB RAM. 1TB Hard Drive. 15.6" LED Display. 1GB Dedicated Graphic Card. Windows 8.1 (64 bits).	Intel Core i5 3230M Processor. \r\n4GB RAM. 1TB Hard Drive. \r\n15.6" LED Display. \r\n1GB Dedicated Graphic Card. \r\nWindows 8.1 (64 bits). 	595.00	6.00	0.00	50	t	f	t	f	1	Ultrabook, Envy 15	0	0	0	0	mysteryjeans	2014-05-15 05:53:41.509336+05	2014-04-15 01:30:18.542023+05	mysteryjeans	0.00	4
 13	Cooking for Two	cooking-two	10				 More Than 200 Foolproof Recipes for Weeknights and Special Occasions (Hardcover) 	Hardcover: 352 pages\r\nPublisher: America's Test Kitchen (May 2009)\r\nLanguage: English\r\nISBN-10: 1933615435\r\nISBN-13: 978-1933615431	19.00	0.00	0.00	10	t	f	f	t	2	Cooking, Recipies	0	0	0	0	mysteryjeans	2014-04-26 17:31:44.491804+05	2014-04-18 05:24:29.774523+05	mysteryjeans	0.00	1
 4	Toshiba Satellite C50-A539	toshiba-satellite-c50-a539	6				Intel Core i3 3110M Processor. 4GB RAM - 500GB Hard Drive. 1GB Dedicated Graphic Card. Gloss Luxe White Pearl Color. International Warranty.	Intel Core i3 3110M Processor.\r\n4GB RAM - 500GB Hard Drive.\r\n1GB Dedicated Graphic Card.\r\nGloss Luxe White Pearl Color.\r\nInternational Warranty.	500.00	0.00	525.00	50	t	f	t	f	1	Satellite	2.29999999999999982	0	0	0	mysteryjeans	2014-04-26 17:28:15.979226+05	2014-04-18 02:13:40.623315+05	mysteryjeans	0.00	4
 9	Microsoft Windows 8.1 Pro x64 English	microsoft-windows-81-pro-x64-english	8				Your familiar desktop. Enhanced data protection. Your own unique start screen. The best of work and play. Your Office, your way. 	The best of work and play\r\n\r\nWith the new Windows, you get the best of work and play. Windows 8.1 Pro includes everything in Windows 8.1, plus enhanced features that help you easily connect to company networks, manage your devices, access one PC from another, encrypt your data, and more.\r\n	145.00	0.00	0.00	10	t	f	f	f	1	Windows8	0	0	0	0	mysteryjeans	2014-04-26 17:30:13.871397+05	2014-04-18 04:41:29.384885+05	mysteryjeans	0.00	7
@@ -1558,6 +1558,10 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 21	2014-05-01 21:10:28.128789+05	1	19	97	US Dollar	2	Changed is_primary.
 22	2014-05-01 21:22:16.804163+05	1	19	97	US Dollar	2	Changed is_primary.
 23	2014-05-01 21:22:49.722477+05	1	19	99	Australian Dollar	2	No fields changed.
+24	2014-05-15 05:35:56.36835+05	1	12	7	Dell Optiplex 3010 DT Base	2	Changed is_featured.
+25	2014-05-15 05:53:41.513444+05	1	12	2	HP 15-d008se Notebook PC	2	Changed is_featured.
+26	2014-05-15 06:39:21.369932+05	1	12	1	Lenovo G510 Laptop	2	Changed old_price.
+27	2014-05-15 06:40:42.355327+05	1	12	1	Lenovo G510 Laptop	2	Changed is_free_shipping.
 \.
 
 
@@ -1565,7 +1569,7 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 23, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 27, true);
 
 
 --
@@ -1612,10 +1616,15 @@ SELECT pg_catalog.setval('django_content_type_id_seq', 23, true);
 COPY django_session (session_key, session_data, expire_date) FROM stdin;
 mzbijqdky6zju9j3ftnp6jvvggl7eoj1	ODY4ZjkyMmQ3Y2NmY2E3YWU3MGRiYjg1OTZjMWY1ZTg1NTNlNzZkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-04-27 04:52:17.740841+05
 ht305fo3zb2100r3n43tl92ipty8ein1	ODY4ZjkyMmQ3Y2NmY2E3YWU3MGRiYjg1OTZjMWY1ZTg1NTNlNzZkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-04-30 02:10:14.99748+05
+mf1j90ntwm1x0uxewqpddly16pvgnr14	NzliYTY5MDgxMDYwNTE4NGNlOTNkZWI4OWQxMmVhMTA4MDhlNmQ1Mzp7ImNhcnRfaWQiOjU2LCJkZWZhdWx0X2N1cnJlbmN5IjoiUEtSIn0=	2014-05-18 01:09:42.08378+05
+726s5c7yai1l8hgg4qnkiwkkiqsl839j	NzEwMDZlMjdlZWE4ZTU3ZmFiZDZiZjU5YmZjNDViMGE3OGJmYTQ3ZTp7ImNhcnRfaWQiOjU3fQ==	2014-05-18 02:36:27.969879+05
+hkea3yezqklqdoh8sqgb9xod811wnzqn	MjFlMWY3ODU0MzNkZGYwNjAwYWQ1YmNiNDg2MGI4Y2JmNWI4M2ZhOTp7ImNhcnRfaWQiOjU4LCJkZWZhdWx0X2N1cnJlbmN5IjoiUEtSIn0=	2014-05-22 00:48:45.960686+05
+9kbcacazv71pc16cdt7vpr7ajexzo8gw	ZjA1YTg5MTQxMGVjMzhhNDE2YjZmYzA1NDBjNjg4MWMxMGZmODQzMjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiY2FydF9pZCI6NjUsIl9hdXRoX3VzZXJfaWQiOjF9	2014-05-30 05:43:00.916486+05
 wyq0l7kcuq276nz6go7f9olb2o56tatz	ODY4ZjkyMmQ3Y2NmY2E3YWU3MGRiYjg1OTZjMWY1ZTg1NTNlNzZkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-05-02 01:21:38.747505+05
 zmt4bmlqpl6zpqcqbq3ic2vbnnqz918y	Yzk0MGViMTY5YTU2M2QyZDQ5NWQyYmRkNmRlNjk2NjRmYmY3NDljYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-05-06 00:21:14.985442+05
+r8jc5hkn18exzl0vyvnmzcukxf69uzqc	MzkzODJjNzMxOWZiNGVhN2NlMGY5YWZlZjQ3MDRmODE3NmNmMzM0NTp7ImNhcnRfaWQiOjYxfQ==	2014-05-30 02:07:33.666879+05
 si0mjwgqazmlt2hfemtnbdtl75q2cneq	ZDdkYjRiODZjN2U3NjAwNTQxMmEwZWI2YTFiZmYyZTNjYTg1ZTdlZTp7InVzZXJfY3VycmVuY3kiOiJFVVIifQ==	2014-05-15 21:30:11.115768+05
-jnuk6nbrpzmaaxfth58pwyv6jz5mm5hf	OGQ5OTZhMDhkY2YyYThmZWEyZjkxZTAzYWJkYTlhNThlNjFkZjNkZTp7ImNhcnRfaWQiOjksImRlZmF1bHRfY3VycmVuY3kiOiJVU0QifQ==	2014-05-16 03:40:36.491419+05
+hnptb5es5bc0mrwd86y26t63txvpjc4q	ODM1OTQ2ODQ4YjFhYzQyNmI0MjlkNGIzNjE1NWQ5OTY3YmI1MGY5NTp7InNoaXBwaW5nX2FkZHJlc3MiOjEsImJpbGxpbmdfYWRkcmVzcyI6MSwiX2F1dGhfdXNlcl9pZCI6MSwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJjYXJ0X2lkIjo2N30=	2014-05-30 06:35:51.819895+05
 \.
 
 
@@ -1668,6 +1677,7 @@ SELECT pg_catalog.setval('financial_tax_rate_id_seq', 2, true);
 --
 
 COPY geo_address (id, customer_id, first_name, last_name, email, company, country_id, state_id, city, address1, address2, zip_or_postal_code, phone_number, fax_number, updated_on, updated_by, created_on, created_by) FROM stdin;
+1	1	Faraz	Khan	mk.faraz@gmail.com		1	54	Houston	Sugarland parklane		23456	123456789		2014-05-16 06:33:02.047443+05	mysteryjeans	2014-05-16 06:33:02.047478+05	mysteryjeans
 \.
 
 
@@ -1675,7 +1685,7 @@ COPY geo_address (id, customer_id, first_name, last_name, email, company, countr
 -- Name: geo_address_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('geo_address_id_seq', 1, false);
+SELECT pg_catalog.setval('geo_address_id_seq', 1, true);
 
 
 --
@@ -2047,7 +2057,20 @@ COPY sales_cart (id, updated_on, updated_by, created_on, created_by) FROM stdin;
 16	2014-05-02 03:23:59.91921+05		2014-05-02 03:23:59.919308+05	
 17	2014-05-02 03:24:20.942312+05		2014-05-02 03:24:20.942364+05	
 18	2014-05-02 03:25:28.078958+05		2014-05-02 03:25:28.07902+05	
-9	2014-05-02 03:43:45.667155+05		2014-05-02 03:14:42.42784+05	
+9	2014-05-03 22:23:36.875261+05		2014-05-02 03:14:42.42784+05	
+55	2014-05-04 00:58:59.208646+05		2014-05-04 00:58:59.208688+05	
+56	2014-05-04 01:09:42.05717+05		2014-05-04 01:09:42.057209+05	
+57	2014-05-04 02:36:27.885401+05		2014-05-04 02:36:27.885479+05	
+58	2014-05-08 00:41:00.81637+05		2014-05-08 00:41:00.81642+05	
+59	2014-05-14 21:52:39.777204+05		2014-05-14 21:52:39.777242+05	
+60	2014-05-16 01:20:09.015404+05		2014-05-16 01:20:09.015441+05	
+61	2014-05-16 02:07:33.657659+05		2014-05-16 02:07:33.657707+05	
+62	2014-05-16 04:30:31.582745+05		2014-05-16 04:30:31.582784+05	
+63	2014-05-16 04:57:52.720795+05		2014-05-16 04:57:52.720839+05	
+64	2014-05-16 05:09:02.773656+05		2014-05-16 05:09:02.773703+05	
+65	2014-05-16 05:35:31.410052+05		2014-05-16 05:35:31.41012+05	
+66	2014-05-16 05:38:33.862137+05		2014-05-16 05:38:33.862187+05	
+67	2014-05-16 06:35:42.797227+05		2014-05-16 06:35:42.797267+05	
 \.
 
 
@@ -2055,7 +2078,7 @@ COPY sales_cart (id, updated_on, updated_by, created_on, created_by) FROM stdin;
 -- Name: sales_cart_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_cart_id_seq', 18, true);
+SELECT pg_catalog.setval('sales_cart_id_seq', 67, true);
 
 
 --
@@ -2063,13 +2086,28 @@ SELECT pg_catalog.setval('sales_cart_id_seq', 18, true);
 --
 
 COPY sales_cart_item (id, cart_id, product_id, quantity, updated_on, updated_by, created_on, created_by) FROM stdin;
-1	4	1	1	2014-05-02 03:00:47.887948+05	AnonymousUser	2014-05-02 03:00:47.88401+05	AnonymousUser
-2	5	1	1	2014-05-02 03:02:48.576875+05	AnonymousUser	2014-05-02 03:02:48.573826+05	AnonymousUser
-3	6	1	1	2014-05-02 03:03:17.408195+05	AnonymousUser	2014-05-02 03:03:17.404364+05	AnonymousUser
-4	7	1	1	2014-05-02 03:03:46.511594+05	AnonymousUser	2014-05-02 03:03:46.508486+05	AnonymousUser
-5	8	4	1	2014-05-02 03:12:42.006765+05	AnonymousUser	2014-05-02 03:12:42.00329+05	AnonymousUser
-6	9	4	64	2014-05-02 03:39:43.820075+05	AnonymousUser	2014-05-02 03:14:42.433018+05	AnonymousUser
-7	9	13	6	2014-05-02 03:46:53.861123+05	AnonymousUser	2014-05-02 03:43:45.660823+05	AnonymousUser
+36	9	15	6	2014-05-04 00:52:40.956496+05	mysteryjeans	2014-05-04 00:52:34.481251+05	mysteryjeans
+97	58	4	2	2014-05-08 08:33:55.993572+05	AnonymousUser	2014-05-08 08:33:55.993613+05	AnonymousUser
+102	58	15	4	2014-05-09 03:27:41.119781+05	AnonymousUser	2014-05-09 03:14:27.997439+05	AnonymousUser
+108	59	1	1	2014-05-15 17:35:29.21418+05	mysteryjeans	2014-05-15 17:35:29.214238+05	mysteryjeans
+107	59	2	4	2014-05-15 17:39:32.214666+05	mysteryjeans	2014-05-15 05:48:29.799596+05	mysteryjeans
+109	59	3	1	2014-05-15 23:54:52.36913+05	mysteryjeans	2014-05-15 23:54:52.369172+05	mysteryjeans
+106	59	4	800	2014-05-15 18:38:10.193432+05	mysteryjeans	2014-05-15 05:23:51.683363+05	mysteryjeans
+110	60	4	1	2014-05-16 01:20:09.021278+05	AnonymousUser	2014-05-16 01:20:09.021345+05	AnonymousUser
+111	61	2	1	2014-05-16 02:07:33.662632+05	AnonymousUser	2014-05-16 02:07:33.662677+05	AnonymousUser
+112	62	4	1	2014-05-16 04:30:31.588934+05	AnonymousUser	2014-05-16 04:30:31.589014+05	AnonymousUser
+113	63	2	1	2014-05-16 04:57:52.725393+05	AnonymousUser	2014-05-16 04:57:52.725433+05	AnonymousUser
+114	64	7	1	2014-05-16 05:09:02.780674+05	AnonymousUser	2014-05-16 05:09:02.780749+05	AnonymousUser
+115	64	1	1	2014-05-16 05:16:07.720098+05	mysteryjeans	2014-05-16 05:16:07.720149+05	mysteryjeans
+116	65	2	1	2014-05-16 05:35:31.415775+05	AnonymousUser	2014-05-16 05:35:31.415815+05	AnonymousUser
+73	55	4	1	2014-05-04 00:58:59.214528+05	AnonymousUser	2014-05-04 00:58:59.214591+05	AnonymousUser
+118	65	1	4	2014-05-16 05:42:08.080315+05	AnonymousUser	2014-05-16 05:42:05.586532+05	AnonymousUser
+117	66	4	2	2014-05-16 05:46:11.163771+05	AnonymousUser	2014-05-16 05:38:33.867625+05	AnonymousUser
+78	57	4	3	2014-05-04 02:37:09.202029+05	AnonymousUser	2014-05-04 02:37:05.808549+05	AnonymousUser
+119	67	2	1	2014-05-16 06:35:42.804959+05	mysteryjeans	2014-05-16 06:35:42.805004+05	mysteryjeans
+92	56	15	1	2014-05-04 03:46:13.840045+05	AnonymousUser	2014-05-04 03:46:13.840086+05	AnonymousUser
+93	56	14	1	2014-05-04 03:46:24.677163+05	AnonymousUser	2014-05-04 03:46:24.677204+05	AnonymousUser
+35	9	4	14	2014-05-03 22:50:01.436071+05	mysteryjeans	2014-05-03 22:49:56.320663+05	mysteryjeans
 \.
 
 
@@ -2077,7 +2115,7 @@ COPY sales_cart_item (id, cart_id, product_id, quantity, updated_on, updated_by,
 -- Name: sales_cart_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_cart_item_id_seq', 7, true);
+SELECT pg_catalog.setval('sales_cart_item_id_seq', 119, true);
 
 
 --
@@ -2431,6 +2469,14 @@ ALTER TABLE ONLY geo_state
 
 
 --
+-- Name: sales_cart_item_cart_product; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+ALTER TABLE ONLY sales_cart_item
+    ADD CONSTRAINT sales_cart_item_cart_product UNIQUE (cart_id, product_id);
+
+
+--
 -- Name: sales_cart_item_pkey; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
@@ -2778,27 +2824,11 @@ CREATE INDEX sales_order_shipping_address_id ON sales_order USING btree (shippin
 
 
 --
--- Name: accounts_user_billing_address_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY accounts_user
-    ADD CONSTRAINT accounts_user_billing_address_id_fkey FOREIGN KEY (billing_address_id) REFERENCES geo_address(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
 -- Name: accounts_user_groups_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY accounts_user_groups
     ADD CONSTRAINT accounts_user_groups_group_id_fkey FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: accounts_user_shipping_adress_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY accounts_user
-    ADD CONSTRAINT accounts_user_shipping_adress_id_fkey FOREIGN KEY (shipping_adress_id) REFERENCES geo_address(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -2874,14 +2904,6 @@ ALTER TABLE ONLY sales_order
 
 
 --
--- Name: customer_id_refs_id_410f900c; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY geo_address
-    ADD CONSTRAINT customer_id_refs_id_410f900c FOREIGN KEY (customer_id) REFERENCES accounts_user(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
 -- Name: django_admin_log_content_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2895,6 +2917,14 @@ ALTER TABLE ONLY django_admin_log
 
 ALTER TABLE ONLY geo_address
     ADD CONSTRAINT geo_address_country_id_fkey FOREIGN KEY (country_id) REFERENCES geo_country(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: geo_address_customer_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY geo_address
+    ADD CONSTRAINT geo_address_customer_id_fkey FOREIGN KEY (customer_id) REFERENCES accounts_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
