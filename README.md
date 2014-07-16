@@ -3,7 +3,7 @@
 Doorsale-demo
 =============
 
-Demo site for [Doorsale](http://github.com/mysteryjeans/doorsale) e-commerce solution built on Django. [Doorsale](http://github.com/mysteryjeans/doorsale) has been actively developed, although it is far from ready, this repo gives you chance to contribute in [Doorsale](http://github.com/mysteryjeans/doorsale) project, your feedbacks & contributions will be highly encourge.
+[Demo site](http://doorsale-demo.fanaticlab.com/) for [Doorsale](http://github.com/mysteryjeans/doorsale) e-commerce solution built on Django. [Doorsale](http://github.com/mysteryjeans/doorsale) has been actively developed, although it is far from ready, this repo gives you chance to contribute in [Doorsale](http://github.com/mysteryjeans/doorsale) project, your feedbacks & contributions will be highly encourge.
 
 **Getting head start in [Doorsale](http://github.com/mysteryjeans/doorsale) development is easy, just clone both repos and restore demo database dump.**
 
