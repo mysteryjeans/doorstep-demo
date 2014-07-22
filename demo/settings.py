@@ -126,11 +126,18 @@ STATICFILES_STORAGE = doorsale.settings.STATICFILES_STORAGE
 
 PIPELINE_DISABLE_WRAPPER = doorsale.settings.PIPELINE_DISABLE_WRAPPER
 
+DOMAIN = '127.0.0.1:8000'
 SITE_NAME = 'Doorsale Demo'
 SITE_TITLE = 'The powerful e-commerce solution for Django'
 SITE_DESCRIPTION = 'The e-commerce solution demo site build using Doorsale'
 COPYRIGHT = 'Doorsale (c) 2014'
 CONTACT_EMAIL = 'demo@doorsaledemo.com'
 
+# Email server settings
+# EMAIL_HOST = ''
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD = ''
 
 
