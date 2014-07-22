@@ -30,7 +30,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: accounts_user; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: accounts_user; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE TABLE accounts_user (
@@ -58,10 +58,10 @@ CREATE TABLE accounts_user (
 );
 
 
-ALTER TABLE public.accounts_user OWNER TO postgres;
+ALTER TABLE public.accounts_user OWNER TO doorsale;
 
 --
--- Name: accounts_user_groups; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: accounts_user_groups; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE TABLE accounts_user_groups (
@@ -71,10 +71,10 @@ CREATE TABLE accounts_user_groups (
 );
 
 
-ALTER TABLE public.accounts_user_groups OWNER TO postgres;
+ALTER TABLE public.accounts_user_groups OWNER TO doorsale;
 
 --
--- Name: accounts_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: accounts_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: doorsale
 --
 
 CREATE SEQUENCE accounts_user_groups_id_seq
@@ -85,17 +85,17 @@ CREATE SEQUENCE accounts_user_groups_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.accounts_user_groups_id_seq OWNER TO postgres;
+ALTER TABLE public.accounts_user_groups_id_seq OWNER TO doorsale;
 
 --
--- Name: accounts_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: accounts_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: doorsale
 --
 
 ALTER SEQUENCE accounts_user_groups_id_seq OWNED BY accounts_user_groups.id;
 
 
 --
--- Name: accounts_user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: accounts_user_id_seq; Type: SEQUENCE; Schema: public; Owner: doorsale
 --
 
 CREATE SEQUENCE accounts_user_id_seq
@@ -106,17 +106,17 @@ CREATE SEQUENCE accounts_user_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.accounts_user_id_seq OWNER TO postgres;
+ALTER TABLE public.accounts_user_id_seq OWNER TO doorsale;
 
 --
--- Name: accounts_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: accounts_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: doorsale
 --
 
 ALTER SEQUENCE accounts_user_id_seq OWNED BY accounts_user.id;
 
 
 --
--- Name: accounts_user_user_permissions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: accounts_user_user_permissions; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE TABLE accounts_user_user_permissions (
@@ -126,10 +126,10 @@ CREATE TABLE accounts_user_user_permissions (
 );
 
 
-ALTER TABLE public.accounts_user_user_permissions OWNER TO postgres;
+ALTER TABLE public.accounts_user_user_permissions OWNER TO doorsale;
 
 --
--- Name: accounts_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: accounts_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: doorsale
 --
 
 CREATE SEQUENCE accounts_user_user_permissions_id_seq
@@ -140,17 +140,17 @@ CREATE SEQUENCE accounts_user_user_permissions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.accounts_user_user_permissions_id_seq OWNER TO postgres;
+ALTER TABLE public.accounts_user_user_permissions_id_seq OWNER TO doorsale;
 
 --
--- Name: accounts_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: accounts_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: doorsale
 --
 
 ALTER SEQUENCE accounts_user_user_permissions_id_seq OWNED BY accounts_user_user_permissions.id;
 
 
 --
--- Name: auth_group; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE TABLE auth_group (
@@ -159,10 +159,10 @@ CREATE TABLE auth_group (
 );
 
 
-ALTER TABLE public.auth_group OWNER TO postgres;
+ALTER TABLE public.auth_group OWNER TO doorsale;
 
 --
--- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: doorsale
 --
 
 CREATE SEQUENCE auth_group_id_seq
@@ -173,17 +173,17 @@ CREATE SEQUENCE auth_group_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.auth_group_id_seq OWNER TO postgres;
+ALTER TABLE public.auth_group_id_seq OWNER TO doorsale;
 
 --
--- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: doorsale
 --
 
 ALTER SEQUENCE auth_group_id_seq OWNED BY auth_group.id;
 
 
 --
--- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE TABLE auth_group_permissions (
@@ -193,10 +193,10 @@ CREATE TABLE auth_group_permissions (
 );
 
 
-ALTER TABLE public.auth_group_permissions OWNER TO postgres;
+ALTER TABLE public.auth_group_permissions OWNER TO doorsale;
 
 --
--- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: doorsale
 --
 
 CREATE SEQUENCE auth_group_permissions_id_seq
@@ -207,17 +207,17 @@ CREATE SEQUENCE auth_group_permissions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.auth_group_permissions_id_seq OWNER TO postgres;
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO doorsale;
 
 --
--- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: doorsale
 --
 
 ALTER SEQUENCE auth_group_permissions_id_seq OWNED BY auth_group_permissions.id;
 
 
 --
--- Name: auth_permission; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE TABLE auth_permission (
@@ -228,10 +228,10 @@ CREATE TABLE auth_permission (
 );
 
 
-ALTER TABLE public.auth_permission OWNER TO postgres;
+ALTER TABLE public.auth_permission OWNER TO doorsale;
 
 --
--- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: doorsale
 --
 
 CREATE SEQUENCE auth_permission_id_seq
@@ -242,10 +242,10 @@ CREATE SEQUENCE auth_permission_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.auth_permission_id_seq OWNER TO postgres;
+ALTER TABLE public.auth_permission_id_seq OWNER TO doorsale;
 
 --
--- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: doorsale
 --
 
 ALTER SEQUENCE auth_permission_id_seq OWNED BY auth_permission.id;
@@ -357,7 +357,7 @@ CREATE TABLE catalog_product (
     is_bestseller boolean NOT NULL,
     is_featured boolean NOT NULL,
     is_free_shipping boolean NOT NULL,
-    tax_rate_id integer,
+    tax_id integer,
     tags character varying(250),
     weight double precision NOT NULL,
     length double precision NOT NULL,
@@ -471,7 +471,7 @@ ALTER SEQUENCE catalog_product_spec_id_seq OWNED BY catalog_product_spec.id;
 
 
 --
--- Name: django_admin_log; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE TABLE django_admin_log (
@@ -487,10 +487,10 @@ CREATE TABLE django_admin_log (
 );
 
 
-ALTER TABLE public.django_admin_log OWNER TO postgres;
+ALTER TABLE public.django_admin_log OWNER TO doorsale;
 
 --
--- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: doorsale
 --
 
 CREATE SEQUENCE django_admin_log_id_seq
@@ -501,10 +501,10 @@ CREATE SEQUENCE django_admin_log_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.django_admin_log_id_seq OWNER TO postgres;
+ALTER TABLE public.django_admin_log_id_seq OWNER TO doorsale;
 
 --
--- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: doorsale
 --
 
 ALTER SEQUENCE django_admin_log_id_seq OWNED BY django_admin_log.id;
@@ -602,10 +602,10 @@ ALTER SEQUENCE financial_currency_id_seq OWNED BY financial_currency.id;
 
 
 --
--- Name: financial_tax_rate; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
+-- Name: financial_tax; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
 --
 
-CREATE TABLE financial_tax_rate (
+CREATE TABLE financial_tax (
     id integer NOT NULL,
     name character varying(100) NOT NULL,
     method character varying(2) NOT NULL,
@@ -617,7 +617,7 @@ CREATE TABLE financial_tax_rate (
 );
 
 
-ALTER TABLE public.financial_tax_rate OWNER TO doorsale;
+ALTER TABLE public.financial_tax OWNER TO doorsale;
 
 --
 -- Name: financial_tax_rate_id_seq; Type: SEQUENCE; Schema: public; Owner: doorsale
@@ -637,11 +637,11 @@ ALTER TABLE public.financial_tax_rate_id_seq OWNER TO doorsale;
 -- Name: financial_tax_rate_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: doorsale
 --
 
-ALTER SEQUENCE financial_tax_rate_id_seq OWNED BY financial_tax_rate.id;
+ALTER SEQUENCE financial_tax_rate_id_seq OWNED BY financial_tax.id;
 
 
 --
--- Name: geo_address; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: geo_address; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE TABLE geo_address (
@@ -666,10 +666,10 @@ CREATE TABLE geo_address (
 );
 
 
-ALTER TABLE public.geo_address OWNER TO postgres;
+ALTER TABLE public.geo_address OWNER TO doorsale;
 
 --
--- Name: geo_address_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: geo_address_id_seq; Type: SEQUENCE; Schema: public; Owner: doorsale
 --
 
 CREATE SEQUENCE geo_address_id_seq
@@ -680,10 +680,10 @@ CREATE SEQUENCE geo_address_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.geo_address_id_seq OWNER TO postgres;
+ALTER TABLE public.geo_address_id_seq OWNER TO doorsale;
 
 --
--- Name: geo_address_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: geo_address_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: doorsale
 --
 
 ALTER SEQUENCE geo_address_id_seq OWNED BY geo_address.id;
@@ -862,16 +862,21 @@ CREATE TABLE sales_order (
     taxes numeric(9,2) NOT NULL,
     total numeric(9,2) NOT NULL,
     refunded_amount numeric(9,2) NOT NULL,
-    currency_rate double precision NOT NULL,
+    exchange_rate double precision NOT NULL,
+    exchange_value numeric(9,2) NOT NULL,
     order_status character varying(2) NOT NULL,
+    payment_method_code character varying(2) NOT NULL,
     payment_status character varying(2) NOT NULL,
+    po_number character varying(100),
     shipping_status character varying(2) NOT NULL,
     billing_address_id integer NOT NULL,
     shipping_address_id integer,
+    receipt_code character varying(100) NOT NULL,
     updated_on timestamp with time zone NOT NULL,
     updated_by character varying(100) NOT NULL,
     created_on timestamp with time zone NOT NULL,
-    created_by character varying(100) NOT NULL
+    created_by character varying(100) NOT NULL,
+    shipping_cost numeric(9,2) NOT NULL
 );
 
 
@@ -944,42 +949,59 @@ ALTER SEQUENCE sales_order_item_id_seq OWNED BY sales_order_item.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: sales_payment_method; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+CREATE TABLE sales_payment_method (
+    code character varying(2) NOT NULL,
+    name character varying(100) NOT NULL,
+    is_active boolean NOT NULL,
+    updated_by character varying(100) NOT NULL,
+    updated_on timestamp with time zone NOT NULL,
+    created_on timestamp with time zone NOT NULL,
+    created_by character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.sales_payment_method OWNER TO doorsale;
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY accounts_user ALTER COLUMN id SET DEFAULT nextval('accounts_user_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: id; Type: DEFAULT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY accounts_user_groups ALTER COLUMN id SET DEFAULT nextval('accounts_user_groups_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: id; Type: DEFAULT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY accounts_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('accounts_user_user_permissions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: id; Type: DEFAULT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY auth_group ALTER COLUMN id SET DEFAULT nextval('auth_group_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: id; Type: DEFAULT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('auth_group_permissions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: id; Type: DEFAULT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY auth_permission ALTER COLUMN id SET DEFAULT nextval('auth_permission_id_seq'::regclass);
@@ -1021,7 +1043,7 @@ ALTER TABLE ONLY catalog_product_spec ALTER COLUMN id SET DEFAULT nextval('catal
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: id; Type: DEFAULT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY django_admin_log ALTER COLUMN id SET DEFAULT nextval('django_admin_log_id_seq'::regclass);
@@ -1045,11 +1067,11 @@ ALTER TABLE ONLY financial_currency ALTER COLUMN id SET DEFAULT nextval('financi
 -- Name: id; Type: DEFAULT; Schema: public; Owner: doorsale
 --
 
-ALTER TABLE ONLY financial_tax_rate ALTER COLUMN id SET DEFAULT nextval('financial_tax_rate_id_seq'::regclass);
+ALTER TABLE ONLY financial_tax ALTER COLUMN id SET DEFAULT nextval('financial_tax_rate_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: id; Type: DEFAULT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY geo_address ALTER COLUMN id SET DEFAULT nextval('geo_address_id_seq'::regclass);
@@ -1098,16 +1120,16 @@ ALTER TABLE ONLY sales_order_item ALTER COLUMN id SET DEFAULT nextval('sales_ord
 
 
 --
--- Data for Name: accounts_user; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: accounts_user; Type: TABLE DATA; Schema: public; Owner: doorsale
 --
 
 COPY accounts_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, birth_date, gender, billing_address_id, shipping_adress_id, is_verified, verification_code, updated_on, updated_by, created_on, created_by) FROM stdin;
-1	pbkdf2_sha256$12000$J25OPTB58fJe$8d5X9ox3VTDEDDbVqvavdaQ5tkyWeiZAPbXtldGpXDc=	2014-05-16 06:35:33.551735+05	t	mysteryjeans	Faraz	Masood Khan	faraz@fanaticlab.com	t	t	2014-05-01 19:13:06.219876+05	\N	M	\N	\N	f	3776b902d00aaec77ceba965995f2265	2014-05-01 19:13:06.314491+05	mysteryjeans	2014-05-01 19:13:06.314519+05	mysteryjeans
+1	pbkdf2_sha256$12000$J25OPTB58fJe$8d5X9ox3VTDEDDbVqvavdaQ5tkyWeiZAPbXtldGpXDc=	2014-07-21 21:10:42.484858+05	t	mysteryjeans	Faraz	Masood Khan	faraz@fanaticlab.com	t	t	2014-05-01 19:13:06.219876+05	\N	M	\N	\N	f	3776b902d00aaec77ceba965995f2265	2014-05-01 19:13:06.314491+05	mysteryjeans	2014-05-01 19:13:06.314519+05	mysteryjeans
 \.
 
 
 --
--- Data for Name: accounts_user_groups; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: accounts_user_groups; Type: TABLE DATA; Schema: public; Owner: doorsale
 --
 
 COPY accounts_user_groups (id, user_id, group_id) FROM stdin;
@@ -1115,21 +1137,21 @@ COPY accounts_user_groups (id, user_id, group_id) FROM stdin;
 
 
 --
--- Name: accounts_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: accounts_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
 SELECT pg_catalog.setval('accounts_user_groups_id_seq', 1, false);
 
 
 --
--- Name: accounts_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: accounts_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
 SELECT pg_catalog.setval('accounts_user_id_seq', 1, true);
 
 
 --
--- Data for Name: accounts_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: accounts_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: doorsale
 --
 
 COPY accounts_user_user_permissions (id, user_id, permission_id) FROM stdin;
@@ -1137,14 +1159,14 @@ COPY accounts_user_user_permissions (id, user_id, permission_id) FROM stdin;
 
 
 --
--- Name: accounts_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: accounts_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
 SELECT pg_catalog.setval('accounts_user_user_permissions_id_seq', 1, false);
 
 
 --
--- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: doorsale
 --
 
 COPY auth_group (id, name) FROM stdin;
@@ -1152,14 +1174,14 @@ COPY auth_group (id, name) FROM stdin;
 
 
 --
--- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
 SELECT pg_catalog.setval('auth_group_id_seq', 1, false);
 
 
 --
--- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: doorsale
 --
 
 COPY auth_group_permissions (id, group_id, permission_id) FROM stdin;
@@ -1167,14 +1189,14 @@ COPY auth_group_permissions (id, group_id, permission_id) FROM stdin;
 
 
 --
--- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
 SELECT pg_catalog.setval('auth_group_permissions_id_seq', 1, false);
 
 
 --
--- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: doorsale
 --
 
 COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
@@ -1235,17 +1257,20 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 55	Can add currency	19	add_currency
 56	Can change currency	19	change_currency
 57	Can delete currency	19	delete_currency
-58	Can add tax rate	20	add_taxrate
-59	Can change tax rate	20	change_taxrate
-60	Can delete tax rate	20	delete_taxrate
+61	Can add payment method	24	add_paymentmethod
+62	Can change payment method	24	change_paymentmethod
+63	Can delete payment method	24	delete_paymentmethod
+64	Can add tax	25	add_tax
+65	Can change tax	25	change_tax
+66	Can delete tax	25	delete_tax
 \.
 
 
 --
--- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('auth_permission_id_seq', 60, true);
+SELECT pg_catalog.setval('auth_permission_id_seq', 66, true);
 
 
 --
@@ -1314,7 +1339,7 @@ SELECT pg_catalog.setval('catalog_manufacturer_id_seq', 12, true);
 -- Data for Name: catalog_product; Type: TABLE DATA; Schema: public; Owner: doorsale
 --
 
-COPY catalog_product (id, name, slug, brand_id, part_number, sku, gtin, gist, description, price, cost, old_price, quantity, is_active, is_bestseller, is_featured, is_free_shipping, tax_rate_id, tags, weight, length, width, height, updated_by, updated_on, created_on, created_by, shipping_cost, category_id) FROM stdin;
+COPY catalog_product (id, name, slug, brand_id, part_number, sku, gtin, gist, description, price, cost, old_price, quantity, is_active, is_bestseller, is_featured, is_free_shipping, tax_id, tags, weight, length, width, height, updated_by, updated_on, created_on, created_by, shipping_cost, category_id) FROM stdin;
 5	Acer Aspire E1-570G	acer-aspire-e1-570g	7						439.00	0.00	0.00	50	t	f	f	f	1		0	0	0	0	mysteryjeans	2014-04-26 17:29:03.017805+05	2014-04-18 02:44:30.934033+05	mysteryjeans	0.00	4
 1	Lenovo G510 Laptop	lenovo-g510-laptop	5				Super Hybrid Engine offers a choice of performance and power consumption modes for easy adjustments according to various needs	15.6-inch HD Widescreen Display\r\nThe 15.6" LED-backlit HD display (1366 x 768) delivers bright, crisp visuals in 16:9 widescreen on the G510.\r\nAbundant Multimedia Features\r\nThe G510 offers stunning, stutter-free visuals and immersive sound for a fuller, more satisfying home entertainment experience.\r\nAccuType Keyboard\r\nThe acclaimed AccuType keyboard is ergonomically designed to make typing more comfortable and to reduce errors.\r\nFast Data Transfer\r\nMove data between the G510 and other devices quickly with USB 3.0. It's up to 10 times faster than previous USB technologies.\r\nBattery-Saving Technology\r\nLenovo Energy Management protects the long-term durability of the battery and uses advanced energy-saving technology to increase time spent between charges to up to 5 hours, giving you flexibility on the go.\r\nSimple Maintenance\r\nWith OneKey Recovery, recovering from viruses or other technical difficulties is a snap.\r\nConnectivity\r\nWith 802.11 b/g/n WiFi connectivity, 10/100 LAN, and Bluetooth®, you'll be able to connect to the internet wherever you go.\r\nIntegrated Webcam\r\nThe optional 720p HD High-Sense webcam will help you enjoy web conferences or online video chats like you’re really there.\r\nHDMI Output\r\nFor easy connection to a television or other display.\r\nAmple storage\r\nWith 500GB HDD storage on the G510, you won't have to worry about where to put all your data, videos, music or photos.\r\nLenovo Cloud Storage\r\nProtect your important files and data, while also making access to information and file-sharing quick and convenient. Automatically back-up and synchronize data across your home, while enabling access from multiple devices. Data is encrypted on transfer for an extra level of security.	428.00	0.00	500.00	50	t	f	f	t	1	Laptop, G510	0	0	0	0	mysteryjeans	2014-05-15 06:40:42.350756+05	2014-04-15 01:11:50.502752+05	mysteryjeans	0.00	4
 3	HP Pavilion 15-n242se Notebook PC	hp-pavilion-15-n242se-notebook-pc	3				Intel® Core™ i5-4200U.  4 GB 1600 MHz DDR3 Memory.  750 GB 5400 rpm SATA Hard Drive.  NVIDIA GeForce GT 740M (2 GB DDR3 dedicated).  Pearl white color. 	Intel® Core™ i5-4200U. \r\n4 GB 1600 MHz DDR3 Memory. \r\n750 GB 5400 rpm SATA Hard Drive. \r\nNVIDIA GeForce GT 740M (2 GB DDR3 dedicated). \r\nPearl white color. 	610.00	0.00	0.00	50	t	f	f	f	1	Pavilion	0	0	0	0	mysteryjeans	2014-04-26 17:28:03.296843+05	2014-04-15 01:42:13.758533+05	mysteryjeans	0.00	4
@@ -1531,7 +1556,7 @@ SELECT pg_catalog.setval('catalog_product_spec_id_seq', 162, true);
 
 
 --
--- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: doorsale
 --
 
 COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, object_repr, action_flag, change_message) FROM stdin;
@@ -1566,7 +1591,7 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 
 
 --
--- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
 SELECT pg_catalog.setval('django_admin_log_id_seq', 27, true);
@@ -1596,9 +1621,10 @@ COPY django_content_type (id, name, app_label, model) FROM stdin;
 17	order	sales	order
 18	order item	sales	orderitem
 19	currency	financial	currency
-20	tax rate	financial	taxrate
 21	address	geo	address
 22	user	accounts	user
+24	payment method	sales	paymentmethod
+25	tax	financial	tax
 \.
 
 
@@ -1606,7 +1632,7 @@ COPY django_content_type (id, name, app_label, model) FROM stdin;
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('django_content_type_id_seq', 23, true);
+SELECT pg_catalog.setval('django_content_type_id_seq', 25, true);
 
 
 --
@@ -1625,6 +1651,8 @@ zmt4bmlqpl6zpqcqbq3ic2vbnnqz918y	Yzk0MGViMTY5YTU2M2QyZDQ5NWQyYmRkNmRlNjk2NjRmYmY
 r8jc5hkn18exzl0vyvnmzcukxf69uzqc	MzkzODJjNzMxOWZiNGVhN2NlMGY5YWZlZjQ3MDRmODE3NmNmMzM0NTp7ImNhcnRfaWQiOjYxfQ==	2014-05-30 02:07:33.666879+05
 si0mjwgqazmlt2hfemtnbdtl75q2cneq	ZDdkYjRiODZjN2U3NjAwNTQxMmEwZWI2YTFiZmYyZTNjYTg1ZTdlZTp7InVzZXJfY3VycmVuY3kiOiJFVVIifQ==	2014-05-15 21:30:11.115768+05
 hnptb5es5bc0mrwd86y26t63txvpjc4q	ODM1OTQ2ODQ4YjFhYzQyNmI0MjlkNGIzNjE1NWQ5OTY3YmI1MGY5NTp7InNoaXBwaW5nX2FkZHJlc3MiOjEsImJpbGxpbmdfYWRkcmVzcyI6MSwiX2F1dGhfdXNlcl9pZCI6MSwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJjYXJ0X2lkIjo2N30=	2014-05-30 06:35:51.819895+05
+u59erxxtueu3w0q1v0fzseauq4l6jfia	MzIxMjZlODcxYWU2ODUyY2Y4NzkyMTRlNjVkOWM3YjcxOWI0OTA0ODp7fQ==	2014-07-30 21:54:40.643132+05
+cy5x3bnhkb5skwzxl3b5fnxb0r8uwrb1	MTY2NWRlZGUyYzgyYjcxNzVhZTRiZTZmYmU2OWFhMzg2NzU3YjJlYTp7Il9hdXRoX3VzZXJfaWQiOjEsIm9yZGVyX2lkIjo0LCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsImRlZmF1bHRfY3VycmVuY3kiOiJQS1IifQ==	2014-08-05 08:26:05.202494+05
 \.
 
 
@@ -1656,10 +1684,10 @@ SELECT pg_catalog.setval('financial_currency_id_seq', 108, true);
 
 
 --
--- Data for Name: financial_tax_rate; Type: TABLE DATA; Schema: public; Owner: doorsale
+-- Data for Name: financial_tax; Type: TABLE DATA; Schema: public; Owner: doorsale
 --
 
-COPY financial_tax_rate (id, name, method, rate, updated_by, updated_on, created_on, created_by) FROM stdin;
+COPY financial_tax (id, name, method, rate, updated_by, updated_on, created_on, created_by) FROM stdin;
 1	Computers & Electronics	PE	0.0200000000000000004	mysteryjeans	2014-04-15 01:11:10.584838+05	2014-04-15 01:11:10.584874+05	mysteryjeans
 2	Books	PE	0.0200000000000000004	mysteryjeans	2014-04-18 05:22:10.362108+05	2014-04-18 05:22:10.362189+05	mysteryjeans
 \.
@@ -1673,7 +1701,7 @@ SELECT pg_catalog.setval('financial_tax_rate_id_seq', 2, true);
 
 
 --
--- Data for Name: geo_address; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: geo_address; Type: TABLE DATA; Schema: public; Owner: doorsale
 --
 
 COPY geo_address (id, customer_id, first_name, last_name, email, company, country_id, state_id, city, address1, address2, zip_or_postal_code, phone_number, fax_number, updated_on, updated_by, created_on, created_by) FROM stdin;
@@ -1682,7 +1710,7 @@ COPY geo_address (id, customer_id, first_name, last_name, email, company, countr
 
 
 --
--- Name: geo_address_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: geo_address_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
 SELECT pg_catalog.setval('geo_address_id_seq', 1, true);
@@ -2071,6 +2099,9 @@ COPY sales_cart (id, updated_on, updated_by, created_on, created_by) FROM stdin;
 65	2014-05-16 05:35:31.410052+05		2014-05-16 05:35:31.41012+05	
 66	2014-05-16 05:38:33.862137+05		2014-05-16 05:38:33.862187+05	
 67	2014-05-16 06:35:42.797227+05		2014-05-16 06:35:42.797267+05	
+68	2014-07-21 21:11:03.402665+05		2014-07-21 21:11:03.402734+05	
+69	2014-07-22 05:44:49.515206+05		2014-07-22 05:44:49.515278+05	
+70	2014-07-22 08:25:14.511118+05		2014-07-22 08:25:14.511158+05	
 \.
 
 
@@ -2078,7 +2109,7 @@ COPY sales_cart (id, updated_on, updated_by, created_on, created_by) FROM stdin;
 -- Name: sales_cart_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_cart_id_seq', 67, true);
+SELECT pg_catalog.setval('sales_cart_id_seq', 70, true);
 
 
 --
@@ -2108,6 +2139,11 @@ COPY sales_cart_item (id, cart_id, product_id, quantity, updated_on, updated_by,
 92	56	15	1	2014-05-04 03:46:13.840045+05	AnonymousUser	2014-05-04 03:46:13.840086+05	AnonymousUser
 93	56	14	1	2014-05-04 03:46:24.677163+05	AnonymousUser	2014-05-04 03:46:24.677204+05	AnonymousUser
 35	9	4	14	2014-05-03 22:50:01.436071+05	mysteryjeans	2014-05-03 22:49:56.320663+05	mysteryjeans
+120	68	4	1	2014-07-21 21:11:03.444782+05	mysteryjeans	2014-07-21 21:11:03.44482+05	mysteryjeans
+121	68	2	1	2014-07-21 21:31:58.42477+05	mysteryjeans	2014-07-21 21:31:58.424843+05	mysteryjeans
+122	69	3	1	2014-07-22 05:44:49.525454+05	mysteryjeans	2014-07-22 05:44:49.525498+05	mysteryjeans
+123	70	2	1	2014-07-22 08:25:14.518952+05	mysteryjeans	2014-07-22 08:25:14.518991+05	mysteryjeans
+124	70	3	2	2014-07-22 08:25:21.095666+05	mysteryjeans	2014-07-22 08:25:20.010869+05	mysteryjeans
 \.
 
 
@@ -2115,14 +2151,16 @@ COPY sales_cart_item (id, cart_id, product_id, quantity, updated_on, updated_by,
 -- Name: sales_cart_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_cart_item_id_seq', 119, true);
+SELECT pg_catalog.setval('sales_cart_item_id_seq', 124, true);
 
 
 --
 -- Data for Name: sales_order; Type: TABLE DATA; Schema: public; Owner: doorsale
 --
 
-COPY sales_order (id, customer_id, currency_id, sub_total, taxes, total, refunded_amount, currency_rate, order_status, payment_status, shipping_status, billing_address_id, shipping_address_id, updated_on, updated_by, created_on, created_by) FROM stdin;
+COPY sales_order (id, customer_id, currency_id, sub_total, taxes, total, refunded_amount, exchange_rate, exchange_value, order_status, payment_method_code, payment_status, po_number, shipping_status, billing_address_id, shipping_address_id, receipt_code, updated_on, updated_by, created_on, created_by, shipping_cost) FROM stdin;
+1	1	97	610.00	12.20	622.20	0.00	1	622.20	PE	CH	PE	\N	PE	1	1	Uidf5kmIQyTa	2014-07-22 06:20:48.235234+05	mysteryjeans	2014-07-22 06:20:48.235276+05	mysteryjeans	0.00
+2	1	98	1815.00	36.30	1851.30	0.00	98.6500000000000057	182630.74	PE	CO	PE	\N	PE	1	1	pNWKcZ8T4rqNPMfvwebp	2014-07-22 08:26:05.179865+05	mysteryjeans	2014-07-22 08:26:05.179933+05	mysteryjeans	0.00
 \.
 
 
@@ -2130,7 +2168,7 @@ COPY sales_order (id, customer_id, currency_id, sub_total, taxes, total, refunde
 -- Name: sales_order_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_order_id_seq', 1, false);
+SELECT pg_catalog.setval('sales_order_id_seq', 2, true);
 
 
 --
@@ -2138,6 +2176,9 @@ SELECT pg_catalog.setval('sales_order_id_seq', 1, false);
 --
 
 COPY sales_order_item (id, order_id, product_id, price, quantity, taxes, sub_total, total, tax_rate, tax_method, updated_on, updated_by, created_on, created_by) FROM stdin;
+1	1	3	610.00	1	12.20	610.00	622.20	0.0200000000000000004	PE	2014-07-22 06:20:48.246526+05	mysteryjeans	2014-07-22 06:20:48.246562+05	mysteryjeans
+2	2	2	595.00	1	11.90	595.00	606.90	0.0200000000000000004	PE	2014-07-22 08:26:05.19135+05	mysteryjeans	2014-07-22 08:26:05.191386+05	mysteryjeans
+3	2	3	610.00	2	24.40	1220.00	1244.40	0.0200000000000000004	PE	2014-07-22 08:26:05.194964+05	mysteryjeans	2014-07-22 08:26:05.195+05	mysteryjeans
 \.
 
 
@@ -2145,11 +2186,23 @@ COPY sales_order_item (id, order_id, product_id, price, quantity, taxes, sub_tot
 -- Name: sales_order_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_order_item_id_seq', 1, false);
+SELECT pg_catalog.setval('sales_order_item_id_seq', 3, true);
 
 
 --
--- Name: accounts_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Data for Name: sales_payment_method; Type: TABLE DATA; Schema: public; Owner: doorsale
+--
+
+COPY sales_payment_method (code, name, is_active, updated_by, updated_on, created_on, created_by) FROM stdin;
+CO	Cash On Delivery	t	system	2014-07-22 05:11:14.806316+05	2014-07-22 05:11:14.806316+05	system
+CH	Check / Money Order	t	system	2014-07-22 05:11:14.828812+05	2014-07-22 05:11:14.828812+05	system
+CC	Credit Card	t	system	2014-07-22 05:11:14.850444+05	2014-07-22 05:11:14.850444+05	system
+PO	Purchase Order	t	system	2014-07-22 05:11:14.872682+05	2014-07-22 05:11:14.872682+05	system
+\.
+
+
+--
+-- Name: accounts_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 ALTER TABLE ONLY accounts_user_groups
@@ -2157,7 +2210,7 @@ ALTER TABLE ONLY accounts_user_groups
 
 
 --
--- Name: accounts_user_groups_user_id_group_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: accounts_user_groups_user_id_group_id_key; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 ALTER TABLE ONLY accounts_user_groups
@@ -2165,7 +2218,7 @@ ALTER TABLE ONLY accounts_user_groups
 
 
 --
--- Name: accounts_user_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: accounts_user_pkey; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 ALTER TABLE ONLY accounts_user
@@ -2173,7 +2226,7 @@ ALTER TABLE ONLY accounts_user
 
 
 --
--- Name: accounts_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: accounts_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 ALTER TABLE ONLY accounts_user_user_permissions
@@ -2181,7 +2234,7 @@ ALTER TABLE ONLY accounts_user_user_permissions
 
 
 --
--- Name: accounts_user_user_permissions_user_id_permission_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: accounts_user_user_permissions_user_id_permission_id_key; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 ALTER TABLE ONLY accounts_user_user_permissions
@@ -2189,7 +2242,7 @@ ALTER TABLE ONLY accounts_user_user_permissions
 
 
 --
--- Name: accounts_user_username_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: accounts_user_username_key; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 ALTER TABLE ONLY accounts_user
@@ -2197,7 +2250,7 @@ ALTER TABLE ONLY accounts_user
 
 
 --
--- Name: auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_group
@@ -2205,7 +2258,7 @@ ALTER TABLE ONLY auth_group
 
 
 --
--- Name: auth_group_permissions_group_id_permission_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: auth_group_permissions_group_id_permission_id_key; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_group_permissions
@@ -2213,7 +2266,7 @@ ALTER TABLE ONLY auth_group_permissions
 
 
 --
--- Name: auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_group_permissions
@@ -2221,7 +2274,7 @@ ALTER TABLE ONLY auth_group_permissions
 
 
 --
--- Name: auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_group
@@ -2229,7 +2282,7 @@ ALTER TABLE ONLY auth_group
 
 
 --
--- Name: auth_permission_content_type_id_codename_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: auth_permission_content_type_id_codename_key; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_permission
@@ -2237,7 +2290,7 @@ ALTER TABLE ONLY auth_permission
 
 
 --
--- Name: auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_permission
@@ -2341,7 +2394,7 @@ ALTER TABLE ONLY catalog_product_spec
 
 
 --
--- Name: django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 ALTER TABLE ONLY django_admin_log
@@ -2400,7 +2453,7 @@ ALTER TABLE ONLY financial_currency
 -- Name: financial_tax_rate_name_key; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
-ALTER TABLE ONLY financial_tax_rate
+ALTER TABLE ONLY financial_tax
     ADD CONSTRAINT financial_tax_rate_name_key UNIQUE (name);
 
 
@@ -2408,12 +2461,12 @@ ALTER TABLE ONLY financial_tax_rate
 -- Name: financial_tax_rate_pkey; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
-ALTER TABLE ONLY financial_tax_rate
+ALTER TABLE ONLY financial_tax
     ADD CONSTRAINT financial_tax_rate_pkey PRIMARY KEY (id);
 
 
 --
--- Name: geo_address_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: geo_address_pkey; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 ALTER TABLE ONLY geo_address
@@ -2509,77 +2562,85 @@ ALTER TABLE ONLY sales_order
 
 
 --
--- Name: accounts_user_billing_address_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: sales_payment_method_pkey; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+ALTER TABLE ONLY sales_payment_method
+    ADD CONSTRAINT sales_payment_method_pkey PRIMARY KEY (code);
+
+
+--
+-- Name: accounts_user_billing_address_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE INDEX accounts_user_billing_address_id ON accounts_user USING btree (billing_address_id);
 
 
 --
--- Name: accounts_user_groups_group_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: accounts_user_groups_group_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE INDEX accounts_user_groups_group_id ON accounts_user_groups USING btree (group_id);
 
 
 --
--- Name: accounts_user_groups_user_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: accounts_user_groups_user_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE INDEX accounts_user_groups_user_id ON accounts_user_groups USING btree (user_id);
 
 
 --
--- Name: accounts_user_shipping_adress_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: accounts_user_shipping_adress_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE INDEX accounts_user_shipping_adress_id ON accounts_user USING btree (shipping_adress_id);
 
 
 --
--- Name: accounts_user_user_permissions_permission_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: accounts_user_user_permissions_permission_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE INDEX accounts_user_user_permissions_permission_id ON accounts_user_user_permissions USING btree (permission_id);
 
 
 --
--- Name: accounts_user_user_permissions_user_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: accounts_user_user_permissions_user_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE INDEX accounts_user_user_permissions_user_id ON accounts_user_user_permissions USING btree (user_id);
 
 
 --
--- Name: accounts_user_username_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: accounts_user_username_like; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE INDEX accounts_user_username_like ON accounts_user USING btree (username varchar_pattern_ops);
 
 
 --
--- Name: auth_group_name_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: auth_group_name_like; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE INDEX auth_group_name_like ON auth_group USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: auth_group_permissions_group_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: auth_group_permissions_group_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE INDEX auth_group_permissions_group_id ON auth_group_permissions USING btree (group_id);
 
 
 --
--- Name: auth_group_permissions_permission_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: auth_group_permissions_permission_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE INDEX auth_group_permissions_permission_id ON auth_group_permissions USING btree (permission_id);
 
 
 --
--- Name: auth_permission_content_type_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: auth_permission_content_type_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE INDEX auth_permission_content_type_id ON auth_permission USING btree (content_type_id);
@@ -2659,18 +2720,18 @@ CREATE INDEX catalog_product_spec_product_id ON catalog_product_spec USING btree
 -- Name: catalog_product_tax_rate_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
-CREATE INDEX catalog_product_tax_rate_id ON catalog_product USING btree (tax_rate_id);
+CREATE INDEX catalog_product_tax_rate_id ON catalog_product USING btree (tax_id);
 
 
 --
--- Name: django_admin_log_content_type_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: django_admin_log_content_type_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE INDEX django_admin_log_content_type_id ON django_admin_log USING btree (content_type_id);
 
 
 --
--- Name: django_admin_log_user_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: django_admin_log_user_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE INDEX django_admin_log_user_id ON django_admin_log USING btree (user_id);
@@ -2708,25 +2769,25 @@ CREATE INDEX financial_currency_name_like ON financial_currency USING btree (nam
 -- Name: financial_tax_rate_name_like; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
-CREATE INDEX financial_tax_rate_name_like ON financial_tax_rate USING btree (name varchar_pattern_ops);
+CREATE INDEX financial_tax_rate_name_like ON financial_tax USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: geo_address_country_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: geo_address_country_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE INDEX geo_address_country_id ON geo_address USING btree (country_id);
 
 
 --
--- Name: geo_address_customer_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: geo_address_customer_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE INDEX geo_address_customer_id ON geo_address USING btree (customer_id);
 
 
 --
--- Name: geo_address_state_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: geo_address_state_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE INDEX geo_address_state_id ON geo_address USING btree (state_id);
@@ -2817,6 +2878,20 @@ CREATE INDEX sales_order_item_product_id ON sales_order_item USING btree (produc
 
 
 --
+-- Name: sales_order_payment_method_code; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+CREATE INDEX sales_order_payment_method_code ON sales_order USING btree (payment_method_code);
+
+
+--
+-- Name: sales_order_payment_method_code_like; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+CREATE INDEX sales_order_payment_method_code_like ON sales_order USING btree (payment_method_code varchar_pattern_ops);
+
+
+--
 -- Name: sales_order_shipping_address_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
@@ -2824,7 +2899,14 @@ CREATE INDEX sales_order_shipping_address_id ON sales_order USING btree (shippin
 
 
 --
--- Name: accounts_user_groups_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: sales_payment_method_code_like; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+CREATE INDEX sales_payment_method_code_like ON sales_payment_method USING btree (code varchar_pattern_ops);
+
+
+--
+-- Name: accounts_user_groups_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY accounts_user_groups
@@ -2832,7 +2914,7 @@ ALTER TABLE ONLY accounts_user_groups
 
 
 --
--- Name: accounts_user_user_permissions_permission_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: accounts_user_user_permissions_permission_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY accounts_user_user_permissions
@@ -2840,7 +2922,7 @@ ALTER TABLE ONLY accounts_user_user_permissions
 
 
 --
--- Name: auth_group_permissions_permission_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: auth_group_permissions_permission_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY auth_group_permissions
@@ -2848,7 +2930,7 @@ ALTER TABLE ONLY auth_group_permissions
 
 
 --
--- Name: auth_permission_content_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: auth_permission_content_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY auth_permission
@@ -2896,15 +2978,7 @@ ALTER TABLE ONLY catalog_product_spec
 
 
 --
--- Name: currency_id_refs_id_caeef03d; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
---
-
-ALTER TABLE ONLY sales_order
-    ADD CONSTRAINT currency_id_refs_id_caeef03d FOREIGN KEY (currency_id) REFERENCES financial_currency(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: django_admin_log_content_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: django_admin_log_content_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY django_admin_log
@@ -2912,7 +2986,7 @@ ALTER TABLE ONLY django_admin_log
 
 
 --
--- Name: geo_address_country_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: geo_address_country_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY geo_address
@@ -2920,7 +2994,7 @@ ALTER TABLE ONLY geo_address
 
 
 --
--- Name: geo_address_customer_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: geo_address_customer_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY geo_address
@@ -2928,7 +3002,7 @@ ALTER TABLE ONLY geo_address
 
 
 --
--- Name: geo_address_state_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: geo_address_state_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY geo_address
@@ -2944,7 +3018,7 @@ ALTER TABLE ONLY geo_state
 
 
 --
--- Name: group_id_refs_id_f4b32aac; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: group_id_refs_id_f4b32aac; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY auth_group_permissions
@@ -2968,6 +3042,30 @@ ALTER TABLE ONLY sales_cart_item
 
 
 --
+-- Name: sales_order_billing_address_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
+--
+
+ALTER TABLE ONLY sales_order
+    ADD CONSTRAINT sales_order_billing_address_id_fkey FOREIGN KEY (billing_address_id) REFERENCES geo_address(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: sales_order_currency_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
+--
+
+ALTER TABLE ONLY sales_order
+    ADD CONSTRAINT sales_order_currency_id_fkey FOREIGN KEY (currency_id) REFERENCES financial_currency(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: sales_order_customer_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
+--
+
+ALTER TABLE ONLY sales_order
+    ADD CONSTRAINT sales_order_customer_id_fkey FOREIGN KEY (customer_id) REFERENCES accounts_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
 -- Name: sales_order_item_order_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
 --
 
@@ -2984,15 +3082,31 @@ ALTER TABLE ONLY sales_order_item
 
 
 --
+-- Name: sales_order_payment_method_code_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
+--
+
+ALTER TABLE ONLY sales_order
+    ADD CONSTRAINT sales_order_payment_method_code_fkey FOREIGN KEY (payment_method_code) REFERENCES sales_payment_method(code) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: sales_order_shipping_address_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
+--
+
+ALTER TABLE ONLY sales_order
+    ADD CONSTRAINT sales_order_shipping_address_id_fkey FOREIGN KEY (shipping_address_id) REFERENCES geo_address(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
 -- Name: tax_rate_id_refs_id_504c9250; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY catalog_product
-    ADD CONSTRAINT tax_rate_id_refs_id_504c9250 FOREIGN KEY (tax_rate_id) REFERENCES financial_tax_rate(id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT tax_rate_id_refs_id_504c9250 FOREIGN KEY (tax_id) REFERENCES financial_tax(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: user_id_refs_id_f43d458c; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: user_id_refs_id_f43d458c; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY accounts_user_groups
@@ -3000,7 +3114,7 @@ ALTER TABLE ONLY accounts_user_groups
 
 
 --
--- Name: user_id_refs_id_f8c8af81; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: user_id_refs_id_f8c8af81; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY django_admin_log
@@ -3008,7 +3122,7 @@ ALTER TABLE ONLY django_admin_log
 
 
 --
--- Name: user_id_refs_id_f905ace9; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: user_id_refs_id_f905ace9; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
 --
 
 ALTER TABLE ONLY accounts_user_user_permissions
