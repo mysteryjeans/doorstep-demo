@@ -1657,7 +1657,7 @@ r8jc5hkn18exzl0vyvnmzcukxf69uzqc	MzkzODJjNzMxOWZiNGVhN2NlMGY5YWZlZjQ3MDRmODE3NmN
 si0mjwgqazmlt2hfemtnbdtl75q2cneq	ZDdkYjRiODZjN2U3NjAwNTQxMmEwZWI2YTFiZmYyZTNjYTg1ZTdlZTp7InVzZXJfY3VycmVuY3kiOiJFVVIifQ==	2014-05-15 21:30:11.115768+05
 hnptb5es5bc0mrwd86y26t63txvpjc4q	ODM1OTQ2ODQ4YjFhYzQyNmI0MjlkNGIzNjE1NWQ5OTY3YmI1MGY5NTp7InNoaXBwaW5nX2FkZHJlc3MiOjEsImJpbGxpbmdfYWRkcmVzcyI6MSwiX2F1dGhfdXNlcl9pZCI6MSwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJjYXJ0X2lkIjo2N30=	2014-05-30 06:35:51.819895+05
 u59erxxtueu3w0q1v0fzseauq4l6jfia	MzIxMjZlODcxYWU2ODUyY2Y4NzkyMTRlNjVkOWM3YjcxOWI0OTA0ODp7fQ==	2014-07-30 21:54:40.643132+05
-f6f7q0pm4j54m8l1msxfcw6r70t3t154	Yzk0MGViMTY5YTU2M2QyZDQ5NWQyYmRkNmRlNjk2NjRmYmY3NDljYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=	2014-08-05 23:59:07.83675+05
+f6f7q0pm4j54m8l1msxfcw6r70t3t154	YmRhZjllNDRkYzcyMDQ5OTI2OWE1ZGE2YTE2NWQ5MDVmOTFkNTcxYzp7ImJpbGxpbmdfYWRkcmVzcyI6MSwiX2F1dGhfdXNlcl9pZCI6MSwicGF5bWVudF9tZXRob2QiOiJDTyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwic2hpcHBpbmdfYWRkcmVzcyI6MSwiY2FydF9pZCI6ODR9	2014-08-07 04:47:35.179093+05
 \.
 
 
@@ -2118,6 +2118,9 @@ COPY sales_cart (id, updated_on, updated_by, created_on, created_by) FROM stdin;
 79	2014-07-22 23:11:04.651996+05		2014-07-22 23:11:04.65204+05	
 80	2014-07-22 23:14:30.128317+05		2014-07-22 23:14:30.128359+05	
 81	2014-07-22 23:58:46.351429+05		2014-07-22 23:58:46.351523+05	
+82	2014-07-23 00:52:18.061218+05		2014-07-23 00:52:18.061262+05	
+83	2014-07-23 00:55:15.091788+05		2014-07-23 00:55:15.091839+05	
+84	2014-07-24 04:47:25.754252+05		2014-07-24 04:47:25.754293+05	
 \.
 
 
@@ -2125,7 +2128,7 @@ COPY sales_cart (id, updated_on, updated_by, created_on, created_by) FROM stdin;
 -- Name: sales_cart_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_cart_id_seq', 81, true);
+SELECT pg_catalog.setval('sales_cart_id_seq', 84, true);
 
 
 --
@@ -2171,6 +2174,9 @@ COPY sales_cart_item (id, cart_id, product_id, quantity, updated_on, updated_by,
 133	79	10	1	2014-07-22 23:11:04.661237+05	mysteryjeans	2014-07-22 23:11:04.661275+05	mysteryjeans
 134	80	10	1	2014-07-22 23:14:30.137386+05	mysteryjeans	2014-07-22 23:14:30.137447+05	mysteryjeans
 135	81	2	1	2014-07-22 23:58:46.358984+05	mysteryjeans	2014-07-22 23:58:46.359022+05	mysteryjeans
+136	82	2	1	2014-07-23 00:52:18.069109+05	mysteryjeans	2014-07-23 00:52:18.069148+05	mysteryjeans
+137	83	7	1	2014-07-23 00:55:15.10119+05	mysteryjeans	2014-07-23 00:55:15.101277+05	mysteryjeans
+138	84	2	1	2014-07-24 04:47:25.804203+05	mysteryjeans	2014-07-24 04:47:25.804257+05	mysteryjeans
 \.
 
 
@@ -2178,7 +2184,7 @@ COPY sales_cart_item (id, cart_id, product_id, quantity, updated_on, updated_by,
 -- Name: sales_cart_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_cart_item_id_seq', 135, true);
+SELECT pg_catalog.setval('sales_cart_item_id_seq', 138, true);
 
 
 --
@@ -2206,6 +2212,8 @@ COPY sales_order (id, customer_id, currency_id, sub_total, taxes, total, refunde
 18	1	98	43.00	0.86	43.86	0.00	98.6500000000000057	4326.79	PE	CO	PE	\N	PE	1	1	BxfMViomZbuiixmJtYFl	2014-07-22 23:11:26.371117+05	mysteryjeans	2014-07-22 23:11:26.371162+05	mysteryjeans	0.00
 19	1	98	43.00	0.86	43.86	0.00	98.6500000000000057	4326.79	PE	CO	PE	\N	PE	1	1	BKz3REV3W9yuReuNgTIi	2014-07-22 23:14:43.198828+05	mysteryjeans	2014-07-22 23:14:43.198869+05	mysteryjeans	0.00
 20	1	97	595.00	11.90	606.90	0.00	1	606.90	PE	CO	PE	\N	PE	1	1	3YSl25r6zx2KFhftCSUv	2014-07-22 23:59:00.600831+05	mysteryjeans	2014-07-22 23:59:00.600867+05	mysteryjeans	0.00
+21	1	97	595.00	11.90	606.90	0.00	1	606.90	PE	CH	PE	\N	PE	1	1	GPAJzJppryKJ0r4y3ZvT	2014-07-23 00:54:30.993284+05	mysteryjeans	2014-07-23 00:54:30.993325+05	mysteryjeans	0.00
+22	1	97	478.76	9.58	488.34	0.00	1	488.34	PE	CO	PE	\N	PE	1	1	tz9ru02qGlgMRVSueBSq	2014-07-23 01:12:44.792204+05	mysteryjeans	2014-07-23 01:12:44.792242+05	mysteryjeans	0.00
 \.
 
 
@@ -2213,7 +2221,7 @@ COPY sales_order (id, customer_id, currency_id, sub_total, taxes, total, refunde
 -- Name: sales_order_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_order_id_seq', 20, true);
+SELECT pg_catalog.setval('sales_order_id_seq', 22, true);
 
 
 --
@@ -2242,6 +2250,8 @@ COPY sales_order_item (id, order_id, product_id, price, quantity, taxes, sub_tot
 19	18	10	43.00	1	0.86	43.00	43.86	0.0200000000000000004	PE	2014-07-22 23:11:26.381915+05	mysteryjeans	2014-07-22 23:11:26.381952+05	mysteryjeans
 20	19	10	43.00	1	0.86	43.00	43.86	0.0200000000000000004	PE	2014-07-22 23:14:43.210617+05	mysteryjeans	2014-07-22 23:14:43.210654+05	mysteryjeans
 21	20	2	595.00	1	11.90	595.00	606.90	0.0200000000000000004	PE	2014-07-22 23:59:00.608405+05	mysteryjeans	2014-07-22 23:59:00.608443+05	mysteryjeans
+22	21	2	595.00	1	11.90	595.00	606.90	0.0200000000000000004	PE	2014-07-23 00:54:31.000953+05	mysteryjeans	2014-07-23 00:54:31.00099+05	mysteryjeans
+23	22	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-07-23 01:12:44.800813+05	mysteryjeans	2014-07-23 01:12:44.800849+05	mysteryjeans
 \.
 
 
@@ -2249,7 +2259,7 @@ COPY sales_order_item (id, order_id, product_id, price, quantity, taxes, sub_tot
 -- Name: sales_order_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_order_item_id_seq', 21, true);
+SELECT pg_catalog.setval('sales_order_item_id_seq', 23, true);
 
 
 --
