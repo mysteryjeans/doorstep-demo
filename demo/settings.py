@@ -134,11 +134,11 @@ COPYRIGHT = 'Doorsale (c) 2014'
 CONTACT_EMAIL = 'demo@doorsaledemo.com'
 
 # Email server settings
-# You should define your email server settings here
-# EMAIL_HOST = ''
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = ''
-# EMAIL_HOST_PASSWORD = ''
+# You should define your email server settings here  
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'postmaster@codehunkit.com'
+EMAIL_HOST_PASSWORD = r'3q0piqx67st5'
 
 

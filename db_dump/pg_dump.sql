@@ -776,6 +776,144 @@ ALTER SEQUENCE geo_state_id_seq OWNED BY geo_state.id;
 
 
 --
+-- Name: payments_gateway; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+CREATE TABLE payments_gateway (
+    name character varying(10) NOT NULL,
+    account_name character varying(100) NOT NULL,
+    is_active boolean NOT NULL,
+    updated_on timestamp with time zone NOT NULL,
+    created_on timestamp with time zone NOT NULL,
+    updated_by character varying(100) NOT NULL,
+    created_by character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.payments_gateway OWNER TO doorsale;
+
+--
+-- Name: payments_gateway_param; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+CREATE TABLE payments_gateway_param (
+    id integer NOT NULL,
+    gateway_id character varying(10) NOT NULL,
+    name character varying(250) NOT NULL,
+    value character varying(500) NOT NULL,
+    updated_on timestamp with time zone NOT NULL,
+    created_on timestamp with time zone NOT NULL,
+    updated_by character varying(100) NOT NULL,
+    created_by character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.payments_gateway_param OWNER TO doorsale;
+
+--
+-- Name: payments_gateway_param_id_seq; Type: SEQUENCE; Schema: public; Owner: doorsale
+--
+
+CREATE SEQUENCE payments_gateway_param_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.payments_gateway_param_id_seq OWNER TO doorsale;
+
+--
+-- Name: payments_gateway_param_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: doorsale
+--
+
+ALTER SEQUENCE payments_gateway_param_id_seq OWNED BY payments_gateway_param.id;
+
+
+--
+-- Name: payments_transaction; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+CREATE TABLE payments_transaction (
+    id integer NOT NULL,
+    gateway_id character varying(10) NOT NULL,
+    order_id integer NOT NULL,
+    stan character varying(100) NOT NULL,
+    sale_id character varying(100),
+    description character varying(250) NOT NULL,
+    status character varying(100) NOT NULL,
+    currency character varying(3) NOT NULL,
+    amount numeric(9,2) NOT NULL,
+    refund_amount numeric(9,2),
+    updated_on timestamp with time zone NOT NULL,
+    created_on timestamp with time zone NOT NULL,
+    updated_by character varying(100) NOT NULL,
+    created_by character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.payments_transaction OWNER TO doorsale;
+
+--
+-- Name: payments_transaction_id_seq; Type: SEQUENCE; Schema: public; Owner: doorsale
+--
+
+CREATE SEQUENCE payments_transaction_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.payments_transaction_id_seq OWNER TO doorsale;
+
+--
+-- Name: payments_transaction_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: doorsale
+--
+
+ALTER SEQUENCE payments_transaction_id_seq OWNED BY payments_transaction.id;
+
+
+--
+-- Name: payments_transaction_param; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+CREATE TABLE payments_transaction_param (
+    id integer NOT NULL,
+    transaction_id integer NOT NULL,
+    name character varying(100) NOT NULL,
+    value character varying(250) NOT NULL,
+    created_on timestamp with time zone NOT NULL,
+    created_by character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.payments_transaction_param OWNER TO doorsale;
+
+--
+-- Name: payments_transaction_param_id_seq; Type: SEQUENCE; Schema: public; Owner: doorsale
+--
+
+CREATE SEQUENCE payments_transaction_param_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.payments_transaction_param_id_seq OWNER TO doorsale;
+
+--
+-- Name: payments_transaction_param_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: doorsale
+--
+
+ALTER SEQUENCE payments_transaction_param_id_seq OWNED BY payments_transaction_param.id;
+
+
+--
 -- Name: sales_cart; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
 --
 
@@ -1095,6 +1233,27 @@ ALTER TABLE ONLY geo_state ALTER COLUMN id SET DEFAULT nextval('geo_state_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: doorsale
 --
 
+ALTER TABLE ONLY payments_gateway_param ALTER COLUMN id SET DEFAULT nextval('payments_gateway_param_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: doorsale
+--
+
+ALTER TABLE ONLY payments_transaction ALTER COLUMN id SET DEFAULT nextval('payments_transaction_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: doorsale
+--
+
+ALTER TABLE ONLY payments_transaction_param ALTER COLUMN id SET DEFAULT nextval('payments_transaction_param_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: doorsale
+--
+
 ALTER TABLE ONLY sales_cart ALTER COLUMN id SET DEFAULT nextval('sales_cart_id_seq'::regclass);
 
 
@@ -1124,7 +1283,7 @@ ALTER TABLE ONLY sales_order_item ALTER COLUMN id SET DEFAULT nextval('sales_ord
 --
 
 COPY accounts_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, birth_date, gender, billing_address_id, shipping_adress_id, is_verified, verification_code, updated_on, updated_by, created_on, created_by) FROM stdin;
-1	pbkdf2_sha256$12000$J25OPTB58fJe$8d5X9ox3VTDEDDbVqvavdaQ5tkyWeiZAPbXtldGpXDc=	2014-07-22 23:22:58.722331+05	t	mysteryjeans	Faraz	Masood Khan	faraz@fanaticlab.com	t	t	2014-05-01 19:13:06.219876+05	\N	M	\N	\N	f	3776b902d00aaec77ceba965995f2265	2014-05-01 19:13:06.314491+05	mysteryjeans	2014-05-01 19:13:06.314519+05	mysteryjeans
+1	pbkdf2_sha256$12000$J25OPTB58fJe$8d5X9ox3VTDEDDbVqvavdaQ5tkyWeiZAPbXtldGpXDc=	2014-07-24 17:45:41.045131+05	t	mysteryjeans	Faraz	Masood Khan	faraz@fanaticlab.com	t	t	2014-05-01 19:13:06.219876+05	\N	M	\N	\N	f	3776b902d00aaec77ceba965995f2265	2014-05-01 19:13:06.314491+05	mysteryjeans	2014-05-01 19:13:06.314519+05	mysteryjeans
 \.
 
 
@@ -1266,6 +1425,18 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 67	Can add site	26	add_site
 68	Can change site	26	change_site
 69	Can delete site	26	delete_site
+70	Can add gateway	27	add_gateway
+71	Can change gateway	27	change_gateway
+72	Can delete gateway	27	delete_gateway
+73	Can add gateway param	28	add_gatewayparam
+74	Can change gateway param	28	change_gatewayparam
+75	Can delete gateway param	28	delete_gatewayparam
+76	Can add transaction	29	add_transaction
+77	Can change transaction	29	change_transaction
+78	Can delete transaction	29	delete_transaction
+79	Can add transaction param	30	add_transactionparam
+80	Can change transaction param	30	change_transactionparam
+81	Can delete transaction param	30	delete_transactionparam
 \.
 
 
@@ -1273,7 +1444,7 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('auth_permission_id_seq', 69, true);
+SELECT pg_catalog.setval('auth_permission_id_seq', 81, true);
 
 
 --
@@ -1591,6 +1762,7 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 26	2014-05-15 06:39:21.369932+05	1	12	1	Lenovo G510 Laptop	2	Changed old_price.
 27	2014-05-15 06:40:42.355327+05	1	12	1	Lenovo G510 Laptop	2	Changed is_free_shipping.
 28	2014-07-22 21:56:11.169908+05	1	26	1	127.0.0.1:8000	2	Changed domain and name.
+29	2014-07-24 21:10:10.777604+05	1	21	1	Faraz Masood Khan Sugarland parklane, Houston, Texas, United States	2	Changed last_name.
 \.
 
 
@@ -1598,7 +1770,7 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 28, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 29, true);
 
 
 --
@@ -1630,6 +1802,10 @@ COPY django_content_type (id, name, app_label, model) FROM stdin;
 24	payment method	sales	paymentmethod
 25	tax	financial	tax
 26	site	sites	site
+27	gateway	payments	gateway
+28	gateway param	payments	gatewayparam
+29	transaction	payments	transaction
+30	transaction param	payments	transactionparam
 \.
 
 
@@ -1637,7 +1813,7 @@ COPY django_content_type (id, name, app_label, model) FROM stdin;
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('django_content_type_id_seq', 26, true);
+SELECT pg_catalog.setval('django_content_type_id_seq', 30, true);
 
 
 --
@@ -1657,6 +1833,7 @@ r8jc5hkn18exzl0vyvnmzcukxf69uzqc	MzkzODJjNzMxOWZiNGVhN2NlMGY5YWZlZjQ3MDRmODE3NmN
 si0mjwgqazmlt2hfemtnbdtl75q2cneq	ZDdkYjRiODZjN2U3NjAwNTQxMmEwZWI2YTFiZmYyZTNjYTg1ZTdlZTp7InVzZXJfY3VycmVuY3kiOiJFVVIifQ==	2014-05-15 21:30:11.115768+05
 hnptb5es5bc0mrwd86y26t63txvpjc4q	ODM1OTQ2ODQ4YjFhYzQyNmI0MjlkNGIzNjE1NWQ5OTY3YmI1MGY5NTp7InNoaXBwaW5nX2FkZHJlc3MiOjEsImJpbGxpbmdfYWRkcmVzcyI6MSwiX2F1dGhfdXNlcl9pZCI6MSwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJjYXJ0X2lkIjo2N30=	2014-05-30 06:35:51.819895+05
 u59erxxtueu3w0q1v0fzseauq4l6jfia	MzIxMjZlODcxYWU2ODUyY2Y4NzkyMTRlNjVkOWM3YjcxOWI0OTA0ODp7fQ==	2014-07-30 21:54:40.643132+05
+2y83qaooi5axc8k11ksfel6db51r58c8	ZDViN2RkYmM4ZmM1OGJhMDA4NjM0NGY2MzI5ZWU0MTRiYjJmMTJhMDp7ImJpbGxpbmdfYWRkcmVzcyI6MSwiX2F1dGhfdXNlcl9pZCI6MSwicGF5bWVudF9tZXRob2QiOiJDTyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwic2hpcHBpbmdfYWRkcmVzcyI6MSwiY2FydF9pZCI6ODd9	2014-08-08 00:57:32.570131+05
 f6f7q0pm4j54m8l1msxfcw6r70t3t154	YmRhZjllNDRkYzcyMDQ5OTI2OWE1ZGE2YTE2NWQ5MDVmOTFkNTcxYzp7ImJpbGxpbmdfYWRkcmVzcyI6MSwiX2F1dGhfdXNlcl9pZCI6MSwicGF5bWVudF9tZXRob2QiOiJDTyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwic2hpcHBpbmdfYWRkcmVzcyI6MSwiY2FydF9pZCI6ODR9	2014-08-07 04:47:35.179093+05
 \.
 
@@ -1710,7 +1887,7 @@ SELECT pg_catalog.setval('financial_tax_rate_id_seq', 2, true);
 --
 
 COPY geo_address (id, customer_id, first_name, last_name, email, company, country_id, state_id, city, address1, address2, zip_or_postal_code, phone_number, fax_number, updated_on, updated_by, created_on, created_by) FROM stdin;
-1	1	Faraz	Khan	mk.faraz@gmail.com		1	54	Houston	Sugarland parklane		23456	123456789		2014-05-16 06:33:02.047443+05	mysteryjeans	2014-05-16 06:33:02.047478+05	mysteryjeans
+1	1	Faraz	Masood Khan	mk.faraz@gmail.com		1	54	Houston	Sugarland parklane		23456	123456789		2014-07-24 21:10:10.775262+05	mysteryjeans	2014-05-16 06:33:02.047478+05	mysteryjeans
 \.
 
 
@@ -2069,6 +2246,59 @@ SELECT pg_catalog.setval('geo_state_id_seq', 160, true);
 
 
 --
+-- Data for Name: payments_gateway; Type: TABLE DATA; Schema: public; Owner: doorsale
+--
+
+COPY payments_gateway (name, account_name, is_active, updated_on, created_on, updated_by, created_by) FROM stdin;
+\.
+
+
+--
+-- Data for Name: payments_gateway_param; Type: TABLE DATA; Schema: public; Owner: doorsale
+--
+
+COPY payments_gateway_param (id, gateway_id, name, value, updated_on, created_on, updated_by, created_by) FROM stdin;
+\.
+
+
+--
+-- Name: payments_gateway_param_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
+--
+
+SELECT pg_catalog.setval('payments_gateway_param_id_seq', 1, false);
+
+
+--
+-- Data for Name: payments_transaction; Type: TABLE DATA; Schema: public; Owner: doorsale
+--
+
+COPY payments_transaction (id, gateway_id, order_id, stan, sale_id, description, status, currency, amount, refund_amount, updated_on, created_on, updated_by, created_by) FROM stdin;
+\.
+
+
+--
+-- Name: payments_transaction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
+--
+
+SELECT pg_catalog.setval('payments_transaction_id_seq', 1, false);
+
+
+--
+-- Data for Name: payments_transaction_param; Type: TABLE DATA; Schema: public; Owner: doorsale
+--
+
+COPY payments_transaction_param (id, transaction_id, name, value, created_on, created_by) FROM stdin;
+\.
+
+
+--
+-- Name: payments_transaction_param_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
+--
+
+SELECT pg_catalog.setval('payments_transaction_param_id_seq', 1, false);
+
+
+--
 -- Data for Name: sales_cart; Type: TABLE DATA; Schema: public; Owner: doorsale
 --
 
@@ -2121,6 +2351,9 @@ COPY sales_cart (id, updated_on, updated_by, created_on, created_by) FROM stdin;
 82	2014-07-23 00:52:18.061218+05		2014-07-23 00:52:18.061262+05	
 83	2014-07-23 00:55:15.091788+05		2014-07-23 00:55:15.091839+05	
 84	2014-07-24 04:47:25.754252+05		2014-07-24 04:47:25.754293+05	
+85	2014-07-24 16:47:29.503624+05		2014-07-24 16:47:29.503681+05	
+86	2014-07-24 20:38:08.611777+05		2014-07-24 20:38:08.61182+05	
+87	2014-07-25 00:20:41.370722+05		2014-07-25 00:20:41.370762+05	
 \.
 
 
@@ -2128,7 +2361,7 @@ COPY sales_cart (id, updated_on, updated_by, created_on, created_by) FROM stdin;
 -- Name: sales_cart_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_cart_id_seq', 84, true);
+SELECT pg_catalog.setval('sales_cart_id_seq', 87, true);
 
 
 --
@@ -2177,6 +2410,9 @@ COPY sales_cart_item (id, cart_id, product_id, quantity, updated_on, updated_by,
 136	82	2	1	2014-07-23 00:52:18.069109+05	mysteryjeans	2014-07-23 00:52:18.069148+05	mysteryjeans
 137	83	7	1	2014-07-23 00:55:15.10119+05	mysteryjeans	2014-07-23 00:55:15.101277+05	mysteryjeans
 138	84	2	1	2014-07-24 04:47:25.804203+05	mysteryjeans	2014-07-24 04:47:25.804257+05	mysteryjeans
+139	85	12	1	2014-07-24 16:47:29.50977+05	AnonymousUser	2014-07-24 16:47:29.50981+05	AnonymousUser
+140	86	2	1	2014-07-24 20:38:08.619781+05	mysteryjeans	2014-07-24 20:38:08.619823+05	mysteryjeans
+142	87	7	1	2014-07-25 00:20:54.625463+05	mysteryjeans	2014-07-25 00:20:54.625533+05	mysteryjeans
 \.
 
 
@@ -2184,7 +2420,7 @@ COPY sales_cart_item (id, cart_id, product_id, quantity, updated_on, updated_by,
 -- Name: sales_cart_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_cart_item_id_seq', 138, true);
+SELECT pg_catalog.setval('sales_cart_item_id_seq', 142, true);
 
 
 --
@@ -2214,6 +2450,8 @@ COPY sales_order (id, customer_id, currency_id, sub_total, taxes, total, refunde
 20	1	97	595.00	11.90	606.90	0.00	1	606.90	PE	CO	PE	\N	PE	1	1	3YSl25r6zx2KFhftCSUv	2014-07-22 23:59:00.600831+05	mysteryjeans	2014-07-22 23:59:00.600867+05	mysteryjeans	0.00
 21	1	97	595.00	11.90	606.90	0.00	1	606.90	PE	CH	PE	\N	PE	1	1	GPAJzJppryKJ0r4y3ZvT	2014-07-23 00:54:30.993284+05	mysteryjeans	2014-07-23 00:54:30.993325+05	mysteryjeans	0.00
 22	1	97	478.76	9.58	488.34	0.00	1	488.34	PE	CO	PE	\N	PE	1	1	tz9ru02qGlgMRVSueBSq	2014-07-23 01:12:44.792204+05	mysteryjeans	2014-07-23 01:12:44.792242+05	mysteryjeans	0.00
+23	1	97	27.00	0.54	27.54	0.00	1	27.54	PE	CO	PE	\N	PE	1	1	Z2hqOfk9m4A3nKWEklKf	2014-07-24 20:08:54.004375+05	mysteryjeans	2014-07-24 20:08:54.004412+05	mysteryjeans	0.00
+24	1	97	595.00	11.90	606.90	0.00	1	606.90	PE	CO	PE	\N	PE	1	1	rOip5SQRNkAdBxJUrZMn	2014-07-24 21:15:48.332888+05	mysteryjeans	2014-07-24 21:15:48.332925+05	mysteryjeans	0.00
 \.
 
 
@@ -2221,7 +2459,7 @@ COPY sales_order (id, customer_id, currency_id, sub_total, taxes, total, refunde
 -- Name: sales_order_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_order_id_seq', 22, true);
+SELECT pg_catalog.setval('sales_order_id_seq', 24, true);
 
 
 --
@@ -2252,6 +2490,8 @@ COPY sales_order_item (id, order_id, product_id, price, quantity, taxes, sub_tot
 21	20	2	595.00	1	11.90	595.00	606.90	0.0200000000000000004	PE	2014-07-22 23:59:00.608405+05	mysteryjeans	2014-07-22 23:59:00.608443+05	mysteryjeans
 22	21	2	595.00	1	11.90	595.00	606.90	0.0200000000000000004	PE	2014-07-23 00:54:31.000953+05	mysteryjeans	2014-07-23 00:54:31.00099+05	mysteryjeans
 23	22	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-07-23 01:12:44.800813+05	mysteryjeans	2014-07-23 01:12:44.800849+05	mysteryjeans
+24	23	12	27.00	1	0.54	27.00	27.54	0.0200000000000000004	PE	2014-07-24 20:08:54.013523+05	mysteryjeans	2014-07-24 20:08:54.013562+05	mysteryjeans
+25	24	2	595.00	1	11.90	595.00	606.90	0.0200000000000000004	PE	2014-07-24 21:15:48.341308+05	mysteryjeans	2014-07-24 21:15:48.341346+05	mysteryjeans
 \.
 
 
@@ -2259,7 +2499,7 @@ COPY sales_order_item (id, order_id, product_id, price, quantity, taxes, sub_tot
 -- Name: sales_order_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_order_item_id_seq', 23, true);
+SELECT pg_catalog.setval('sales_order_item_id_seq', 25, true);
 
 
 --
@@ -2595,6 +2835,54 @@ ALTER TABLE ONLY geo_state
 
 
 --
+-- Name: payments_gateway_param_gateway_id_name_key; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+ALTER TABLE ONLY payments_gateway_param
+    ADD CONSTRAINT payments_gateway_param_gateway_id_name_key UNIQUE (gateway_id, name);
+
+
+--
+-- Name: payments_gateway_param_pkey; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+ALTER TABLE ONLY payments_gateway_param
+    ADD CONSTRAINT payments_gateway_param_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: payments_gateway_pkey; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+ALTER TABLE ONLY payments_gateway
+    ADD CONSTRAINT payments_gateway_pkey PRIMARY KEY (name);
+
+
+--
+-- Name: payments_transaction_param_pkey; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+ALTER TABLE ONLY payments_transaction_param
+    ADD CONSTRAINT payments_transaction_param_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: payments_transaction_param_transaction_id_name_key; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+ALTER TABLE ONLY payments_transaction_param
+    ADD CONSTRAINT payments_transaction_param_transaction_id_name_key UNIQUE (transaction_id, name);
+
+
+--
+-- Name: payments_transaction_pkey; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+ALTER TABLE ONLY payments_transaction
+    ADD CONSTRAINT payments_transaction_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sales_cart_item_cart_product; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
 --
 
@@ -2902,6 +3190,55 @@ CREATE INDEX geo_state_name_like ON geo_state USING btree (name varchar_pattern_
 
 
 --
+-- Name: payments_gateway_name_like; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+CREATE INDEX payments_gateway_name_like ON payments_gateway USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: payments_gateway_param_gateway_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+CREATE INDEX payments_gateway_param_gateway_id ON payments_gateway_param USING btree (gateway_id);
+
+
+--
+-- Name: payments_gateway_param_gateway_id_like; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+CREATE INDEX payments_gateway_param_gateway_id_like ON payments_gateway_param USING btree (gateway_id varchar_pattern_ops);
+
+
+--
+-- Name: payments_transaction_gateway_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+CREATE INDEX payments_transaction_gateway_id ON payments_transaction USING btree (gateway_id);
+
+
+--
+-- Name: payments_transaction_gateway_id_like; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+CREATE INDEX payments_transaction_gateway_id_like ON payments_transaction USING btree (gateway_id varchar_pattern_ops);
+
+
+--
+-- Name: payments_transaction_order_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+CREATE INDEX payments_transaction_order_id ON payments_transaction USING btree (order_id);
+
+
+--
+-- Name: payments_transaction_param_transaction_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+CREATE INDEX payments_transaction_param_transaction_id ON payments_transaction_param USING btree (transaction_id);
+
+
+--
 -- Name: sales_cart_item_cart_id; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
 --
 
@@ -3096,6 +3433,38 @@ ALTER TABLE ONLY geo_state
 
 ALTER TABLE ONLY auth_group_permissions
     ADD CONSTRAINT group_id_refs_id_f4b32aac FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: payments_gateway_param_gateway_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
+--
+
+ALTER TABLE ONLY payments_gateway_param
+    ADD CONSTRAINT payments_gateway_param_gateway_id_fkey FOREIGN KEY (gateway_id) REFERENCES payments_gateway(name) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: payments_transaction_gateway_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
+--
+
+ALTER TABLE ONLY payments_transaction
+    ADD CONSTRAINT payments_transaction_gateway_id_fkey FOREIGN KEY (gateway_id) REFERENCES payments_gateway(name) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: payments_transaction_order_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
+--
+
+ALTER TABLE ONLY payments_transaction
+    ADD CONSTRAINT payments_transaction_order_id_fkey FOREIGN KEY (order_id) REFERENCES sales_order(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: payments_transaction_param_transaction_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: doorsale
+--
+
+ALTER TABLE ONLY payments_transaction_param
+    ADD CONSTRAINT payments_transaction_param_transaction_id_fkey FOREIGN KEY (transaction_id) REFERENCES payments_transaction(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
