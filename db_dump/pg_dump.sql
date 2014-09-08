@@ -776,12 +776,29 @@ ALTER SEQUENCE geo_state_id_seq OWNED BY geo_state.id;
 
 
 --
+-- Name: payments_card_issuer; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+CREATE TABLE payments_card_issuer (
+    descriptor character varying(100) NOT NULL,
+    name character varying(100) NOT NULL,
+    is_active boolean NOT NULL,
+    updated_on timestamp with time zone NOT NULL,
+    updated_by character varying(100) NOT NULL,
+    created_on timestamp with time zone NOT NULL,
+    created_by character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.payments_card_issuer OWNER TO doorsale;
+
+--
 -- Name: payments_gateway; Type: TABLE; Schema: public; Owner: doorsale; Tablespace: 
 --
 
 CREATE TABLE payments_gateway (
     name character varying(10) NOT NULL,
-    account_name character varying(100) NOT NULL,
+    account character varying(100) NOT NULL,
     is_active boolean NOT NULL,
     updated_on timestamp with time zone NOT NULL,
     created_on timestamp with time zone NOT NULL,
@@ -839,9 +856,8 @@ CREATE TABLE payments_transaction (
     id integer NOT NULL,
     gateway_id character varying(10) NOT NULL,
     order_id integer NOT NULL,
-    stan character varying(100) NOT NULL,
-    sale_id character varying(100),
     description character varying(250) NOT NULL,
+    error_message character varying(1000) NOT NULL,
     status character varying(100) NOT NULL,
     currency character varying(3) NOT NULL,
     amount numeric(9,2) NOT NULL,
@@ -999,7 +1015,7 @@ CREATE TABLE sales_order (
     sub_total numeric(9,2) NOT NULL,
     taxes numeric(9,2) NOT NULL,
     total numeric(9,2) NOT NULL,
-    refunded_amount numeric(9,2) NOT NULL,
+    refunded_amount numeric(9,2),
     exchange_rate double precision NOT NULL,
     exchange_value numeric(9,2) NOT NULL,
     order_status character varying(2) NOT NULL,
@@ -1283,7 +1299,7 @@ ALTER TABLE ONLY sales_order_item ALTER COLUMN id SET DEFAULT nextval('sales_ord
 --
 
 COPY accounts_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, birth_date, gender, billing_address_id, shipping_adress_id, is_verified, verification_code, updated_on, updated_by, created_on, created_by) FROM stdin;
-1	pbkdf2_sha256$12000$J25OPTB58fJe$8d5X9ox3VTDEDDbVqvavdaQ5tkyWeiZAPbXtldGpXDc=	2014-07-24 17:45:41.045131+05	t	mysteryjeans	Faraz	Masood Khan	faraz@fanaticlab.com	t	t	2014-05-01 19:13:06.219876+05	\N	M	\N	\N	f	3776b902d00aaec77ceba965995f2265	2014-05-01 19:13:06.314491+05	mysteryjeans	2014-05-01 19:13:06.314519+05	mysteryjeans
+1	pbkdf2_sha256$12000$J25OPTB58fJe$8d5X9ox3VTDEDDbVqvavdaQ5tkyWeiZAPbXtldGpXDc=	2014-08-30 03:51:56.232048+05	t	mysteryjeans	Faraz	Masood Khan	faraz@fanaticlab.com	t	t	2014-05-01 19:13:06.219876+05	\N	M	\N	\N	f	3776b902d00aaec77ceba965995f2265	2014-05-01 19:13:06.314491+05	mysteryjeans	2014-05-01 19:13:06.314519+05	mysteryjeans
 \.
 
 
@@ -1437,6 +1453,9 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 79	Can add transaction param	30	add_transactionparam
 80	Can change transaction param	30	change_transactionparam
 81	Can delete transaction param	30	delete_transactionparam
+82	Can add card issuer	31	add_cardissuer
+83	Can change card issuer	31	change_cardissuer
+84	Can delete card issuer	31	delete_cardissuer
 \.
 
 
@@ -1444,7 +1463,7 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('auth_permission_id_seq', 81, true);
+SELECT pg_catalog.setval('auth_permission_id_seq', 84, true);
 
 
 --
@@ -1763,6 +1782,13 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 27	2014-05-15 06:40:42.355327+05	1	12	1	Lenovo G510 Laptop	2	Changed is_free_shipping.
 28	2014-07-22 21:56:11.169908+05	1	26	1	127.0.0.1:8000	2	Changed domain and name.
 29	2014-07-24 21:10:10.777604+05	1	21	1	Faraz Masood Khan Sugarland parklane, Houston, Texas, United States	2	Changed last_name.
+30	2014-08-26 04:48:03.898195+05	1	27	PP	Doorsale PP	1	
+31	2014-08-26 05:04:56.115929+05	1	27	Doorsale	Doorsale PP	1	
+32	2014-08-26 05:05:48.736611+05	1	28	1	GatewayParam object	1	
+33	2014-08-26 05:06:22.688605+05	1	28	2	GatewayParam object	1	
+34	2014-08-26 05:24:32.937334+05	1	28	2	GatewayParam object	2	Changed name.
+35	2014-08-26 05:27:14.662338+05	1	28	2	GatewayParam object	2	Changed name.
+36	2014-09-08 21:35:02.903114+05	1	27	PP	PP	1	
 \.
 
 
@@ -1770,7 +1796,7 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 29, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 36, true);
 
 
 --
@@ -1806,6 +1832,7 @@ COPY django_content_type (id, name, app_label, model) FROM stdin;
 28	gateway param	payments	gatewayparam
 29	transaction	payments	transaction
 30	transaction param	payments	transactionparam
+31	card issuer	payments	cardissuer
 \.
 
 
@@ -1813,7 +1840,7 @@ COPY django_content_type (id, name, app_label, model) FROM stdin;
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('django_content_type_id_seq', 30, true);
+SELECT pg_catalog.setval('django_content_type_id_seq', 31, true);
 
 
 --
@@ -1833,8 +1860,9 @@ r8jc5hkn18exzl0vyvnmzcukxf69uzqc	MzkzODJjNzMxOWZiNGVhN2NlMGY5YWZlZjQ3MDRmODE3NmN
 si0mjwgqazmlt2hfemtnbdtl75q2cneq	ZDdkYjRiODZjN2U3NjAwNTQxMmEwZWI2YTFiZmYyZTNjYTg1ZTdlZTp7InVzZXJfY3VycmVuY3kiOiJFVVIifQ==	2014-05-15 21:30:11.115768+05
 hnptb5es5bc0mrwd86y26t63txvpjc4q	ODM1OTQ2ODQ4YjFhYzQyNmI0MjlkNGIzNjE1NWQ5OTY3YmI1MGY5NTp7InNoaXBwaW5nX2FkZHJlc3MiOjEsImJpbGxpbmdfYWRkcmVzcyI6MSwiX2F1dGhfdXNlcl9pZCI6MSwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJjYXJ0X2lkIjo2N30=	2014-05-30 06:35:51.819895+05
 u59erxxtueu3w0q1v0fzseauq4l6jfia	MzIxMjZlODcxYWU2ODUyY2Y4NzkyMTRlNjVkOWM3YjcxOWI0OTA0ODp7fQ==	2014-07-30 21:54:40.643132+05
-2y83qaooi5axc8k11ksfel6db51r58c8	ZDViN2RkYmM4ZmM1OGJhMDA4NjM0NGY2MzI5ZWU0MTRiYjJmMTJhMDp7ImJpbGxpbmdfYWRkcmVzcyI6MSwiX2F1dGhfdXNlcl9pZCI6MSwicGF5bWVudF9tZXRob2QiOiJDTyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwic2hpcHBpbmdfYWRkcmVzcyI6MSwiY2FydF9pZCI6ODd9	2014-08-08 00:57:32.570131+05
-f6f7q0pm4j54m8l1msxfcw6r70t3t154	YmRhZjllNDRkYzcyMDQ5OTI2OWE1ZGE2YTE2NWQ5MDVmOTFkNTcxYzp7ImJpbGxpbmdfYWRkcmVzcyI6MSwiX2F1dGhfdXNlcl9pZCI6MSwicGF5bWVudF9tZXRob2QiOiJDTyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwic2hpcHBpbmdfYWRkcmVzcyI6MSwiY2FydF9pZCI6ODR9	2014-08-07 04:47:35.179093+05
+2y83qaooi5axc8k11ksfel6db51r58c8	N2FhZTdiOGY5Yzc4ZDllY2M3NTQxNzM1MjM0MjY2YTFjOWI4YmZjZDp7ImJpbGxpbmdfYWRkcmVzcyI6MSwiX2F1dGhfdXNlcl9pZCI6MSwicGF5bWVudF9tZXRob2QiOiJDQyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwib3JkZXJfY29uZmlybWVkIjp0cnVlLCJzaGlwcGluZ19hZGRyZXNzIjoxLCJjYXJ0X2lkIjo5MCwiZGVmYXVsdF9jdXJyZW5jeSI6IlBLUiJ9	2014-09-22 21:32:20.639965+05
+f6f7q0pm4j54m8l1msxfcw6r70t3t154	Nzc5OTc2MmU1NDBlMjczYjZhZDNhMDQ5OGZlOTBiYzhmNzQ4NDEzNDp7ImJpbGxpbmdfYWRkcmVzcyI6MSwiX2F1dGhfdXNlcl9pZCI6MSwicGF5bWVudF9tZXRob2QiOiJDTyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwic2hpcHBpbmdfYWRkcmVzcyI6MSwiY2FydF9pZCI6ODQsImRlZmF1bHRfY3VycmVuY3kiOiJQS1IifQ==	2014-08-16 02:31:56.400263+05
+ef0n5pz1cp97eyn4v1sht2ee3g05tl3x	NWU3NDM2ZTZkZmE0YzAwMjUxYmQwZThlYjMyZGQyMDUzMzNkYzZmYTp7ImJpbGxpbmdfYWRkcmVzcyI6MSwiX2F1dGhfdXNlcl9pZCI6MSwicGF5bWVudF9tZXRob2QiOiJDQyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwib3JkZXJfY29uZmlybWVkIjp0cnVlLCJzaGlwcGluZ19hZGRyZXNzIjoxLCJjYXJ0X2lkIjo4OX0=	2014-09-23 02:51:53.022106+05
 \.
 
 
@@ -2246,10 +2274,28 @@ SELECT pg_catalog.setval('geo_state_id_seq', 160, true);
 
 
 --
+-- Data for Name: payments_card_issuer; Type: TABLE DATA; Schema: public; Owner: doorsale
+--
+
+COPY payments_card_issuer (descriptor, name, is_active, updated_on, updated_by, created_on, created_by) FROM stdin;
+visa	Visa	t	2014-08-29 21:49:24.179527+05	system	2014-08-29 21:49:24.179527+05	system
+mastercard	MasterCard	t	2014-08-29 21:49:24.293776+05	system	2014-08-29 21:49:24.293776+05	system
+maestro	Maestro	t	2014-08-29 21:49:24.33552+05	system	2014-08-29 21:49:24.33552+05	system
+discover	Discover Card	t	2014-08-29 21:49:24.369384+05	system	2014-08-29 21:49:24.369384+05	system
+amex	American Express	t	2014-08-29 21:49:24.391218+05	system	2014-08-29 21:49:24.391218+05	system
+diners_club_carte_blanche	Diners Club Carte Blanche	t	2014-08-29 21:49:24.412523+05	system	2014-08-29 21:49:24.412523+05	system
+jcb	JCB	t	2014-08-29 21:49:24.43352+05	system	2014-08-29 21:49:24.43352+05	system
+laser	Laser	t	2014-08-29 21:49:24.454924+05	system	2014-08-29 21:49:24.454924+05	system
+visa_electron	Visa Electron	t	2014-08-29 21:49:24.477327+05	system	2014-08-29 21:49:24.477327+05	system
+\.
+
+
+--
 -- Data for Name: payments_gateway; Type: TABLE DATA; Schema: public; Owner: doorsale
 --
 
-COPY payments_gateway (name, account_name, is_active, updated_on, created_on, updated_by, created_by) FROM stdin;
+COPY payments_gateway (name, account, is_active, updated_on, created_on, updated_by, created_by) FROM stdin;
+PP	mk.faraz@gmail.com	t	2014-09-08 21:35:02.870208+05	2014-09-08 21:35:02.870241+05	mysteryjeans	mysteryjeans
 \.
 
 
@@ -2272,7 +2318,7 @@ SELECT pg_catalog.setval('payments_gateway_param_id_seq', 1, false);
 -- Data for Name: payments_transaction; Type: TABLE DATA; Schema: public; Owner: doorsale
 --
 
-COPY payments_transaction (id, gateway_id, order_id, stan, sale_id, description, status, currency, amount, refund_amount, updated_on, created_on, updated_by, created_by) FROM stdin;
+COPY payments_transaction (id, gateway_id, order_id, description, error_message, status, currency, amount, refund_amount, updated_on, created_on, updated_by, created_by) FROM stdin;
 \.
 
 
@@ -2354,6 +2400,9 @@ COPY sales_cart (id, updated_on, updated_by, created_on, created_by) FROM stdin;
 85	2014-07-24 16:47:29.503624+05		2014-07-24 16:47:29.503681+05	
 86	2014-07-24 20:38:08.611777+05		2014-07-24 20:38:08.61182+05	
 87	2014-07-25 00:20:41.370722+05		2014-07-25 00:20:41.370762+05	
+88	2014-08-30 03:51:48.529427+05		2014-08-30 03:51:48.529485+05	
+89	2014-09-06 04:20:43.967483+05		2014-09-06 04:20:43.967527+05	
+90	2014-09-06 05:16:32.949717+05		2014-09-06 05:16:32.949757+05	
 \.
 
 
@@ -2361,7 +2410,7 @@ COPY sales_cart (id, updated_on, updated_by, created_on, created_by) FROM stdin;
 -- Name: sales_cart_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_cart_id_seq', 87, true);
+SELECT pg_catalog.setval('sales_cart_id_seq', 90, true);
 
 
 --
@@ -2413,6 +2462,12 @@ COPY sales_cart_item (id, cart_id, product_id, quantity, updated_on, updated_by,
 139	85	12	1	2014-07-24 16:47:29.50977+05	AnonymousUser	2014-07-24 16:47:29.50981+05	AnonymousUser
 140	86	2	1	2014-07-24 20:38:08.619781+05	mysteryjeans	2014-07-24 20:38:08.619823+05	mysteryjeans
 142	87	7	1	2014-07-25 00:20:54.625463+05	mysteryjeans	2014-07-25 00:20:54.625533+05	mysteryjeans
+143	87	4	1	2014-08-08 22:21:14.930782+05	mysteryjeans	2014-08-08 22:21:14.930821+05	mysteryjeans
+144	88	4	1	2014-08-30 03:51:48.57699+05	AnonymousUser	2014-08-30 03:51:48.577048+05	AnonymousUser
+145	87	6	1	2014-08-30 04:41:42.727751+05	mysteryjeans	2014-08-30 04:41:42.72779+05	mysteryjeans
+146	89	7	1	2014-09-06 04:20:43.975313+05	mysteryjeans	2014-09-06 04:20:43.975357+05	mysteryjeans
+147	90	2	1	2014-09-06 05:16:32.956455+05	mysteryjeans	2014-09-06 05:16:32.956498+05	mysteryjeans
+148	90	4	1	2014-09-07 01:45:18.950451+05	mysteryjeans	2014-09-07 01:45:18.950496+05	mysteryjeans
 \.
 
 
@@ -2420,7 +2475,7 @@ COPY sales_cart_item (id, cart_id, product_id, quantity, updated_on, updated_by,
 -- Name: sales_cart_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_cart_item_id_seq', 142, true);
+SELECT pg_catalog.setval('sales_cart_item_id_seq', 148, true);
 
 
 --
@@ -2452,6 +2507,65 @@ COPY sales_order (id, customer_id, currency_id, sub_total, taxes, total, refunde
 22	1	97	478.76	9.58	488.34	0.00	1	488.34	PE	CO	PE	\N	PE	1	1	tz9ru02qGlgMRVSueBSq	2014-07-23 01:12:44.792204+05	mysteryjeans	2014-07-23 01:12:44.792242+05	mysteryjeans	0.00
 23	1	97	27.00	0.54	27.54	0.00	1	27.54	PE	CO	PE	\N	PE	1	1	Z2hqOfk9m4A3nKWEklKf	2014-07-24 20:08:54.004375+05	mysteryjeans	2014-07-24 20:08:54.004412+05	mysteryjeans	0.00
 24	1	97	595.00	11.90	606.90	0.00	1	606.90	PE	CO	PE	\N	PE	1	1	rOip5SQRNkAdBxJUrZMn	2014-07-24 21:15:48.332888+05	mysteryjeans	2014-07-24 21:15:48.332925+05	mysteryjeans	0.00
+32	1	98	1778.76	35.58	1814.34	\N	98.6500000000000057	178984.17	PE	CC	PE	\N	PE	1	1	yXkYSy2TwWrznLb4QDIN	2014-09-06 04:17:29.032182+05	mysteryjeans	2014-09-06 04:17:29.032219+05	mysteryjeans	0.00
+33	1	97	500.00	10.00	510.00	\N	1	510.00	PE	CC	PE	\N	PE	1	1	3PTPmft9A63cgOr6Y1Qa	2014-09-06 04:19:11.631735+05	mysteryjeans	2014-09-06 04:19:11.631773+05	mysteryjeans	0.00
+34	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	hBvMZekoD2xeFBCqaMTB	2014-09-06 04:21:40.643947+05	mysteryjeans	2014-09-06 04:21:40.643985+05	mysteryjeans	0.00
+35	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	yXGi9wFYITcJooRa4Qrz	2014-09-06 04:22:25.064479+05	mysteryjeans	2014-09-06 04:22:25.064555+05	mysteryjeans	0.00
+36	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	MbhdK3zppbrqwFjTHklI	2014-09-06 04:24:31.832917+05	mysteryjeans	2014-09-06 04:24:31.832953+05	mysteryjeans	0.00
+37	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	WeZ5UFtsVN1K6C8FyzEy	2014-09-06 04:24:51.110252+05	mysteryjeans	2014-09-06 04:24:51.110288+05	mysteryjeans	0.00
+38	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	GZvbkHu9UIJDEzNvWe4G	2014-09-06 04:26:26.418991+05	mysteryjeans	2014-09-06 04:26:26.419027+05	mysteryjeans	0.00
+39	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	IIS0k4niF3m230pwHsq7	2014-09-06 04:29:13.311636+05	mysteryjeans	2014-09-06 04:29:13.311674+05	mysteryjeans	0.00
+40	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	EGZPWDRyM1XHujcNqs8t	2014-09-06 04:29:23.579297+05	mysteryjeans	2014-09-06 04:29:23.579346+05	mysteryjeans	0.00
+41	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	lacwGkxKSnoFzJKDzTwl	2014-09-06 04:29:50.001489+05	mysteryjeans	2014-09-06 04:29:50.001525+05	mysteryjeans	0.00
+42	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	QzMqmKuM8SRqUpSDsybC	2014-09-06 04:30:06.364555+05	mysteryjeans	2014-09-06 04:30:06.364625+05	mysteryjeans	0.00
+43	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	MRVk3mt3UICHQ8yR5ATX	2014-09-06 04:30:15.979815+05	mysteryjeans	2014-09-06 04:30:15.979851+05	mysteryjeans	0.00
+44	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	Cbf5KMX14E5WJxQpBWno	2014-09-06 04:38:13.053278+05	mysteryjeans	2014-09-06 04:38:13.053315+05	mysteryjeans	0.00
+45	1	98	595.00	11.90	606.90	\N	98.6500000000000057	59870.68	PE	CC	PE	\N	PE	1	1	FSRpfPGOH9sZ08qz8C8S	2014-09-06 05:16:43.527788+05	mysteryjeans	2014-09-06 05:16:43.527825+05	mysteryjeans	0.00
+46	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	I7XLeEVncQZqoJikXq2N	2014-09-06 05:16:58.59776+05	mysteryjeans	2014-09-06 05:16:58.597797+05	mysteryjeans	0.00
+47	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	FFiyzReVXJ4bxI8G2Ylm	2014-09-06 05:17:06.374973+05	mysteryjeans	2014-09-06 05:17:06.375015+05	mysteryjeans	0.00
+48	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	p44k3ku2yUpGwLGtNmjp	2014-09-06 05:18:40.572741+05	mysteryjeans	2014-09-06 05:18:40.572784+05	mysteryjeans	0.00
+49	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	h8mitQ0617OWOeQEVDrJ	2014-09-06 05:19:00.520973+05	mysteryjeans	2014-09-06 05:19:00.521011+05	mysteryjeans	0.00
+50	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	T78JSqB9ldXafJLLiHwr	2014-09-06 05:22:52.200249+05	mysteryjeans	2014-09-06 05:22:52.200287+05	mysteryjeans	0.00
+51	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	xPER1X8mGrWIeAYHOCsj	2014-09-06 05:22:55.029116+05	mysteryjeans	2014-09-06 05:22:55.029154+05	mysteryjeans	0.00
+52	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	F7fRpPs37D8NHbqhEZzi	2014-09-06 05:23:23.769383+05	mysteryjeans	2014-09-06 05:23:23.769419+05	mysteryjeans	0.00
+53	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	QYETZ3JMgSjJ9JuZMsRX	2014-09-06 05:24:43.724501+05	mysteryjeans	2014-09-06 05:24:43.724538+05	mysteryjeans	0.00
+54	1	98	595.00	11.90	606.90	\N	98.6500000000000057	59870.68	PE	CC	PE	\N	PE	1	1	6W5sxp5f0w7yRrcPNUpd	2014-09-07 01:41:11.116832+05	mysteryjeans	2014-09-07 01:41:11.116869+05	mysteryjeans	0.00
+55	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	USNY7DJApxzSMvTk2Pwm	2014-09-07 01:45:54.412768+05	mysteryjeans	2014-09-07 01:45:54.412805+05	mysteryjeans	0.00
+56	1	98	1095.00	21.90	1116.90	\N	98.6500000000000057	110182.19	PE	CC	PE	\N	PE	1	1	5Pd6Ngisw5HRMdgtBYeB	2014-09-08 20:57:51.395766+05	mysteryjeans	2014-09-08 20:57:51.395802+05	mysteryjeans	0.00
+57	1	98	1095.00	21.90	1116.90	\N	98.6500000000000057	110182.19	PE	CC	PE	\N	PE	1	1	BdBaQLFisnY9gJj6FlEl	2014-09-08 20:59:14.607739+05	mysteryjeans	2014-09-08 20:59:14.607777+05	mysteryjeans	0.00
+58	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	SoqrJIYXDOS35ouhXvOP	2014-09-08 21:07:18.552806+05	mysteryjeans	2014-09-08 21:07:18.552844+05	mysteryjeans	0.00
+59	1	98	1095.00	21.90	1116.90	\N	98.6500000000000057	110182.19	PE	CC	PE	\N	PE	1	1	a6lhhAiXKIm6lwQCWQuf	2014-09-08 21:31:57.484427+05	mysteryjeans	2014-09-08 21:31:57.484464+05	mysteryjeans	0.00
+60	1	98	1095.00	21.90	1116.90	\N	98.6500000000000057	110182.19	PE	CC	PE	\N	PE	1	1	n1Vd1DLEkcNRApee3NQA	2014-09-08 21:31:59.601918+05	mysteryjeans	2014-09-08 21:31:59.601955+05	mysteryjeans	0.00
+61	1	98	1095.00	21.90	1116.90	\N	98.6500000000000057	110182.19	PE	CC	PE	\N	PE	1	1	ubXh6fybQodMFHir0sDr	2014-09-08 21:32:01.548176+05	mysteryjeans	2014-09-08 21:32:01.548212+05	mysteryjeans	0.00
+62	1	98	1095.00	21.90	1116.90	\N	98.6500000000000057	110182.19	PE	CC	PE	\N	PE	1	1	TXrGjqJM04qp3WonimAj	2014-09-08 21:32:01.83878+05	mysteryjeans	2014-09-08 21:32:01.838817+05	mysteryjeans	0.00
+63	1	98	1095.00	21.90	1116.90	\N	98.6500000000000057	110182.19	PE	CC	PE	\N	PE	1	1	ZtMSs1ZpICR6NSyZpADB	2014-09-08 21:32:20.202297+05	mysteryjeans	2014-09-08 21:32:20.202333+05	mysteryjeans	0.00
+64	1	98	1095.00	21.90	1116.90	\N	98.6500000000000057	110182.19	PE	CC	PE	\N	PE	1	1	lqtFUZ9NbQAHoAqyaJnz	2014-09-08 21:32:20.625439+05	mysteryjeans	2014-09-08 21:32:20.625479+05	mysteryjeans	0.00
+65	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	Jgy9TfkbhJVslDCKgBsM	2014-09-08 21:32:27.542561+05	mysteryjeans	2014-09-08 21:32:27.542602+05	mysteryjeans	0.00
+66	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	J9Bre1LmZmXUO31ZWvkc	2014-09-08 21:32:28.35893+05	mysteryjeans	2014-09-08 21:32:28.358968+05	mysteryjeans	0.00
+67	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	VnWvst6YWxQaTe5mXAnT	2014-09-08 21:32:28.531184+05	mysteryjeans	2014-09-08 21:32:28.531221+05	mysteryjeans	0.00
+68	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	3N3SIeqHTif0p5GJhral	2014-09-08 21:32:28.696897+05	mysteryjeans	2014-09-08 21:32:28.696936+05	mysteryjeans	0.00
+69	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	KNkk6Lvb1Xs0B4TArU00	2014-09-08 21:34:33.219592+05	mysteryjeans	2014-09-08 21:34:33.219633+05	mysteryjeans	0.00
+70	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	rQnBssso4cYpa4e8TYPS	2014-09-08 21:35:21.783209+05	mysteryjeans	2014-09-08 21:35:21.783246+05	mysteryjeans	0.00
+71	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	94McEYgcwtkN3STeDptu	2014-09-09 01:51:22.634355+05	mysteryjeans	2014-09-09 01:51:22.634394+05	mysteryjeans	0.00
+72	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	7ScKJ5hflBJZNKmCexrP	2014-09-09 01:59:34.586615+05	mysteryjeans	2014-09-09 01:59:34.586684+05	mysteryjeans	0.00
+73	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	Gd5DYOlR0R3LuAchMnSu	2014-09-09 02:00:10.641903+05	mysteryjeans	2014-09-09 02:00:10.64194+05	mysteryjeans	0.00
+74	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	4v01VFfw7aG7Rbiux7Lp	2014-09-09 02:01:07.774814+05	mysteryjeans	2014-09-09 02:01:07.77485+05	mysteryjeans	0.00
+75	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	O2X8qJxopdd54xY4oiq6	2014-09-09 02:04:24.725533+05	mysteryjeans	2014-09-09 02:04:24.725569+05	mysteryjeans	0.00
+76	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	gHRG5hbVrZ2yaZ4pU4X7	2014-09-09 02:08:45.395909+05	mysteryjeans	2014-09-09 02:08:45.395946+05	mysteryjeans	0.00
+77	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	lufTTNYIVTJs2NQqxWr4	2014-09-09 02:15:23.103056+05	mysteryjeans	2014-09-09 02:15:23.103093+05	mysteryjeans	0.00
+78	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	ewmm1jL13vLJEU6ms0Xq	2014-09-09 02:17:11.196694+05	mysteryjeans	2014-09-09 02:17:11.196732+05	mysteryjeans	0.00
+79	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	IlGl59bOShgDIvqjyXeq	2014-09-09 02:18:09.285677+05	mysteryjeans	2014-09-09 02:18:09.285714+05	mysteryjeans	0.00
+80	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	z5aETSqw0kOYZDXnxN6J	2014-09-09 02:18:18.736299+05	mysteryjeans	2014-09-09 02:18:18.736338+05	mysteryjeans	0.00
+81	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	UJbHw4KGkjrlEVTaBmwG	2014-09-09 02:19:06.266485+05	mysteryjeans	2014-09-09 02:19:06.266521+05	mysteryjeans	0.00
+82	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	lzoXDxpcXOMGdMo0myUs	2014-09-09 02:20:20.313281+05	mysteryjeans	2014-09-09 02:20:20.313318+05	mysteryjeans	0.00
+83	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	AuqL5rBVxULh3ZMzkNJb	2014-09-09 02:30:12.594317+05	mysteryjeans	2014-09-09 02:30:12.594357+05	mysteryjeans	0.00
+84	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	QfTtflCVAlRCB9utPtlW	2014-09-09 02:34:44.740849+05	mysteryjeans	2014-09-09 02:34:44.740886+05	mysteryjeans	0.00
+85	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	vjrPVEpf674nv9fPlkal	2014-09-09 02:36:39.859425+05	mysteryjeans	2014-09-09 02:36:39.859463+05	mysteryjeans	0.00
+86	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	RSynVqZqQEkwTVaLksgm	2014-09-09 02:38:54.029194+05	mysteryjeans	2014-09-09 02:38:54.029261+05	mysteryjeans	0.00
+87	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	ssJkfsrEPwMBsajMVu99	2014-09-09 02:39:46.690237+05	mysteryjeans	2014-09-09 02:39:46.690273+05	mysteryjeans	0.00
+88	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	GpbPkPrvyX7ZbxpNVKdt	2014-09-09 02:40:35.253628+05	mysteryjeans	2014-09-09 02:40:35.253666+05	mysteryjeans	0.00
+89	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	soZ9KhIrkLCweuDnrBF9	2014-09-09 02:41:10.051819+05	mysteryjeans	2014-09-09 02:41:10.051855+05	mysteryjeans	0.00
+90	1	97	478.76	9.58	488.34	\N	1	488.34	PE	CC	PE	\N	PE	1	1	b7kEdOwn3c8nWDGXx39e	2014-09-09 02:51:53.007328+05	mysteryjeans	2014-09-09 02:51:53.00737+05	mysteryjeans	0.00
 \.
 
 
@@ -2459,7 +2573,7 @@ COPY sales_order (id, customer_id, currency_id, sub_total, taxes, total, refunde
 -- Name: sales_order_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_order_id_seq', 24, true);
+SELECT pg_catalog.setval('sales_order_id_seq', 90, true);
 
 
 --
@@ -2492,6 +2606,75 @@ COPY sales_order_item (id, order_id, product_id, price, quantity, taxes, sub_tot
 23	22	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-07-23 01:12:44.800813+05	mysteryjeans	2014-07-23 01:12:44.800849+05	mysteryjeans
 24	23	12	27.00	1	0.54	27.00	27.54	0.0200000000000000004	PE	2014-07-24 20:08:54.013523+05	mysteryjeans	2014-07-24 20:08:54.013562+05	mysteryjeans
 25	24	2	595.00	1	11.90	595.00	606.90	0.0200000000000000004	PE	2014-07-24 21:15:48.341308+05	mysteryjeans	2014-07-24 21:15:48.341346+05	mysteryjeans
+43	32	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 04:17:29.040204+05	mysteryjeans	2014-09-06 04:17:29.040242+05	mysteryjeans
+44	32	4	500.00	1	10.00	500.00	510.00	0.0200000000000000004	PE	2014-09-06 04:17:29.042159+05	mysteryjeans	2014-09-06 04:17:29.042192+05	mysteryjeans
+45	32	6	800.00	1	16.00	800.00	816.00	0.0200000000000000004	PE	2014-09-06 04:17:29.04419+05	mysteryjeans	2014-09-06 04:17:29.044227+05	mysteryjeans
+46	33	4	500.00	1	10.00	500.00	510.00	0.0200000000000000004	PE	2014-09-06 04:19:11.643069+05	mysteryjeans	2014-09-06 04:19:11.643134+05	mysteryjeans
+47	34	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 04:21:40.651428+05	mysteryjeans	2014-09-06 04:21:40.651465+05	mysteryjeans
+48	35	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 04:22:25.073948+05	mysteryjeans	2014-09-06 04:22:25.073986+05	mysteryjeans
+49	36	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 04:24:31.84053+05	mysteryjeans	2014-09-06 04:24:31.840566+05	mysteryjeans
+50	37	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 04:24:51.117632+05	mysteryjeans	2014-09-06 04:24:51.117668+05	mysteryjeans
+51	38	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 04:26:26.426282+05	mysteryjeans	2014-09-06 04:26:26.426318+05	mysteryjeans
+52	39	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 04:29:13.319159+05	mysteryjeans	2014-09-06 04:29:13.319195+05	mysteryjeans
+53	40	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 04:29:23.586903+05	mysteryjeans	2014-09-06 04:29:23.586938+05	mysteryjeans
+54	41	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 04:29:50.008954+05	mysteryjeans	2014-09-06 04:29:50.008989+05	mysteryjeans
+55	42	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 04:30:06.373403+05	mysteryjeans	2014-09-06 04:30:06.373446+05	mysteryjeans
+56	43	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 04:30:15.987254+05	mysteryjeans	2014-09-06 04:30:15.987289+05	mysteryjeans
+57	44	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 04:38:13.061918+05	mysteryjeans	2014-09-06 04:38:13.061955+05	mysteryjeans
+58	45	2	595.00	1	11.90	595.00	606.90	0.0200000000000000004	PE	2014-09-06 05:16:43.535595+05	mysteryjeans	2014-09-06 05:16:43.535632+05	mysteryjeans
+59	46	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 05:16:58.605428+05	mysteryjeans	2014-09-06 05:16:58.605466+05	mysteryjeans
+60	47	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 05:17:06.383011+05	mysteryjeans	2014-09-06 05:17:06.383051+05	mysteryjeans
+61	48	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 05:18:40.581084+05	mysteryjeans	2014-09-06 05:18:40.58112+05	mysteryjeans
+62	49	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 05:19:00.529896+05	mysteryjeans	2014-09-06 05:19:00.529934+05	mysteryjeans
+63	50	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 05:22:52.208084+05	mysteryjeans	2014-09-06 05:22:52.208121+05	mysteryjeans
+64	51	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 05:22:55.03767+05	mysteryjeans	2014-09-06 05:22:55.037712+05	mysteryjeans
+65	52	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 05:23:23.777022+05	mysteryjeans	2014-09-06 05:23:23.777059+05	mysteryjeans
+66	53	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-06 05:24:43.732262+05	mysteryjeans	2014-09-06 05:24:43.7323+05	mysteryjeans
+67	54	2	595.00	1	11.90	595.00	606.90	0.0200000000000000004	PE	2014-09-07 01:41:11.124405+05	mysteryjeans	2014-09-07 01:41:11.124441+05	mysteryjeans
+68	55	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-07 01:45:54.420697+05	mysteryjeans	2014-09-07 01:45:54.420733+05	mysteryjeans
+69	56	2	595.00	1	11.90	595.00	606.90	0.0200000000000000004	PE	2014-09-08 20:57:51.446123+05	mysteryjeans	2014-09-08 20:57:51.446189+05	mysteryjeans
+70	56	4	500.00	1	10.00	500.00	510.00	0.0200000000000000004	PE	2014-09-08 20:57:51.450033+05	mysteryjeans	2014-09-08 20:57:51.450092+05	mysteryjeans
+71	57	2	595.00	1	11.90	595.00	606.90	0.0200000000000000004	PE	2014-09-08 20:59:14.616025+05	mysteryjeans	2014-09-08 20:59:14.616061+05	mysteryjeans
+72	57	4	500.00	1	10.00	500.00	510.00	0.0200000000000000004	PE	2014-09-08 20:59:14.61802+05	mysteryjeans	2014-09-08 20:59:14.618053+05	mysteryjeans
+73	58	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-08 21:07:18.560628+05	mysteryjeans	2014-09-08 21:07:18.560665+05	mysteryjeans
+74	59	2	595.00	1	11.90	595.00	606.90	0.0200000000000000004	PE	2014-09-08 21:31:57.492228+05	mysteryjeans	2014-09-08 21:31:57.492264+05	mysteryjeans
+75	59	4	500.00	1	10.00	500.00	510.00	0.0200000000000000004	PE	2014-09-08 21:31:57.494268+05	mysteryjeans	2014-09-08 21:31:57.494301+05	mysteryjeans
+76	60	2	595.00	1	11.90	595.00	606.90	0.0200000000000000004	PE	2014-09-08 21:31:59.609522+05	mysteryjeans	2014-09-08 21:31:59.60956+05	mysteryjeans
+77	60	4	500.00	1	10.00	500.00	510.00	0.0200000000000000004	PE	2014-09-08 21:31:59.611484+05	mysteryjeans	2014-09-08 21:31:59.611518+05	mysteryjeans
+78	61	2	595.00	1	11.90	595.00	606.90	0.0200000000000000004	PE	2014-09-08 21:32:01.555797+05	mysteryjeans	2014-09-08 21:32:01.555833+05	mysteryjeans
+79	61	4	500.00	1	10.00	500.00	510.00	0.0200000000000000004	PE	2014-09-08 21:32:01.557753+05	mysteryjeans	2014-09-08 21:32:01.557786+05	mysteryjeans
+80	62	2	595.00	1	11.90	595.00	606.90	0.0200000000000000004	PE	2014-09-08 21:32:01.846413+05	mysteryjeans	2014-09-08 21:32:01.84645+05	mysteryjeans
+81	62	4	500.00	1	10.00	500.00	510.00	0.0200000000000000004	PE	2014-09-08 21:32:01.848382+05	mysteryjeans	2014-09-08 21:32:01.848415+05	mysteryjeans
+82	63	2	595.00	1	11.90	595.00	606.90	0.0200000000000000004	PE	2014-09-08 21:32:20.210203+05	mysteryjeans	2014-09-08 21:32:20.210239+05	mysteryjeans
+83	63	4	500.00	1	10.00	500.00	510.00	0.0200000000000000004	PE	2014-09-08 21:32:20.212292+05	mysteryjeans	2014-09-08 21:32:20.212326+05	mysteryjeans
+84	64	2	595.00	1	11.90	595.00	606.90	0.0200000000000000004	PE	2014-09-08 21:32:20.63381+05	mysteryjeans	2014-09-08 21:32:20.633851+05	mysteryjeans
+85	64	4	500.00	1	10.00	500.00	510.00	0.0200000000000000004	PE	2014-09-08 21:32:20.635901+05	mysteryjeans	2014-09-08 21:32:20.635935+05	mysteryjeans
+86	65	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-08 21:32:27.552875+05	mysteryjeans	2014-09-08 21:32:27.552913+05	mysteryjeans
+87	66	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-08 21:32:28.366566+05	mysteryjeans	2014-09-08 21:32:28.366603+05	mysteryjeans
+88	67	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-08 21:32:28.538697+05	mysteryjeans	2014-09-08 21:32:28.538734+05	mysteryjeans
+89	68	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-08 21:32:28.704748+05	mysteryjeans	2014-09-08 21:32:28.704786+05	mysteryjeans
+90	69	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-08 21:34:33.227273+05	mysteryjeans	2014-09-08 21:34:33.22731+05	mysteryjeans
+91	70	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-08 21:35:21.791022+05	mysteryjeans	2014-09-08 21:35:21.791059+05	mysteryjeans
+92	71	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 01:51:22.642079+05	mysteryjeans	2014-09-09 01:51:22.642117+05	mysteryjeans
+93	72	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 01:59:34.600341+05	mysteryjeans	2014-09-09 01:59:34.600383+05	mysteryjeans
+94	73	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:00:10.651073+05	mysteryjeans	2014-09-09 02:00:10.651112+05	mysteryjeans
+95	74	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:01:07.78326+05	mysteryjeans	2014-09-09 02:01:07.783302+05	mysteryjeans
+96	75	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:04:24.734348+05	mysteryjeans	2014-09-09 02:04:24.734388+05	mysteryjeans
+97	76	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:08:45.403662+05	mysteryjeans	2014-09-09 02:08:45.403699+05	mysteryjeans
+98	77	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:15:23.111678+05	mysteryjeans	2014-09-09 02:15:23.111721+05	mysteryjeans
+99	78	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:17:11.204326+05	mysteryjeans	2014-09-09 02:17:11.204365+05	mysteryjeans
+100	79	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:18:09.293242+05	mysteryjeans	2014-09-09 02:18:09.293279+05	mysteryjeans
+101	80	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:18:18.744027+05	mysteryjeans	2014-09-09 02:18:18.744067+05	mysteryjeans
+102	81	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:19:06.274331+05	mysteryjeans	2014-09-09 02:19:06.274367+05	mysteryjeans
+103	82	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:20:20.320878+05	mysteryjeans	2014-09-09 02:20:20.320917+05	mysteryjeans
+104	83	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:30:12.603871+05	mysteryjeans	2014-09-09 02:30:12.60391+05	mysteryjeans
+105	84	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:34:44.748913+05	mysteryjeans	2014-09-09 02:34:44.748951+05	mysteryjeans
+106	85	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:36:39.867059+05	mysteryjeans	2014-09-09 02:36:39.867095+05	mysteryjeans
+107	86	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:38:54.03763+05	mysteryjeans	2014-09-09 02:38:54.037666+05	mysteryjeans
+108	87	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:39:46.697813+05	mysteryjeans	2014-09-09 02:39:46.69785+05	mysteryjeans
+109	88	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:40:35.261094+05	mysteryjeans	2014-09-09 02:40:35.26113+05	mysteryjeans
+110	89	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:41:10.059411+05	mysteryjeans	2014-09-09 02:41:10.059447+05	mysteryjeans
+111	90	7	478.76	1	9.58	478.76	488.34	0.0200000000000000004	PE	2014-09-09 02:51:53.0164+05	mysteryjeans	2014-09-09 02:51:53.016468+05	mysteryjeans
 \.
 
 
@@ -2499,7 +2682,7 @@ COPY sales_order_item (id, order_id, product_id, price, quantity, taxes, sub_tot
 -- Name: sales_order_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: doorsale
 --
 
-SELECT pg_catalog.setval('sales_order_item_id_seq', 25, true);
+SELECT pg_catalog.setval('sales_order_item_id_seq', 111, true);
 
 
 --
@@ -2832,6 +3015,14 @@ ALTER TABLE ONLY geo_state
 
 ALTER TABLE ONLY geo_state
     ADD CONSTRAINT geo_state_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: payments_card_issuer_pkey; Type: CONSTRAINT; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+ALTER TABLE ONLY payments_card_issuer
+    ADD CONSTRAINT payments_card_issuer_pkey PRIMARY KEY (descriptor);
 
 
 --
@@ -3187,6 +3378,13 @@ CREATE INDEX geo_state_country_id ON geo_state USING btree (country_id);
 --
 
 CREATE INDEX geo_state_name_like ON geo_state USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: payments_card_issuer_descriptor_like; Type: INDEX; Schema: public; Owner: doorsale; Tablespace: 
+--
+
+CREATE INDEX payments_card_issuer_descriptor_like ON payments_card_issuer USING btree (descriptor varchar_pattern_ops);
 
 
 --
