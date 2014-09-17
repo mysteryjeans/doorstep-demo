@@ -17,19 +17,17 @@ $ virtualenv -ppython2.7 ds_env
 $ source ds_env/bin/activate
 ```
 
-* Install Doorsale into virtualenv
+Install Doorsale into virtualenv
 
 ```
 $ pip install --upgrade git+https://github.com/mysteryjeans/doorsale.git#egg=Doorsale
 ```
 
-* Get latest code of demo site
+Get latest code of demo site
 
 ```
 $ git clone git@github.com:mysteryjeans/doorsale-demo.git
 ```
-
-* Run Doorsale demo site
 
 Let's verify your demo site works, change to doorsale-demo directory just have created and run following command.
 
@@ -37,9 +35,7 @@ Let's verify your demo site works, change to doorsale-demo directory just have c
 $ python manage.py runserver
 ```
 
-* Go to http://localhost:8000/admin and login using following credentials.
-  - user: "mysteryjeans"
-  - password: "password"
+Go to http://localhost:8000/admin and login using these credentials user: "mysteryjeans" - password: "password"
 
 
 **This repo is following master branch on [Doorsale](http://github.com/mysteryjeans/doorsale), so you should pull changes frequently to keep things synchronized and running smoothly.** 
