@@ -3,56 +3,35 @@
 Doorsale-demo
 =============
 
-[Demo site](http://doorsale-demo.fanaticlab.com/) for [Doorsale](http://github.com/mysteryjeans/doorsale) e-commerce solution built on Django. [Doorsale](http://github.com/mysteryjeans/doorsale) has been actively developed, although it is far from ready, this repo gives you chance to contribute in [Doorsale](http://github.com/mysteryjeans/doorsale) project, your feedbacks & contributions will be highly encourge.
+This is [demo site](http://doorsale-demo.fanaticlab.com/) respository for Doorsale e-commerce, that you can clone into your local workstations and tested with prepopulated demo data. [Doorsale](http://github.com/mysteryjeans/doorsale) has been actively developed and this repo gives you chance to contribute in [Doorsale](http://github.com/mysteryjeans/doorsale) project by very quickly getting up & running, we support & encourages an healthy community of contributors - including you!
 
-**Getting head start in [Doorsale](http://github.com/mysteryjeans/doorsale) development is easy, just clone both repos and restore demo database dump.**
 
-### Setting UP
+### Setting UP Demo site
 
-* Get latest Doorsale app source code
+Demo repo have prefilled catalog of products in their respective categories and payments configurations.
+
+* Setup new virtualenv for doorsale and activate
 
 ```
-$ git clone git@github.com:mysteryjeans/doorsale.git
+$ virtualenv -ppython2.7 ds_env
+$ source ds_env/bin/activate
 ```
 
-* Get latest Doorsale Demo source code
+* Install Doorsale into virtualenv
+
+```
+$ pip install --upgrade git+https://github.com/mysteryjeans/doorsale.git#egg=Doorsale
+```
+
+* Get latest code of demo site
 
 ```
 $ git clone git@github.com:mysteryjeans/doorsale-demo.git
 ```
 
-* You need to include path of Doorsale app in python search paths for packages, so include doorsale cloned repo in PYTHONPATH variable or simply create a doorsale.pth file in python site-packages directory having an actuall path of the project repo, e.g...
-
-```
-$ cat /Library/Python/2.7/site-packages/doorsale.pth 
-/Users/faraz/Workspace/doorsale
-```
-
-* If you want to install Doorsale app using pip, go to repository and run.
-
-```
-$ pip install --upgrade .
-```
-
-* Create PostgreSQL user
-
-```sql
-create user doorsale with password 'doorsale';
-```
-
-* Create PostgreSQL database
-
-```sql
-create database doorsale with owner doorsale;
-```
- 
-* Restore pg_dump.sql from db_dump folder in doorsale-demo project.
-
-```
-$ psql -U doorsale doorsale < pg_dump.sql
-```
-
 * Run Doorsale demo site
+
+Let's verify your demo site works, change to doorsale-demo directory just have created and run following command.
 
 ```
 $ python manage.py runserver
