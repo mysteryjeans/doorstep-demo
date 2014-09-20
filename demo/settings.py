@@ -266,7 +266,6 @@ PIPELINE_JS = {
 }
 
 
-# Email server settings
 # You should define your email server settings here  
 EMAIL_HOST = 'smtp.mailgun.org'
 EMAIL_PORT = 587
