@@ -38,6 +38,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -111,6 +112,14 @@ FIXTURE_DIRS = (
     os.path.join(BASE_DIR, 'fixtures'),
 )
 
+
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+
+TEMPLATE_CONTEXT_PROCESSORS += (
+    "django.core.context_processors.request",
+    )
+
+
 ################## Doorsale #########################
 #####################################################
 
@@ -178,6 +187,13 @@ STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 # in order for Doorsale to work properly
 PIPELINE_DISABLE_WRAPPER = True
 
+# LESS compiler search paths for resources
+# Always use relative paths in @import statements in LESS
+# All resources in app's static directory will be available
+# for LESS compiler
+from doorsale.utils.finders import get_static_paths
+STATIC_PATHS = os.pathsep.join(get_static_paths(INSTALLED_APPS))
+PIPELINE_LESS_ARGUMENTS = '--include-path=%s' % STATIC_PATHS
 
 # CSS configurations for django-pipeline
 # All LESS styles configured for doorsale defined
