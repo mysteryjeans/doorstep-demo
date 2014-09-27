@@ -140,6 +140,7 @@ LOGIN_REDIRECT_URL = '/'
 INSTALLED_APPS += (
     'doorsale',
     'doorsale.geo',
+    'doorsale.dash',
     'doorsale.pages',
     'doorsale.accounts',
     'doorsale.catalog',
@@ -296,5 +297,9 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'postmaster@sandbox46644.mailgun.org'
 EMAIL_HOST_PASSWORD = r'47dne5%*B%$%GVF*52B'
+
+
+# Debug toolbar-settings
+INSTALLED_APPS += ('debug_toolbar',)
 
 
