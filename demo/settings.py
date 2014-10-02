@@ -242,6 +242,13 @@ PIPELINE_CSS = {
             'pages/css/pages.less',
         ),
         'output_filename': 'pages/css/pages.css'
+    },
+    # doorsale.dash: Dashboard app LESS styles
+    'dash': {
+        'source_filenames': (
+            'dash/css/dash.less',
+        ),
+        'output_filename': 'dash/css/dash.css'
     }
 }
 
