@@ -1,1 +1,2 @@
-django-grappelli==2.6.1
+django-debug-toolbar
+
