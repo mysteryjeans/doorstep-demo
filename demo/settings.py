@@ -177,6 +177,12 @@ PIPELINE_COMPILERS = ('pipeline.compilers.less.LessCompiler',)
 # LESS & Javascript static files serving in development
 STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
 
+# Pipeline finders for serving pipeline static files
+from django.conf.global_settings import STATICFILES_FINDERS
+STATICFILES_FINDERS += (
+    'pipeline.finders.PipelineFinder',
+)
+
 # Custom Javascript needs to be in global scope
 # in order for Doorsale to work properly
 PIPELINE_DISABLE_WRAPPER = True
