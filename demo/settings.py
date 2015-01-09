@@ -13,7 +13,9 @@ import os.path
 
 TEMPLATE_DEBUG = DEBUG = True
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+PROJECT_ROOT = os.path.dirname(__file__)
+BASE_DIR = os.path.dirname(PROJECT_ROOT)
 
 
 # Quick-start development settings - unsuitable for production
@@ -105,6 +107,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 FIXTURE_DIRS = (
     os.path.join(BASE_DIR, 'fixtures'),
+)
+
+
+TEMPLATE_DIRS = (
+    os.path.join(PROJECT_ROOT, 'templates').replace('\\','/'),
 )
 
 
