@@ -1,0 +1,1 @@
+# Put your favicon.ico for your website in this static folder

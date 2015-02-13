@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# This is a simple hook executed before your application is started.
+# This script gets executed directly, so it could be python, php, ruby, etc.
+# Environment variables: $SITE_HOME $APP_HOME $APP_PYTH_ENV $APP_REPO_DIR
