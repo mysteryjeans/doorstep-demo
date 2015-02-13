@@ -96,6 +96,7 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, 'templates'),
 )
 
+
 ################## Doorsale #########################
 # Doorsale e-commerce settings for Django project
 # Customize these settings only if you know
