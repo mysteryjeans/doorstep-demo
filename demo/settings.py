@@ -28,7 +28,7 @@ TEMPLATE_DEBUG = True
 # Define your admin email address here
 # ADMINS = (('<Your Name>', '<Your email address>'),)
 
-ALLOWED_HOSTS = ['.web.fanaticlab.com', 'doorsale-demo.fanaticlab.com']
+ALLOWED_HOSTS = ['.app.systemplugin.com', 'doorsale-demo.systemplugin.com']
 
 
 # Application definition
