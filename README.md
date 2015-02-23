@@ -3,7 +3,7 @@
 Doorsale-demo
 =============
 
-This is [demo site](http://doorsale-demo.fanaticlab.com/) respository for Doorsale e-commerce, that you can clone into your local workstations and tested with prepopulated demo data. [Doorsale](http://github.com/mysteryjeans/doorsale) has been actively developed and this repo gives you chance to contribute in [Doorsale](http://github.com/mysteryjeans/doorsale) project by very quickly getting up & running, we support & encourages an healthy community of contributors - including you!
+This is [demo site](http://doorsale-demo.rootplugin.com/) respository for Doorsale e-commerce, that you can clone into your local workstations and tested with prepopulated demo data. [Doorsale](http://github.com/mysteryjeans/doorsale) has been actively developed and this repo gives you chance to contribute in [Doorsale](http://github.com/mysteryjeans/doorsale) project by very quickly getting up & running, we support & encourages an healthy community of contributors - including you!
 
 
 ### Setting UP Demo site
