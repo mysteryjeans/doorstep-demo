@@ -23,8 +23,6 @@ SECRET_KEY = 'b!@yz9a1)g%p0hvm3buwanh9q@h&zua1x924=+*6rg8_ds35k-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DB_NAME' not in os.environ
 
-TEMPLATE_DEBUG = True
-
 # Define your admin email address here
 # ADMINS = (('<Your Name>', '<Your email address>'),)
 
@@ -80,6 +78,23 @@ USE_L10N = True
 
 USE_TZ = True
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(PROJECT_DIR, 'templates'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
@@ -92,10 +107,6 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-TEMPLATE_DIRS = (
-    os.path.join(PROJECT_DIR, 'templates'),
-)
-
 
 ################## Doorsale #########################
 # Doorsale e-commerce settings for Django project
@@ -103,6 +114,9 @@ TEMPLATE_DIRS = (
 from doorsale.settings import *
 INSTALLED_APPS += DOORSALE_APPS
 
+INSTALLED_APPS += (
+    'debug_toolbar',
+)
 
 # Your email server settings should be define here
 # EMAIL_HOST = ''
@@ -110,4 +124,3 @@ INSTALLED_APPS += DOORSALE_APPS
 # EMAIL_USE_TLS = True
 # EMAIL_HOST_USER = ''
 # EMAIL_HOST_PASSWORD = ''
-
