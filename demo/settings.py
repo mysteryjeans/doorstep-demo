@@ -114,9 +114,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 from doorsale.settings import *
 INSTALLED_APPS += DOORSALE_APPS
 
-INSTALLED_APPS += (
-    'debug_toolbar',
-)
 
 # Your email server settings should be define here
 # EMAIL_HOST = ''
