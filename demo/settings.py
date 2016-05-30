@@ -88,6 +88,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+                'django.template.context_processors.media',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -113,7 +114,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Customize these settings only if you know
 from doorsale.settings import *
 INSTALLED_APPS += DOORSALE_APPS
-
 
 # Your email server settings should be define here
 # EMAIL_HOST = ''
