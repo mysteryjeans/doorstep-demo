@@ -8,14 +8,13 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
-bin/
 build/
 develop-eggs/
 dist/
 eggs/
 lib/
 lib64/
-parts/
+# parts/
 sdist/
 var/
 *.egg-info/
@@ -52,5 +51,9 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
-# MAC
+# Avoiding CSS for less
+*.css
+
+
+# Mac
 .DS_Store

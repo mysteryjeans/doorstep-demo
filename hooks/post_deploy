@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# This is a simple post deploy hook executed after your application is deployed
+# and started. This script gets executed directly, so it could be python, php, ruby, etc.
+# Environment variables: $SITE_HOME $APP_HOME $APP_PYTH_ENV $APP_REPO_DIR
+
+# Installing required packages to virtual environment, you can add python package
+# in requirements.txt it will automatically get installed.
+source $APP_PYTH_ENV/bin/activate
+pip install -r $APP_REPO_DIR/requirements.txt
+
+# Running Django migrate command to synchronize database models to cater any
+# database django model changes
+python $APP_REPO_DIR/manage.py migrate
+
+# Collecting static resources to serve by NGINX server separately.
+python $APP_REPO_DIR/manage.py collectstatic --noinput
