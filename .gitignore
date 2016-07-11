@@ -57,3 +57,7 @@ docs/_build/
 
 # Mac
 .DS_Store
+
+# Django project
+/static
+
