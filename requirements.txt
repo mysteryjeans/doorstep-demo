@@ -1,2 +1,2 @@
 psycopg2
-git+https://github.com/mysteryjeans/doorsale.git#egg=Doorsale
+git+https://github.com/mysteryjeans/doorstep.git#egg=Doorstep

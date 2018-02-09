@@ -10,8 +10,8 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
 
-    # Doorsale urls containing urls for all apps
-    url(r'^', include('doorsale.urls')),
+    # Doorstep urls containing urls for all apps
+    url(r'^', include('doorstep.urls')),
 ]
 
 # In Debug mode we need to serve media files

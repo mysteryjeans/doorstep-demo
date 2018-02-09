@@ -26,7 +26,7 @@ DEBUG = 'DB_NAME' not in os.environ
 # Define your admin email address here
 # ADMINS = (('<Your Name>', '<Your email address>'),)
 
-ALLOWED_HOSTS = ['.app.rootplugin.com', 'doorsale-demo.rootplugin.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.app.rootplugin.com', 'doorstep-demo.rootplugin.com']
 
 
 # Application definition
@@ -109,10 +109,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-################## Doorsale #########################
-# Doorsale e-commerce settings for Django project
+################## Doorstep #########################
+# Doorstep e-commerce settings for Django project
 # Customize these settings only if you know
-from doorsale.settings import *
+from doorstep.settings import *
 INSTALLED_APPS += DOORSALE_APPS
 
 # Your email server settings should be define here
