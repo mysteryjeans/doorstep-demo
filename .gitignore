@@ -60,5 +60,6 @@ docs/_build/
 
 # Django project
 /static
+/media/cache
 
 
