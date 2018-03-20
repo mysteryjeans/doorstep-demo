@@ -116,8 +116,8 @@ from doorstep.settings import *
 INSTALLED_APPS += DOORSALE_APPS
 
 # Your email server settings should be define here
-# EMAIL_HOST = ''
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = ''
-# EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_PORT = 2525
+EMAIL_USE_TLS = False
+EMAIL_HOST_USER = '6282ec6cf953c0'
+EMAIL_HOST_PASSWORD = 'fdb7bb7010428a'
