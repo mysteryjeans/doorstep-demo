@@ -60,4 +60,4 @@ desktop.ini
 
 # As project
 /static
-db.sqlite3
+/media/cache
